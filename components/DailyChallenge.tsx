@@ -97,7 +97,7 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
             const userAnswerText = userAnswerKey ? `${userAnswerKey}. ${q.options[userAnswerKey as keyof typeof q.options]}` : 'उत्तर दिले नाही';
             addHistoryItem({
                 type: 'text',
-                topicName: `Daily Challenge प्रश्न: ${index + 1}`,
+                topicName: `दैनंदिन आव्हान प्रश्न: ${index + 1}`,
                 inputs: { 'प्रश्न': q.question, 'तुमचे उत्तर': userAnswerText },
                 result: {
                     answer: `बरोबर उत्तर: ${q.correctAnswer}. ${q.options[q.correctAnswer as keyof typeof q.options]}`,
@@ -117,7 +117,7 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
     const renderIntro = () => (
         <div className="text-center animate-fade-in">
             <CalendarIcon className="w-16 h-16 mx-auto text-amber-400" />
-            <h2 className="text-2xl font-bold mt-4 text-slate-800">दैनिक आव्हान (Daily Challenge)</h2>
+            <h2 className="text-2xl font-bold mt-4 text-slate-800">दैनंदिन आव्हान</h2>
             <p className="text-slate-600 mt-2 max-w-md mx-auto">
                 तुम्हाला {CHALLENGE_QUESTIONS} संमिश्र विषयांवरील प्रश्न मिळतील. तुमच्याकडे {CHALLENGE_TIME_LIMIT / 60} मिनिटे आहेत.
             </p>
@@ -168,7 +168,6 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
                 <div className="prose prose-sm sm:prose-base max-w-none mb-10 font-bold text-center text-slate-800 whitespace-pre-wrap leading-relaxed">
                     <ReactMarkdown>{currentQuestion.question}</ReactMarkdown>
                 </div>
-                {/* Important: Key change on the container clears the focus border from previous question */}
                 <div className="space-y-4" key={`q-container-${currentIndex}`}>
                     {Object.entries(currentQuestion.options).map(([key, value]) => (
                         <button

@@ -1,6 +1,6 @@
 {
-  "name": "Yashavi Math Calculator",
-  "description": "A high-performance, AI-powered math solver for competitive exams in Marathi. Features step-by-step solutions, photo solver, and daily challenges.",
+  "name": "यशस्वी गणित कॅल्क्युलेटर",
+  "description": "स्पर्धा परीक्षांसाठी मराठीतील प्रगत एआय-आधारित गणित सोडवणारे कॅल्क्युलेटर. यामध्ये स्टेप-बाय-स्टेप उत्तरे, फोटो सोलव्हर आणि दैनंदिन आव्हाने उपलब्ध आहेत.",
   "requestFramePermissions": [
     "camera",
     "microphone"

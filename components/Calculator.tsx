@@ -321,9 +321,9 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       </button>
       <div className="bg-white text-slate-900 border border-slate-200 rounded-xl shadow-lg p-6">
         <div className="flex flex-wrap justify-between items-center gap-y-2 mb-4">
-            <h2 className="text-2xl font-bold flex items-center gap-3">
+            <h2 className="text-2xl font-bold flex items-center gap-3 text-slate-800">
                 <span className="text-primary-light">{topic.icon}</span>
-                {topic.name} Calculator
+                {topic.name} कॅल्क्युलेटर
             </h2>
             <button
                 onClick={handleExplainConcept}
