@@ -133,7 +133,13 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
             <div className="flex items-center gap-2 text-amber-500"><FireIcon /><div><p className="text-sm text-slate-500">सलग</p><p className="text-xl font-bold">{streak}</p></div></div>
             <div className="flex items-center gap-2 text-primary"><TrophyIcon /><div><p className="text-sm text-slate-500">उच्चांक</p><p className="text-xl font-bold">{bestStreak}</p></div></div>
         </div>
-        {isLoading ? <div className="flex justify-center items-center py-20"><Spinner /></div> : (
+        {isLoading ? (
+          <div className="flex flex-col justify-center items-center py-20 text-center animate-pulse">
+            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p className="text-xl font-bold text-primary">सराव प्रश्न तयार होत आहे...</p>
+            <p className="text-slate-600 mt-2 font-medium">तुमच्या आव्हानाला सुरुवात होत आहे, कृपया थांबा.</p>
+          </div>
+        ) : (
           mcq && (
             <div className="animate-fade-in" key={mcq.question}>
               <div className="prose prose-sm max-w-none mb-6 font-semibold text-center text-slate-800"><ReactMarkdown>{mcq.question}</ReactMarkdown></div>
