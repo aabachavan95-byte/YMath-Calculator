@@ -53,10 +53,15 @@ const mcqResponseSchema = {
         },
         explanation: {
             type: Type.STRING,
-            description: 'A detailed step-by-step explanation in Marathi for the correct answer. Use markdown for formatting. The explanation MUST be a numbered list. For example: "1. पहिली पायरी...\\n2. दुसरी पायरी..."'
+            description: 'A detailed step-by-step explanation in Marathi for the correct answer. Keep it concise for speed.'
         }
     },
     required: ["question", "options", "correctAnswer", "explanation"]
+};
+
+const mcqBatchResponseSchema = {
+    type: Type.ARRAY,
+    items: mcqResponseSchema,
 };
 
 const dailyChallengeResponseSchema = {
@@ -156,6 +161,18 @@ const parseMcqResponse = (response: GenerateContentResponse): McqResponse => {
     }
 };
 
+const parseMcqBatchResponse = (response: GenerateContentResponse): McqResponse[] => {
+    try {
+        const text = response.text?.trim();
+        if (!text) throw new Error("Received empty response.");
+        const cleanedText = extractJson(text, true);
+        const parsedArray = JSON.parse(cleanedText);
+        return parsedArray as McqResponse[];
+    } catch (error) {
+        throw new Error("सराव प्रश्न संच लोड करताना त्रुटी आली.");
+    }
+};
+
 const parseDailyChallengeResponse = (response: GenerateContentResponse): McqResponse[] => {
     try {
         const text = response.text?.trim();
@@ -204,13 +221,43 @@ export const generateMcqProblem = async (prompt: string): Promise<McqResponse> =
                 responseMimeType: "application/json",
                 responseSchema: mcqResponseSchema,
                 safetySettings: safetySettings,
-                // Add randomization seed even for single MCQs
                 temperature: 1.0,
             },
         }));
         return parseMcqResponse(response);
     } catch (error) {
         throw handleApiError(error, "सराव प्रश्न तयार करताना अडचण:");
+    }
+};
+
+export const generateMcqBatch = async (topicName: string, level: Difficulty, count: number = 25): Promise<McqResponse[]> => {
+    const randomKey = Math.random().toString(36).substring(7);
+    const batchPrompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. '${topicName}' या विषयावर ${count} पूर्णपणे नवीन आणि वेगळे बहुपर्यायी प्रश्न (MCQs) तयार करा. 
+    
+    महत्त्वाचे नियम (वेग आणि विविधतेसाठी):
+    १. रँडम सीड: ${randomKey}.
+    २. काठीण्य पातळी: ${level === 'easy' ? 'सोपे' : level === 'medium' ? 'मध्यम' : 'कठीण'}.
+    ३. प्रश्न पुन्हा येता कामा नये: प्रत्येक प्रश्नातील संख्या, नावे आणि रचना पूर्णपणे नवीन असावी. मागील कोणत्याही संचातील प्रश्न रिपीट करू नका.
+    ४. स्पष्टीकरणे: स्पष्टीकरणे अचूक पण अत्यंत संक्षिप्त (Brief) ठेवा जेणेकरून वेगाने लोडिंग होईल.
+    ५. अचूकता: सर्व गणिती उत्तरे आणि पर्याय तपासून घ्या.`;
+
+    try {
+        const ai = getAiClient();
+        const response = await geminiRequestWithRetry(() => ai.models.generateContent({
+            model: model,
+            contents: batchPrompt,
+            config: {
+                systemInstruction: systemInstruction,
+                responseMimeType: "application/json",
+                responseSchema: mcqBatchResponseSchema,
+                safetySettings: safetySettings,
+                temperature: 1.0,
+                thinkingConfig: { thinkingBudget: 0 } // Fast response mode
+            },
+        }));
+        return parseMcqBatchResponse(response);
+    } catch (error) {
+        throw handleApiError(error, "सराव प्रश्न संच तयार करताना अडचण:");
     }
 };
 
@@ -236,18 +283,8 @@ export const solveImageProblem = async (base64Image: string, mimeType: string, p
 export const CHALLENGE_QUESTIONS = 15;
 
 export const generateDailyChallenge = async (difficulty: Difficulty): Promise<McqResponse[]> => {
-    // Generate a unique ID for this session to ensure variety
     const sessionId = Date.now() + Math.random().toString(36).substring(7);
-    
-    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. भारतीय स्पर्धा परीक्षांसाठी (MPSC, UPSC, Police, SSC) ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन आणि वेगळे बहुपर्यायी प्रश्न (MCQs) तयार करा. 
-    
-    महत्त्वाचे नियम (विविधता सुनिश्चित करण्यासाठी):
-    १. सेशन आयडी: ${sessionId}. या आयडीचा वापर करून खात्री करा की पूर्वी दिलेले कोणतेही प्रश्न पुन्हा रिपीट होणार नाहीत.
-    २. काठीण्य पातळी: ${difficulty === 'easy' ? 'सोपे' : difficulty === 'medium' ? 'मध्यम' : 'कठीण'}.
-    ३. संख्यांमध्ये बदल: प्रत्येक प्रश्नात वापरल्या जाणाऱ्या संख्या (numbers) पूर्णपणे नवीन असाव्यात.
-    ४. प्रकरणांचे वैविध्य: गणितातील सर्व प्रकरणांचा (टक्केवारी, काम-वेग, नफा-तोटा, सरासरी, इ.) समावेश करा.
-    ५. भाषा: संपूर्ण प्रश्न संच शुद्ध मराठीत असावा.
-    ६. अचूकता: सर्व गणिती उत्तरे आणि स्पष्टीकरणे अचूक असल्याची दोनदा खात्री करा.`;
+    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन MCQs तयार करा. आयडी: ${sessionId}. विविधता आणि अचूकता महत्त्वाची.`;
     
     try {
         const ai = getAiClient();
@@ -259,7 +296,8 @@ export const generateDailyChallenge = async (difficulty: Difficulty): Promise<Mc
                 responseMimeType: "application/json",
                 responseSchema: dailyChallengeResponseSchema,
                 safetySettings: safetySettings,
-                temperature: 1.0, // High temperature for more variety
+                temperature: 1.0,
+                thinkingConfig: { thinkingBudget: 0 }
             },
         }));
         return parseDailyChallengeResponse(response);
