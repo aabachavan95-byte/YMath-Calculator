@@ -138,6 +138,9 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  // Function to clean text from annoying '$' symbols
+  const sanitizeText = (text: string) => text.replace(/\$/g, '');
+
   const currentMcq = questions[currentIndex];
 
   return (
@@ -203,12 +206,16 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
         ) : (
           currentMcq && (
             <div className="animate-fade-in" key={currentIndex}>
-              <div className="prose prose-sm max-w-none mb-6 font-semibold text-center text-slate-800 text-lg leading-relaxed"><ReactMarkdown>{currentMcq.question}</ReactMarkdown></div>
+              <div className="prose prose-sm max-w-none mb-6 font-semibold text-center text-slate-800 text-lg leading-relaxed">
+                {/* Fixed line 216: ensured currentMcq.question is string by explicit casting to prevent 'unknown' error */}
+                <ReactMarkdown>{sanitizeText(currentMcq.question as string)}</ReactMarkdown>
+              </div>
               <div className="space-y-3 mb-6">
+                {/* Fixed possible unknown type in Object.entries by casting value as string */}
                 {Object.entries(currentMcq.options).map(([key, value]) => (
                   <button key={key} onClick={() => handleOptionSelect(key)} className={`w-full text-left p-4 border rounded-xl transition-all flex items-center gap-3 focus:outline-none focus:ring-0 ${getOptionClass(key)}`}>
                     <span className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-primary border border-slate-200">{key}</span>
-                    <span className="font-semibold">{value}</span>
+                    <span className="font-semibold">{sanitizeText(value as string)}</span>
                   </button>
                 ))}
               </div>
@@ -221,7 +228,8 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
                         : <span className="text-red-600">उत्तर चुकले.</span>}
                   </h3>
                   <div className="prose prose-sm max-w-none text-slate-700">
-                    <ReactMarkdown>{currentMcq.explanation}</ReactMarkdown>
+                    {/* Fixed possible unknown type for explanation by casting as string */}
+                    <ReactMarkdown>{sanitizeText(currentMcq.explanation as string)}</ReactMarkdown>
                   </div>
                 </div>
               )}

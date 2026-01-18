@@ -113,8 +113,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       const recognition = new SpeechRecognition();
       
       recognition.lang = 'mr-IN'; // Marathi
-      // Changed to false to prevent "double recording" and "too fast" typing issues.
-      // This ensures text is only added when the phrase is complete and stable.
       recognition.interimResults = false; 
       recognition.continuous = true; 
       recognition.maxAlternatives = 1;
@@ -135,7 +133,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
           }
           
           if (event.error === 'no-speech') {
-               // Do not show error for no-speech in continuous mode as it might just be a pause
                return;
           }
           
@@ -158,29 +155,23 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       if (isListening) {
           recognition.stop();
       } else {
-          setError(null); // Clear previous errors on new attempt
-          setMicPermissionError(null); // Clear permission error on new attempt
+          setError(null);
+          setMicPermissionError(null);
           setVoiceTarget(key);
           
-          // Capture initial value to append to
           const initialValue = inputs[key] || '';
-
-          // Configure specific settings for this session to ensure stability
-          recognition.interimResults = false; // Disable interim results to fix "double" and "fast" issues
+          recognition.interimResults = false;
           recognition.continuous = true;
 
           recognition.onresult = (event) => {
               let transcript = '';
-              // Loop through results
               for (let i = 0; i < event.results.length; i++) {
-                  // Only process final results to avoid duplication
                   if (event.results[i].isFinal) {
                       transcript += event.results[i][0].transcript;
                   }
               }
               
               const cleanTranscript = transcript.replace(/\s+/g, ' ').trim();
-              
               if (cleanTranscript) {
                 handleInputChange(key, (initialValue + ' ' + cleanTranscript).trim());
               }
@@ -206,6 +197,9 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
     setIsFormulaVisible(false);
   }, [resetForm]);
 
+  // Utility to clean text from annoying '$' symbols
+  const sanitizeText = (text: string) => text.replace(/\$/g, '');
+
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -223,11 +217,9 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       const response = await solveTextProblem(fullPrompt);
       setResult(response);
 
-      // A more robust regex to capture the formula section, ignoring markdown and optional colons.
       const formulaRegex = /(\*?\*?सूत्र\*?\*?:?[\s\S]*?)(?=\*?\*?पायऱ्या\*?\*?|$)/i;
       const match = response.explanation.match(formulaRegex);
       
-      // Check if a match was found and if it contains more than just the heading.
       if (match && match[1] && match[1].replace(/\*?\*?सूत्र\*?\*?:?/i, '').trim().length > 0) {
           setFormula(match[1].trim());
           setExplanationWithoutFormula(response.explanation.replace(formulaRegex, '').trim());
@@ -396,8 +388,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
                         ${errors[input.key] ? 'border-red-400 focus:ring-red-400' : 'border-slate-300 focus:ring-primary-light focus:border-primary-light'} 
                         ${isListening && voiceTarget === input.key ? 'border-red-500 ring-4 ring-red-100 bg-red-50' : ''}`}
                       required
-                      aria-invalid={!!errors[input.key]}
-                      aria-describedby={errors[input.key] ? `${input.key}-error` : undefined}
                     />
                     {isSpeechRecognitionSupported && (
                       <button
@@ -408,7 +398,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
                             ? 'bg-red-500 text-white shadow-red-300 scale-110 animate-pulse'
                             : 'bg-slate-200 text-slate-600 hover:bg-primary-light hover:text-white'
                         }`}
-                        aria-label={isListening && voiceTarget === input.key ? "बोलणे थांबवा" : "बोलून टाइप करा"}
                       >
                         <MicrophoneIcon />
                       </button>
@@ -427,8 +416,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
                         ${input.unit ? 'pl-3 pr-24' : 'px-3 pr-14'}
                         ${isListening && voiceTarget === input.key ? 'border-red-500 ring-4 ring-red-100 bg-red-50' : ''}`}
                       required
-                      aria-invalid={!!errors[input.key]}
-                      aria-describedby={errors[input.key] ? `${input.key}-error` : undefined}
                     />
                     <div className="absolute inset-y-0 right-0 pr-2 flex items-center">
                         {input.unit && (
@@ -445,7 +432,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
                                     ? 'bg-red-500 text-white shadow-red-300 scale-110 animate-pulse'
                                     : 'bg-slate-200 text-slate-600 hover:bg-primary-light hover:text-white'
                                 }`}
-                                aria-label={isListening && voiceTarget === input.key ? "बोलणे थांबवा" : "बोलून टाइप करा"}
                             >
                                 <MicrophoneIcon />
                             </button>
@@ -454,7 +440,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
                   </div>
                 )}
                  {errors[input.key] && (
-                  <p id={`${input.key}-error`} className="mt-1 text-sm text-red-500">
+                  <p className="mt-1 text-sm text-red-500">
                     {errors[input.key]}
                   </p>
                 )}
@@ -506,7 +492,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
         <div className="mt-6 bg-white text-slate-900 border border-slate-200 rounded-xl shadow-lg p-6 animate-fade-in">
           <h3 className="text-xl font-bold mb-2">उत्तर</h3>
           <div className="p-4 bg-slate-100 border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4 flex justify-between items-center flex-wrap gap-2">
-            <span>{result.answer}</span>
+            <span>{sanitizeText(result.answer)}</span>
           </div>
 
           <div className="flex flex-wrap gap-2 mb-4">
@@ -514,7 +500,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
                   <button 
                       onClick={() => setIsFormulaVisible(!isFormulaVisible)}
                       className="px-3 py-1.5 bg-secondary text-white font-semibold text-sm rounded-lg shadow-md hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light transition-all duration-150 active:scale-95"
-                      aria-expanded={isFormulaVisible}
                   >
                       {isFormulaVisible ? 'सूत्र लपवा' : 'सूत्र पहा'}
                   </button>
@@ -522,7 +507,6 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
               <button 
                   onClick={() => setIsExplanationVisible(!isExplanationVisible)}
                   className="px-3 py-1.5 bg-primary text-white font-semibold text-sm rounded-lg shadow-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light transition-all duration-150 active:scale-95"
-                  aria-expanded={isExplanationVisible}
               >
                   {isExplanationVisible ? 'स्पष्टीकरण लपवा' : 'स्पष्टीकरण पहा'}
               </button>
@@ -531,7 +515,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
           {isFormulaVisible && formula && (
               <div className="animate-fade-in mb-4">
                   <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 p-4 bg-amber-50 border border-amber-200 rounded-lg whitespace-pre-wrap prose-p:my-2 prose-li:my-2">
-                      <ReactMarkdown>{formula}</ReactMarkdown>
+                      <ReactMarkdown>{sanitizeText(formula)}</ReactMarkdown>
                   </div>
               </div>
           )}
@@ -540,7 +524,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
             <div className="animate-fade-in">
               <h3 className="text-xl font-bold mb-2">सविस्तर स्पष्टीकरण</h3>
               <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 whitespace-pre-wrap prose-p:my-2 prose-li:my-2">
-                <ReactMarkdown>{explanationWithoutFormula || result.explanation}</ReactMarkdown>
+                <ReactMarkdown>{sanitizeText(explanationWithoutFormula || result.explanation)}</ReactMarkdown>
               </div>
             </div>
           )}
@@ -557,11 +541,10 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
             {topic.name}: संकल्पना
           </h3>
           <div className="p-4 bg-white border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4 flex justify-between items-center flex-wrap gap-2">
-            <span>{conceptResult.answer}</span>
+            <span>{sanitizeText(conceptResult.answer)}</span>
             <button 
               onClick={() => setIsConceptExplanationVisible(!isConceptExplanationVisible)}
               className="px-3 py-1.5 bg-sky-600 text-white font-semibold text-sm rounded-lg shadow-md hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-all duration-150 active:scale-95"
-              aria-expanded={isConceptExplanationVisible}
             >
               {isConceptExplanationVisible ? 'स्पष्टीकरण लपवा' : 'स्पष्टीकरण पहा'}
             </button>
@@ -569,7 +552,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
           
           {isConceptExplanationVisible && (
             <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 animate-fade-in whitespace-pre-wrap prose-p:my-2 prose-li:my-2">
-               <ReactMarkdown>{conceptResult.explanation}</ReactMarkdown>
+               <ReactMarkdown>{sanitizeText(conceptResult.explanation)}</ReactMarkdown>
             </div>
           )}
         </div>
@@ -585,11 +568,10 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
             तज्ञ मोड आव्हान
           </h3>
           <div className="p-4 bg-slate-100 border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4 flex justify-between items-center flex-wrap gap-2">
-            <span>{expertResult.answer}</span>
+            <span>{sanitizeText(expertResult.answer)}</span>
             <button 
               onClick={() => setIsExpertExplanationVisible(!isExpertExplanationVisible)}
               className="px-3 py-1.5 bg-secondary text-white font-semibold text-sm rounded-lg shadow-md hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light transition-all duration-150 active:scale-95"
-              aria-expanded={isExpertExplanationVisible}
             >
               {isExpertExplanationVisible ? 'स्पष्टीकरण लपवा' : 'स्पष्टीकरण पहा'}
             </button>
@@ -597,7 +579,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
           
           {isExpertExplanationVisible && (
             <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 animate-fade-in whitespace-pre-wrap prose-p:my-2 prose-li:my-2">
-               <ReactMarkdown>{expertResult.explanation}</ReactMarkdown>
+               <ReactMarkdown>{sanitizeText(expertResult.explanation)}</ReactMarkdown>
             </div>
           )}
         </div>

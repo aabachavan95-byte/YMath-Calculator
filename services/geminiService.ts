@@ -8,12 +8,14 @@ import type { GeminiResponse, McqResponse, Difficulty } from '../types';
 
 const model = 'gemini-3-flash-preview';
 
-const systemInstruction = `You are YashaviMath, an expert math tutor for competitive exams in Maharashtra, India. Your purpose is to solve math problems and provide clear, concise, and accurate step-by-step explanations. You cover a wide range of topics including advanced concepts like Mensuration of 3D Solid Combinations, Permutations, Combinations, and the Binomial Theorem. 
+const systemInstruction = `You are YashaviMath, an expert math tutor for competitive exams in Maharashtra, India. Your purpose is to solve math problems and provide clear, concise, and accurate step-by-step explanations. 
 
 IMPORTANT:
 1. All your responses MUST be in simple, clear Marathi.
-2. You must ONLY return a valid JSON object. Do not add any markdown formatting like \`\`\`json or \`\`\` outside the JSON structure.
-3. Do not include any introductory or concluding text. Just the JSON.`;
+2. DO NOT use LaTeX, '\frac', or '$' symbols for mathematical formulas. 
+3. Use simple plain text characters for math (e.g., use '/', '*', '+', '-' and standard numbers like 150/25).
+4. You must ONLY return a valid JSON object. Do not add any markdown formatting like \`\`\`json or \`\`\` outside the JSON structure.
+5. Do not include any introductory or concluding text. Just the JSON.`;
 
 const responseSchema = {
     type: Type.OBJECT,
@@ -24,7 +26,7 @@ const responseSchema = {
         },
         explanation: {
             type: Type.STRING,
-            description: 'A detailed step-by-step explanation in Marathi. Use markdown for formatting inside this string. The explanation MUST be structured with a bold heading "**पायऱ्या**" (Steps), followed by a numbered list. Each step in the list should clearly explain one part of the solution. For example: "**पायऱ्या:**\\n1. पहिली पायरी अशी आहे...\\n2. दुसरी पायरी अशी आहे..." If there is a formula, add it under a bold heading "**सूत्र**" (Formula) before the steps.'
+            description: 'A detailed step-by-step explanation in Marathi. Use markdown for formatting inside this string. Use standard arithmetic symbols like /, *, +, -. DO NOT USE $ or LaTeX.'
         }
     },
     required: ["answer", "explanation"]
@@ -53,7 +55,7 @@ const mcqResponseSchema = {
         },
         explanation: {
             type: Type.STRING,
-            description: 'A detailed step-by-step explanation in Marathi for the correct answer. Keep it concise for speed.'
+            description: 'A detailed step-by-step explanation in Marathi for the correct answer. Use simple math symbols like /, *, +, -. NO LaTeX or $.'
         }
     },
     required: ["question", "options", "correctAnswer", "explanation"]
@@ -237,9 +239,10 @@ export const generateMcqBatch = async (topicName: string, level: Difficulty, cou
     महत्त्वाचे नियम (वेग आणि विविधतेसाठी):
     १. रँडम सीड: ${randomKey}.
     २. काठीण्य पातळी: ${level === 'easy' ? 'सोपे' : level === 'medium' ? 'मध्यम' : 'कठीण'}.
-    ३. प्रश्न पुन्हा येता कामा नये: प्रत्येक प्रश्नातील संख्या, नावे आणि रचना पूर्णपणे नवीन असावी. मागील कोणत्याही संचातील प्रश्न रिपीट करू नका.
-    ४. स्पष्टीकरणे: स्पष्टीकरणे अचूक पण अत्यंत संक्षिप्त (Brief) ठेवा जेणेकरून वेगाने लोडिंग होईल.
-    ५. अचूकता: सर्व गणिती उत्तरे आणि पर्याय तपासून घ्या.`;
+    ३. प्रश्न पुन्हा येता कामा नये: प्रत्येक प्रश्नातील संख्या, नावे आणि रचना पूर्णपणे नवीन असावी.
+    ४. स्पष्टीकरणे: स्पष्टीकरणे अचूक पण अत्यंत संक्षिप्त (Brief) ठेवा. 
+    ५. गणीती चिन्हे: स्पष्टीकरणात '$' चिन्ह किंवा LaTeX (उदा. \\frac) वापरू नका. त्याऐवजी साधी चिन्हे (उदा. 150/25) वापरा.
+    ६. अचूकता: सर्व गणिती उत्तरे आणि पर्याय तपासून घ्या.`;
 
     try {
         const ai = getAiClient();
@@ -284,7 +287,7 @@ export const CHALLENGE_QUESTIONS = 15;
 
 export const generateDailyChallenge = async (difficulty: Difficulty): Promise<McqResponse[]> => {
     const sessionId = Date.now() + Math.random().toString(36).substring(7);
-    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन MCQs तयार करा. आयडी: ${sessionId}. विविधता आणि अचूकता महत्त्वाची.`;
+    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन MCQs तयार करा. आयडी: ${sessionId}. विविधता आणि अचूकता महत्त्वाची. स्पष्टीकरणात '$' किंवा LaTeX वापरू नका.`;
     
     try {
         const ai = getAiClient();
