@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Yashavi Math Calculator",
+  "description": "A step-by-step math calculator in Marathi for competitive exams like MPSC, UPSC, Police Bharti, and more. Get detailed solutions and explanations powered by AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
