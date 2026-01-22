@@ -18,7 +18,7 @@ export const TOPICS: Topic[] = [
     name: 'टक्केवारी',
     icon: React.createElement(PercentageIcon),
     subTopics: [
-        // 1. टक्केवारीची मूलभूत संकल्पना (Updated with User Requested Types)
+        // 1. टक्केवारीची मूलभूत संकल्पना
         {
             key: 'percentage_basics_new',
             name: 'टक्केवारीची मूलभूत संकल्पना',
@@ -140,33 +140,66 @@ export const TOPICS: Topic[] = [
                 }
             ]
         },
-        // 4. वाढ/कपात
+        // 4. वाढ/कपात (Updated with User Requested Types)
         {
             key: 'percentage_increase_decrease_new',
-            name: 'वाढ/कपात',
+            name: 'वाढ-घट (Increase & Decrease)',
             icon: React.createElement(IncreaseDecreaseIcon),
             subTopics: [
                 {
-                    key: 'increase_decrease_number',
-                    name: 'टक्केवारीने वाढ आणि कपात',
+                    key: 'perc_increase_only',
+                    name: 'एखाद्या संख्येत किती % वाढ झाली',
                     icon: React.createElement(IncreaseDecreaseIcon),
                     inputs: [
-                        { key: 'original', label: 'मूळ संख्या', type: 'number', placeholder: 'उदा. 500' },
-                        { key: 'percent', label: 'वाढ/घट टक्के', type: 'number', placeholder: 'उदा. 20 (वाढ), -10 (घट)', unit: '%' },
+                        { key: 'old_val', label: 'मूळ संख्या', type: 'number', placeholder: 'उदा. 100' },
+                        { key: 'new_val', label: 'नवीन संख्या (वाढलेली)', type: 'number', placeholder: 'उदा. 125' },
                     ],
-                    promptTemplate: (inputs) => `Calculate the new value after increasing/decreasing the number ${inputs.original} by ${inputs.percent}%. Explain the steps in Marathi.`,
-                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on the topic of increasing or decreasing a number by a certain percentage. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,
+                    promptTemplate: (inputs) => `Calculate the percentage increase from ${inputs.old_val} to ${inputs.new_val}. Explain the formula: ((New Value - Original Value) / Original Value) * 100. Show steps in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi where the student must calculate the percentage increase between two given values. Provide four options, the correct answer, and an explanation.`,
                 },
                 {
-                    key: 'successive_change',
-                    name: 'अनुक्रमिक टक्केवारी बदल',
+                    key: 'perc_decrease_only',
+                    name: 'एखाद्या संख्येत किती % घट झाली',
                     icon: React.createElement(IncreaseDecreaseIcon),
                     inputs: [
-                        { key: 'problem', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका वस्तूची किंमत आधी 20% ने वाढवली आणि नंतर 10% ने कमी केली, तर मूळ किंमतीत किती टक्के बदल झाला?' },
+                        { key: 'old_val', label: 'मूळ संख्या', type: 'number', placeholder: 'उदा. 200' },
+                        { key: 'new_val', label: 'नवीन संख्या (कमी झालेली)', type: 'number', placeholder: 'उदा. 160' },
                     ],
-                    promptTemplate: (inputs) => `Solve the following successive percentage change problem: ${inputs.problem}. Explain the concept and the formula (A + B + AB/100) used in Marathi.`,
-                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on the topic of successive percentage changes. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,
-                    expertPromptTemplate: expertPromptGenerator('सलग टक्केवारी बदल')
+                    promptTemplate: (inputs) => `Calculate the percentage decrease from ${inputs.old_val} to ${inputs.new_val}. Explain the formula: ((Original Value - New Value) / Original Value) * 100. Show steps in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi where the student must calculate the percentage decrease between two values. Provide options, correct answer, and steps.`,
+                },
+                {
+                    key: 'find_original_from_final',
+                    name: 'नवीन किंमत दिली असता मूळ किंमत शोधणे',
+                    icon: React.createElement(NumberSystemIcon),
+                    inputs: [
+                        { key: 'final_val', label: 'नवीन किंमत', type: 'number', placeholder: 'उदा. 240' },
+                        { key: 'change_perc', label: 'बदल टक्केवारी (वाढ असल्यास +, घट असल्यास -)', type: 'number', placeholder: 'उदा. 20', unit: '%' },
+                    ],
+                    promptTemplate: (inputs) => `Find the original price if the final price is ${inputs.final_val} after a ${inputs.change_perc}% change. Explain the logic: Original = Final / (1 + (Change/100)). Show step-by-step solution in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi where the original price needs to be calculated given the final price and the percentage increase or decrease. Provide options and explanation.`,
+                },
+                {
+                    key: 'successive_inc_dec_calc',
+                    name: 'सलग वाढ–घट (Successive Change)',
+                    icon: React.createElement(IncreaseDecreaseIcon),
+                    inputs: [
+                        { key: 'p1', label: 'पहिली वाढ/घट (%)', type: 'number', placeholder: 'उदा. 20' },
+                        { key: 'p2', label: 'दुसरी वाढ/घट (%)', type: 'number', placeholder: 'उदा. -10' },
+                    ],
+                    promptTemplate: (inputs) => `Calculate the result of successive percentage changes of ${inputs.p1}% and ${inputs.p2}%. Explain the concept and use the formula: [a + b + (ab/100)]. Show steps in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi based on successive percentage changes (e.g., 10% increase followed by 10% decrease). Provide four options and a detailed explanation.`,
+                },
+                {
+                    key: 'net_percentage_change_word',
+                    name: 'एकूण बदल (Net Percentage Change)',
+                    icon: React.createElement(ComparisonIcon),
+                    inputs: [
+                        { key: 'problem', label: 'शाब्दिक प्रश्न', type: 'textarea', placeholder: 'उदा. साखरेची किंमत 20% ने वाढली आणि खप 10% ने कमी झाला, तर एकूण खर्चात किती % बदल झाला?' },
+                    ],
+                    promptTemplate: (inputs) => `Solve the following net percentage change word problem: "${inputs.problem}". Focus on explaining the overall effect using combined percentage formulas. Provide the solution in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate a word-problem style MCQ in Marathi asking for the net percentage change in a real-world scenario (e.g., price vs consumption). Provide options and explanation.`,
+                    expertPromptTemplate: expertPromptGenerator('एकूण टक्केवारी बदल (Net Change)')
                 }
             ]
         },
@@ -241,7 +274,7 @@ export const TOPICS: Topic[] = [
                     name: 'साधे व्याजातील टक्केवारी वापर',
                     icon: React.createElement(InterestIcon),
                     inputs: [
-                        { key: 'problem', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका रकमेवर 2 वर्षांसाठी 10% दराने मिळणारे सरळव्याज 400 रुपये आहे. तर ती रक्कम कोणती?' },
+                        { key: 'problem', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. काही रक्कम साध्या व्याजाने 5 वर्षांत दुप्पट होते, तर व्याजाचा दर किती?' },
                     ],
                     promptTemplate: (inputs) => `Solve the following problem related to simple interest using percentage concepts: "${inputs.problem}". Provide a detailed step-by-step solution in Marathi.`,
                     mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on simple interest where the rate of interest is a percentage. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,
@@ -593,7 +626,7 @@ export const TOPICS: Topic[] = [
                       icon: React.createElement(InterestIcon),
                       inputs: [
                           { key: 'principal', label: 'मुद्दल', type: 'number', placeholder: 'उदा. 10000', unit: 'रु', validation: { min: 0, errorMessage: 'मुद्दल ॠण असू शकत नाही.' } },
-                          { key: 'interest', label: 'मिळालेले व्याज', type: 'number', placeholder: 'उदा. 4000', unit: 'रु', validation: { min: 0, errorMessage: 'व्याज ॠण असू शकत नाही.' } },
+                          { key: 'interest', label: 'मिळालेले व्याज', type: 'number', placeholder: 'उदा. 4000', unit: 'रु', validation: { min: 0, errorMessage: 'व्याज दर ॠण असू शकत नाही.' } },
                           { key: 'time', label: 'कालावधी', type: 'number', placeholder: 'उदा. 5', unit: 'वर्षे', validation: { min: 0, errorMessage: 'कालावधी ॠण असू शकत नाही.' } },
                       ],
                       promptTemplate: (inputs) => `Find the rate of interest if the simple interest on a principal of ${inputs.principal} for ${inputs.time} years is ${inputs.interest}. Explain the formula R = (SI * 100) / (P * T) with steps in Marathi.`,
@@ -884,7 +917,7 @@ export const TOPICS: Topic[] = [
         name: 'भेटीचे/चालण्याचे प्रश्न',
         icon: React.createElement(SpeedIcon),
         inputs: [
-            { key: 'problem', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन शहरे A आणि B मधील अंतर 300 किमी आहे. एक ट्रेन A पासून सकाळी 8 वाजता 60 किमी/तास वेगाने B कडे निघते आणि दुसरी B पासून सकाळी 9 वाजता 40 किमी/तास वेगाने A कडे निघते. त्या एकमेकांना किती वाजता भेटतील?' },
+            { key: 'problem', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन शहरे A आणि B मधील अंतर 300 किमी आहे. एक ट्रेन A पासून सकाळी 8 वाजता 60 किमी/तास वेगाने B ककडे निघते आणि दुसरी B पासून सकाळी 9 वाजता 40 किमी/तास वेगाने A कडे निघते. त्या एकमेकांना किती वाजता भेटतील?' },
         ],
         promptTemplate: (inputs) => `Solve the following meeting point, chasing, or walking/running problem: ${inputs.problem}. Provide a detailed step-by-step solution in Marathi.`,
         mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on problems of meeting points or chasing. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`
