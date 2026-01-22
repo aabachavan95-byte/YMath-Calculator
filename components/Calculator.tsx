@@ -351,7 +351,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
                      {activeInputLabel ? `'${activeInputLabel}' साठी ऐकत आहे...` : 'ऐकत आहे... बोला...'}
                 </p>
                 <p className="text-sm text-red-600 mt-1">
-                    वाक्य पूर्ण झाल्यावर टेक्स्ट आपोआप दिसेल.
+                    वाक्य पूर्ण झाल्यावर टेक्स्ट आपोaap दिसेल.
                 </p>
                  <button 
                     type="button"

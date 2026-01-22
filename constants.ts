@@ -1,6 +1,4 @@
 
-
-
 import React from 'react';
 import type { Topic, Difficulty } from './types';
 import {
@@ -20,7 +18,7 @@ export const TOPICS: Topic[] = [
     name: 'टक्केवारी',
     icon: React.createElement(PercentageIcon),
     subTopics: [
-        // 1. टक्केवारीची मूलभूत संकल्पना
+        // 1. टक्केवारीची मूलभूत संकल्पना (Updated with User Requested Types)
         {
             key: 'percentage_basics_new',
             name: 'टक्केवारीची मूलभूत संकल्पना',
@@ -31,33 +29,66 @@ export const TOPICS: Topic[] = [
                     name: 'टक्केवारी म्हणजे काय?',
                     icon: React.createElement(LightbulbIcon),
                     inputs: [
-                        { key: 'problem', label: 'संकल्पना प्रश्न', type: 'textarea', placeholder: 'उदा. टक्केवारी म्हणजे काय? सोप्या भाषेत सांगा.' },
+                        { key: 'problem', label: 'संकल्पना प्रश्न', type: 'textarea', placeholder: 'उदा. टक्केवारी म्हणजे काय? ती /100 का असते?' },
                     ],
-                    promptTemplate: (inputs) => `Explain the following concept related to percentages in simple Marathi: "${inputs.problem}"`,
+                    promptTemplate: (inputs) => `Explain the concept of percentage in simple Marathi. Use the user's specific question if provided: "${inputs.problem}". Focus on how percentages represent parts out of 100 and why they are useful in competitive exams for comparison.`,
                     mcqPromptTemplate: (difficulty: Difficulty) => `Generate a simple conceptual multiple-choice question (MCQ) in Marathi about the meaning of percentage. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,
-                    expertPromptTemplate: expertPromptGenerator('टक्केवारीची मूलभूत संकल्पना')
                 },
                 {
-                    key: 'percentage_fraction_decimal_conversion',
-                    name: 'टक्केवारीला भिन्न/दशांशात रूपांतर',
+                    key: 'fraction_to_percentage_new',
+                    name: 'अपूर्णांक → टक्केवारी',
                     icon: React.createElement(ConversionIcon),
                     inputs: [
-                        { key: 'value', label: 'मूल्य (उदा. 25%, 1/4, 0.25)', type: 'text', placeholder: 'उदा. 25% or 1/4 or 0.25' },
+                        { key: 'fraction', label: 'अपूर्णांक (उदा. 3/4)', type: 'text', placeholder: 'उदा. 3/4 or 1/5' },
                     ],
-                    promptTemplate: (inputs) => `Convert ${inputs.value} into its equivalent percentage, fraction, and decimal forms. Explain the conversion process for each step-by-step in Marathi.`,
-                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on the topic of converting between percentages, fractions, and decimals. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,
-                    expertPromptTemplate: expertPromptGenerator('टक्केवारी, भिन्न आणि दशांश रूपांतरण')
+                    promptTemplate: (inputs) => `Convert the fraction ${inputs.fraction} into a percentage. Explain the rule that to convert a fraction to a percentage, we multiply by 100. Show the step-by-step calculation in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi asking to convert a specific fraction (like 5/8 or 7/20) into a percentage. Provide four options, the correct answer, and a detailed explanation.`,
                 },
                 {
-                    key: 'find_percentage_of_number',
-                    name: 'मूळ संख्येचा टक्केवारीने शोध',
+                    key: 'decimal_to_percentage_new',
+                    name: 'दशांश संख्या → टक्केवारी',
+                    icon: React.createElement(ConversionIcon),
+                    inputs: [
+                        { key: 'decimal', label: 'दशांश संख्या (उदा. 0.75)', type: 'text', placeholder: 'उदा. 0.75 or 0.125' },
+                    ],
+                    promptTemplate: (inputs) => `Convert the decimal number ${inputs.decimal} into a percentage. Explain the rule (multiply by 100 or shift the decimal point two places to the right). Provide the solution step-by-step in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi where the student must convert a decimal (like 0.45 or 0.06) into its percentage equivalent. Provide options, answer, and explanation.`,
+                },
+                {
+                    key: 'percentage_to_fraction_decimal_new',
+                    name: 'टक्केवारी → अपूर्णांक / दशांश',
+                    icon: React.createElement(ConversionIcon),
+                    inputs: [
+                        { key: 'percent', label: 'टक्केवारी मूल्य', type: 'number', placeholder: 'उदा. 40', unit: '%' },
+                    ],
+                    promptTemplate: (inputs) => `Convert ${inputs.percent}% into its equivalent fraction (simplest form) and decimal form. Explain that we divide by 100 to remove the percentage sign. Show calculations in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi where the task is to convert a percentage (like 12.5% or 80%) into a fraction or decimal. Provide options, answer, and explanation.`,
+                },
+                {
+                    key: 'special_benchmark_percents',
+                    name: '1%, 10%, 25%, 50% शॉर्टकट्स',
+                    icon: React.createElement(SpeedIcon),
+                    inputs: [
+                        { key: 'total', label: 'संख्या', type: 'number', placeholder: 'उदा. 1200' },
+                    ],
+                    promptTemplate: (inputs) => `For the number ${inputs.total}, calculate 1%, 10%, 25%, and 50% using mental math shortcuts. 
+                    1. 10% = Divide by 10.
+                    2. 1% = Divide by 100.
+                    3. 50% = Half (Divide by 2).
+                    4. 25% = Quarter (Divide by 4 or half of 50%).
+                    Explain these rules clearly in Marathi to help students solve faster in competitive exams.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate an MCQ in Marathi that requires finding a benchmark percentage (like 10% or 25%) of a number to solve a larger problem quickly. Provide options and shortcut explanation.`,
+                },
+                {
+                    key: 'find_percentage_simple_new',
+                    name: 'साधी टक्केवारी काढणे',
                     icon: React.createElement(PercentageIcon),
                     inputs: [
-                        { key: 'percent', label: 'किती टक्के?', type: 'number', placeholder: 'उदा. 25', unit: '%', validation: { min: 0, errorMessage: 'टक्केवारी ॠण असू शकत नाही.' } },
-                        { key: 'total', label: 'कोणत्या संख्येचे?', type: 'number', placeholder: 'उदा. 200' },
+                        { key: 'percent', label: 'किती टक्के?', type: 'number', placeholder: 'उदा. 20', unit: '%' },
+                        { key: 'total', label: 'कोणत्या संख्येचे?', type: 'number', placeholder: 'उदा. 500' },
                     ],
-                    promptTemplate: (inputs) => `Calculate ${inputs.percent}% of ${inputs.total}. Explain the calculation step-by-step in Marathi.`,
-                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on the topic of calculating a percentage of a number. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,
+                    promptTemplate: (inputs) => `Calculate ${inputs.percent}% of ${inputs.total}. Explain the standard formula (Value = (Percentage / 100) * Total) and show the step-by-step division and multiplication in Marathi.`,
+                    mcqPromptTemplate: (difficulty: Difficulty) => `Generate a standard MCQ in Marathi for calculating X% of Y. Example: '450 चे 15% किती?' Provide options, answer, and steps.`,
                 },
             ]
         },
@@ -312,7 +343,7 @@ export const TOPICS: Topic[] = [
                 },
             ]
         },
-        // 11. लोकसंख्या / पगार वाढ (Moved here)
+        // 11. लोकसंख्या / पगार वाढ
         {
             key: 'population_salary_increase_problem',
             name: 'लोकसंख्या / पगार वाढ',
@@ -323,7 +354,7 @@ export const TOPICS: Topic[] = [
             promptTemplate: (inputs) => `Solve the following word problem related to population or salary increase/decrease using percentage: "${inputs.problem}". Provide a detailed step-by-step solution in Marathi.`,
             mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on a word problem involving population or salary changes. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,
         },
-        // 12. Other topics
+        // 12. इतर संबंधित विषय
         {
             key: 'percentage_other_topics',
             name: 'इतर संबंधित विषय',
@@ -964,7 +995,7 @@ export const TOPICS: Topic[] = [
             name: 'चौरस व आयत',
             icon: React.createElement(PerimeterIcon),
             inputs: [
-              { key: 'problem', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. 10 फूट लांब आणि 12 फूट रुंद खोलीसाठी किती चौरस फूट फ्लोअरिंग लागेल? OR 8 फूट उंच आणि 15 फूट लांब भिंतीला रंग देण्यासाठी क्षेत्रफळ काढा.' },
+              { key: 'problem', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. 10 फूट लांब आणि 12 फूट रुंद खोलीसाठी किती चौरस फूट फ्लोअरिंग लागेल? OR 8 फूट उंच and 15 फूट लांब भिंतीला रंग देण्यासाठी क्षेत्रफळ काढा.' },
             ],
             promptTemplate: (inputs) => `Solve the following problem related to the area and perimeter of a square or rectangle: ${inputs.problem}. Provide formulas and a step-by-step solution in Marathi.`,
             mcqPromptTemplate: (difficulty: Difficulty) => `Generate a multiple-choice question (MCQ) for a competitive exam based on the area or perimeter of a square or a rectangle. The question should be in Marathi. Provide four options (A, B, C, D), the correct answer, and a step-by-step explanation.`,

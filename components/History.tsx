@@ -31,10 +31,7 @@ const HistoryCard: React.FC<{ item: HistoryItem; isGroupItem?: boolean }> = ({ i
         }).format(new Date(timestamp));
     };
 
-    // For Daily challenge items inside a group, we might want a simpler header
-    const title = item.topicName.includes("Daily Challenge") 
-        ? item.topicName 
-        : item.topicName;
+    const title = item.topicName;
 
     return (
         <div className={`bg-white text-slate-900 ${isGroupItem ? 'border-b last:border-b-0 border-slate-100 rounded-none shadow-none' : 'rounded-xl shadow-lg border border-slate-200'} overflow-hidden transition-all duration-300`}>
@@ -70,7 +67,7 @@ const HistoryCard: React.FC<{ item: HistoryItem; isGroupItem?: boolean }> = ({ i
                      {item.type === 'text' && item.inputs && (
                         <div className="mb-4">
                              <h4 className="font-semibold mb-2 text-slate-600">
-                                {item.topicName.includes("Daily Challenge") ? "प्रश्न तपशील:" : "दिलेली माहिती:"}
+                                {item.topicName.includes("दैनंदिन") ? "प्रश्न तपशील:" : "दिलेली माहिती:"}
                              </h4>
                              <ul className="list-disc list-inside text-sm bg-slate-100 p-3 rounded-md">
                                 {Object.entries(item.inputs).map(([key, value]) => (
@@ -113,9 +110,8 @@ const DailyChallengeGroupCard: React.FC<{ group: DailyChallengeGroup }> = ({ gro
                     </div>
                     <div className="text-left">
                         <h3 className="font-bold text-slate-800 text-lg leading-tight">दैनंदिन आव्हान</h3>
-                        <p className="text-xs text-slate-500 font-medium mb-2">(Daily Challenge)</p>
                         
-                        <p className="text-sm text-indigo-700 font-bold">{group.displayDate}</p>
+                        <p className="text-sm text-indigo-700 font-bold mt-1">{group.displayDate}</p>
                         <p className="text-xs text-slate-600 font-medium mt-1">{group.items.length} प्रश्न सोडवले</p>
                     </div>
                 </div>
@@ -151,8 +147,7 @@ export const History: React.FC<HistoryProps> = ({ onBack }) => {
         const otherItems: HistoryItem[] = [];
 
         rawHistory.forEach(item => {
-            if (item.topicName.includes('Daily Challenge')) {
-                // Group by date string (e.g., "15 Dec 2024")
+            if (item.topicName.includes('दैनंदिन') || item.topicName.includes('Daily Challenge')) {
                 const dateKey = new Date(item.timestamp).toLocaleDateString('en-IN', {
                     day: 'numeric', month: 'short', year: 'numeric'
                 });
@@ -166,9 +161,7 @@ export const History: React.FC<HistoryProps> = ({ onBack }) => {
             }
         });
 
-        // Convert grouped items into DailyChallengeGroup objects
         const groupEntries: DailyChallengeGroup[] = Object.entries(groups).map(([dateKey, items]) => {
-            // Sort items within the group by time descending (newest first)
             const sortedItems = items.sort((a, b) => b.timestamp - a.timestamp);
             return {
                 type: 'group',
@@ -177,12 +170,11 @@ export const History: React.FC<HistoryProps> = ({ onBack }) => {
                 displayDate: new Date(items[0].timestamp).toLocaleDateString('mr-IN', {
                     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
                 }),
-                timestamp: sortedItems[0].timestamp, // Use the latest item's timestamp for sorting the main list
+                timestamp: sortedItems[0].timestamp,
                 items: sortedItems
             };
         });
 
-        // Combine regular items and groups, then sort by timestamp descending
         const combined = [...otherItems, ...groupEntries].sort((a, b) => b.timestamp - a.timestamp);
         setHistoryEntries(combined);
     }, []);

@@ -148,7 +148,7 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
       <button onClick={onBack} className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white font-semibold text-sm rounded-lg shadow-md hover:bg-primary-dark transition-all active:scale-95 mb-4"><BackArrowIcon /><span>कॅल्क्युलेटरवर परत जा</span></button>
       <div className="bg-white text-slate-800 border border-slate-200 rounded-xl shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-1 flex items-center gap-3"><span className="text-primary-light">{topic.icon}</span>{topic.name}</h2>
-        <p className="text-slate-600 mb-6">सराव प्रश्न (MCQ) - संच {currentIndex + 1}/{questions.length}</p>
+        <p className="text-slate-600 mb-6">सराव प्रश्न - संच {currentIndex + 1}/{questions.length}</p>
         
         {!showResults && (
             <div className="mb-6">
@@ -187,7 +187,7 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
         ) : showResults ? (
             <div className="animate-fade-in text-center py-6">
                 <TrophyIcon className="w-16 h-16 text-amber-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-4">निकाल (Results)</h3>
+                <h3 className="text-2xl font-bold mb-4">निकाल</h3>
                 <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto mb-8">
                     <div className="p-4 bg-green-50 rounded-xl border border-green-100">
                         <p className="text-sm text-green-600 font-bold uppercase">बरोबर</p>
@@ -207,11 +207,9 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
           currentMcq && (
             <div className="animate-fade-in" key={currentIndex}>
               <div className="prose prose-sm max-w-none mb-6 font-semibold text-center text-slate-800 text-lg leading-relaxed">
-                {/* Fixed line 216: ensured currentMcq.question is string by explicit casting to prevent 'unknown' error */}
                 <ReactMarkdown>{sanitizeText(currentMcq.question as string)}</ReactMarkdown>
               </div>
               <div className="space-y-3 mb-6">
-                {/* Fixed possible unknown type in Object.entries by casting value as string */}
                 {Object.entries(currentMcq.options).map(([key, value]) => (
                   <button key={key} onClick={() => handleOptionSelect(key)} className={`w-full text-left p-4 border rounded-xl transition-all flex items-center gap-3 focus:outline-none focus:ring-0 ${getOptionClass(key)}`}>
                     <span className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-primary border border-slate-200">{key}</span>
@@ -228,7 +226,6 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
                         : <span className="text-red-600">उत्तर चुकले.</span>}
                   </h3>
                   <div className="prose prose-sm max-w-none text-slate-700">
-                    {/* Fixed possible unknown type for explanation by casting as string */}
                     <ReactMarkdown>{sanitizeText(currentMcq.explanation as string)}</ReactMarkdown>
                   </div>
                 </div>
