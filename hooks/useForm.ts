@@ -1,22 +1,28 @@
 import { useState, useCallback } from 'react';
 import type { TopicInput } from '../types';
 
+const convertMarathiToEnglish = (text: string): string => {
+  const marathiDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+  return text.replace(/[०-९]/g, (w) => marathiDigits.indexOf(w).toString());
+};
+
 const validateField = (inputConfig: TopicInput, value: string): string | null => {
   if (!value && inputConfig.type !== 'textarea') {
     return `${inputConfig.label} आवश्यक आहे.`;
   }
   
   if (inputConfig.type === 'number' && value) {
-    // Check for invalid characters. Allows numbers, one decimal, one leading hyphen.
-    if (!/^-?\d*\.?\d*$/.test(value)) {
-      return `'${inputConfig.label}' साठी एक वैध संख्या प्रविष्ट करा. उदाहरणार्थ: 123 or 12.3`;
+    // Check for invalid characters. Allows English/Marathi numbers, one decimal, one leading hyphen.
+    if (!/^[-०-९\d]*\.?[०-९\d]*$/.test(value)) {
+      return `'${inputConfig.label}' साठी एक वैध संख्या प्रविष्ट करा. उदाहरणार्थ: 123, 12.3 किंवा १२३`;
     }
     
-    // `parseFloat` will handle values like "12." correctly (as 12).
-    const numericValue = parseFloat(value);
+    // Convert to English digits for numeric processing
+    const englishValue = convertMarathiToEnglish(value);
+    const numericValue = parseFloat(englishValue);
     
     // `isNaN` check for values that are just "." or "-".
-    if (isNaN(numericValue) && value.trim() !== '-' && value.trim() !== '.') {
+    if (isNaN(numericValue) && value.trim() !== '-' && value.trim() !== '.' && value.trim() !== '०') {
         return `'${inputConfig.label}' साठी एक वैध संख्या प्रविष्ट करा.`;
     }
     
@@ -70,7 +76,8 @@ export const useForm = ({ initialValues, topicInputs }: UseFormProps) => {
             // Add stricter validation for submit time
             if (input.type === 'number') {
                 const trimmedValue = value.trim();
-                if (trimmedValue.endsWith('.') || trimmedValue === '-') {
+                const englishTrimmedValue = convertMarathiToEnglish(trimmedValue);
+                if (englishTrimmedValue.endsWith('.') || englishTrimmedValue === '-') {
                     currentErrors[input.key] = `'${input.label}' साठी कृपया एक पूर्ण संख्या प्रविष्ट करा.`;
                     formIsValid = false;
                     continue; // Skip to next input
@@ -95,6 +102,7 @@ export const useForm = ({ initialValues, topicInputs }: UseFormProps) => {
 
     return {
         inputs,
+        setInputs,
         errors,
         handleInputChange,
         validateForm,

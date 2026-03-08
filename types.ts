@@ -22,6 +22,7 @@ export interface TopicInput {
 export interface Topic {
   key: string;
   name: string;
+  englishName?: string;
   // Fix: Use React.ReactElement to avoid JSX namespace issues in a .ts file.
   icon: React.ReactElement;
   inputs?: TopicInput[];
@@ -57,6 +58,7 @@ export interface HistoryItem {
   prompt?: string;
   result: GeminiResponse;
   timestamp: number;
+  difficulty?: string;
 }
 
 export interface TopicStats {
@@ -70,4 +72,13 @@ export interface UserProgress {
   totalCorrect: number;
   topicStats: Record<string, TopicStats>;
   dailyActivity: Record<string, number>;
+}
+
+declare global {
+  interface Window {
+    aistudio: {
+      hasSelectedApiKey: () => Promise<boolean>;
+      openSelectKey: () => Promise<void>;
+    };
+  }
 }

@@ -8,25 +8,29 @@ import type { GeminiResponse, McqResponse, Difficulty } from '../types';
 
 const model = 'gemini-3-flash-preview';
 
-const systemInstruction = `You are YashaviMath, an expert math tutor for competitive exams in Maharashtra, India. Your purpose is to solve math problems and provide clear, concise, and accurate step-by-step explanations. 
+const systemInstruction = `You are YashaviMath, an expert math tutor for competitive exams (MPSC, UPSC) in Maharashtra, India. Your purpose is to solve math problems and provide clear, professional, and accurate step-by-step explanations in Marathi.
 
-IMPORTANT:
-1. All your responses MUST be in simple, clear Marathi.
-2. DO NOT use LaTeX, '\frac', or '$' symbols for mathematical formulas. 
-3. Use simple plain text characters for math (e.g., use '/', '*', '+', '-' and standard numbers like 150/25).
-4. You must ONLY return a valid JSON object. Do not add any markdown formatting like \`\`\`json or \`\`\` outside the JSON structure.
-5. Do not include any introductory or concluding text. Just the JSON.`;
+IMPORTANT RULES:
+1. All your responses MUST be in professional, grammatically correct Marathi. Use terminology common in MPSC/UPSC exams.
+2. DO NOT use LaTeX, '\\frac', or '$' symbols. Use simple plain text for math (e.g., 150/25, 2 * 5).
+3. Structure your 'explanation' string using these exact Marathi headers for clarity:
+   - **सूत्र:** (Clearly state the formula used. If no specific formula, state the logical principle.)
+   - **पायऱ्या:** (Detailed step-by-step solution as a numbered list. Explain the logic behind EACH step clearly so a student can understand WHY that step is taken.)
+4. Accuracy is paramount. Double-check all calculations and logic before responding.
+5. You must ONLY return a valid JSON object. No markdown code blocks.
+6. Tone: Encouraging, educational, and professional.
+7. If the problem is complex, break it down into smaller, manageable parts in the 'पायऱ्या' section.`;
 
 const responseSchema = {
     type: Type.OBJECT,
     properties: {
         answer: {
             type: Type.STRING,
-            description: "The final numerical or symbolic answer to the math problem."
+            description: "The final numerical or symbolic answer with units (e.g., '१२० किमी' or '२५%')."
         },
         explanation: {
             type: Type.STRING,
-            description: 'A detailed step-by-step explanation in Marathi. Use markdown for formatting inside this string. Use standard arithmetic symbols like /, *, +, -. DO NOT USE $ or LaTeX.'
+            description: 'Detailed step-by-step explanation in Marathi. MUST include "**सूत्र:**" and "**पायऱ्या:**" sections. Use markdown for bolding and numbered lists. Ensure each step is on a new line.'
         }
     },
     required: ["answer", "explanation"]

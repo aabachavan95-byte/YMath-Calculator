@@ -4,18 +4,71 @@ import type { Topic } from '../types';
 interface TopicCardProps {
   topic: Topic;
   onSelect: (topic: Topic) => void;
+  borderColor?: string;
+  iconBgColor?: string;
 }
 
-export const TopicCard: React.FC<TopicCardProps> = ({ topic, onSelect }) => {
+export const TopicCard: React.FC<TopicCardProps> = ({ 
+  topic, 
+  onSelect,
+  borderColor = 'border-primary',
+  iconBgColor = 'bg-primary/5'
+}) => {
+  const subTopics = topic.subTopics || [];
+  const displaySubTopics = subTopics.slice(0, 4); // Show exactly 4 sub-subtopics
+
   return (
-    <button
-      onClick={() => onSelect(topic)}
-      className="group flex flex-col items-center justify-center p-4 bg-white border border-slate-200 rounded-xl shadow-lg hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light focus:ring-offset-transparent"
-    >
-      <div className="transition-transform duration-300 group-hover:scale-110">
-        {topic.icon}
+    <div className={`bg-white rounded-xl shadow-md overflow-hidden border-l-4 ${borderColor} flex flex-col h-full transition-transform hover:-translate-y-1 duration-300`}>
+      <div className="p-3 sm:p-4 flex-grow">
+        {/* Header Section */}
+        <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
+          <div className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl ${iconBgColor} flex-shrink-0`}>
+            {React.cloneElement(topic.icon as React.ReactElement<any>, { className: "w-5 h-5 sm:w-6 sm:h-6" })}
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-tight line-clamp-2">{topic.name}</h3>
+            {topic.englishName && (
+              <p className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">{topic.englishName}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Subtopics List */}
+        <div className="space-y-2 mb-3">
+          {displaySubTopics.map((sub, idx) => (
+            <div 
+              key={idx} 
+              className="flex items-center gap-1.5 text-slate-700 group cursor-pointer" 
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelect(sub);
+              }}
+            >
+              <span className="text-orange-500 font-bold text-sm">›</span>
+              <span className="text-[11px] sm:text-xs font-medium group-hover:text-primary transition-colors line-clamp-1">
+                {sub.name.replace(/^\d+\)\s*/, '')}
+              </span>
+            </div>
+          ))}
+          {subTopics.length === 0 && (
+             <p className="text-slate-400 italic text-[10px] sm:text-xs">विषय उपलब्ध नाहीत</p>
+          )}
+          {subTopics.length > 4 && (
+            <p className="text-[10px] text-slate-400 italic pl-4">आणखी विषय...</p>
+          )}
+        </div>
       </div>
-      <span className="mt-2 text-center text-sm font-semibold text-slate-700 transition-colors">{topic.name}</span>
-    </button>
+
+      {/* Footer Button */}
+      <div className="p-3 pt-0 mt-auto">
+        <button 
+          onClick={() => onSelect(topic)}
+          className="w-full py-2 px-3 bg-[#f5f0e8] text-slate-800 font-bold text-xs rounded-lg flex items-center justify-center gap-1.5 hover:bg-[#ede4d5] transition-colors active:scale-[0.98]"
+        >
+          <span>सराव करा</span>
+          <span className="text-sm">›</span>
+        </button>
+      </div>
+    </div>
   );
 };

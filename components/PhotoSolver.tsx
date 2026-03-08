@@ -30,7 +30,24 @@ export const PhotoSolver: React.FC<PhotoSolverProps> = ({ onBack }) => {
     const [result, setResult] = useState<GeminiResponse | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [formula, setFormula] = useState<string | null>(null);
+    const [explanationWithoutFormula, setExplanationWithoutFormula] = useState<string>('');
+    const [isExplanationVisible, setIsExplanationVisible] = useState(true);
+    const [isFormulaVisible, setIsFormulaVisible] = useState(true);
+
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    // Utility to convert Marathi digits to English digits
+    const convertMarathiToEnglish = (text: string): string => {
+        const marathiDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+        return text.replace(/[०-९]/g, (w) => marathiDigits.indexOf(w).toString());
+    };
+
+    // Utility to convert English digits to Marathi digits
+    const convertEnglishToMarathi = (text: string): string => {
+        const marathiDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+        return text.replace(/\d/g, (w) => marathiDigits[parseInt(w)]);
+    };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -57,10 +74,46 @@ export const PhotoSolver: React.FC<PhotoSolverProps> = ({ onBack }) => {
             const dataUri = await fileToDataUri(image);
             const base64Data = dataUri.split(',')[1];
             
-            const finalPrompt = prompt.trim() || `Solve the math problem shown in this image.`;
+            // Detect if Marathi digits are used in the prompt
+            const hasMarathiDigits = /[०-९]/.test(prompt);
+            
+            const finalPrompt = hasMarathiDigits 
+                ? convertMarathiToEnglish(prompt.trim()) || `Solve the math problem shown in this image.`
+                : prompt.trim() || `Solve the math problem shown in this image.`;
 
-            const response = await solveImageProblem(base64Data, image.type, finalPrompt);
+            let response = await solveImageProblem(base64Data, image.type, finalPrompt);
+            
+            // If Marathi digits were used, convert response back
+            if (hasMarathiDigits) {
+                response = {
+                    ...response,
+                    answer: convertEnglishToMarathi(response.answer),
+                    explanation: convertEnglishToMarathi(response.explanation)
+                };
+            }
+
             setResult(response);
+
+            // Formula extraction logic
+            const formulaRegex = /(\*?\*?सूत्र\*?\*?:?\s*[\s\S]*?)(?=\*?\*?पायऱ्या\*?\*?|\*?\*?स्पष्टीकरण\*?\*?|$)/i;
+            const formulaMatch = response.explanation.match(formulaRegex);
+            
+            if (formulaMatch && formulaMatch[1]) {
+                const formulaText = formulaMatch[1].trim();
+                const hasContent = formulaText.replace(/\*?\*?सूत्र\*?\*?:?/i, '').trim().length > 0;
+                
+                if (hasContent) {
+                    setFormula(formulaText);
+                    setExplanationWithoutFormula(response.explanation.replace(formulaRegex, '').trim());
+                } else {
+                    setFormula(null);
+                    setExplanationWithoutFormula(response.explanation);
+                }
+            } else {
+                setFormula(null);
+                setExplanationWithoutFormula(response.explanation);
+            }
+
             addHistoryItem({
                 type: 'photo',
                 topicName: 'फोटो गणित सोलव्हर',
@@ -149,14 +202,44 @@ export const PhotoSolver: React.FC<PhotoSolverProps> = ({ onBack }) => {
             {result && (
                 <div className="mt-6 bg-white text-slate-900 border border-slate-200 rounded-xl shadow-lg p-6 animate-fade-in">
                     <h3 className="text-xl font-bold mb-2">उत्तर</h3>
-                    <div className="p-4 bg-slate-100 border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4">
+                    <div className="p-4 bg-slate-100 border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4 whitespace-pre-wrap">
                         {result.answer}
                     </div>
-                    
-                    <h3 className="text-xl font-bold mb-2">सविस्तर स्पष्टीकरण</h3>
-                    <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 whitespace-pre-wrap prose-p:my-2 prose-li:my-2">
-                        <ReactMarkdown>{result.explanation}</ReactMarkdown>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        {formula && (
+                            <button 
+                                onClick={() => setIsFormulaVisible(!isFormulaVisible)}
+                                className="px-3 py-1.5 bg-secondary text-white font-semibold text-sm rounded-lg shadow-md hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light transition-all duration-150 active:scale-95 flex items-center gap-2"
+                            >
+                                {isFormulaVisible ? 'सूत्र लपवा' : 'सूत्र पहा'}
+                            </button>
+                        )}
+                        <button 
+                            onClick={() => setIsExplanationVisible(!isExplanationVisible)}
+                            className="px-3 py-1.5 bg-primary text-white font-semibold text-sm rounded-lg shadow-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light transition-all duration-150 active:scale-95 flex items-center gap-2"
+                        >
+                            {isExplanationVisible ? 'स्पष्टीकरण लपवा' : 'स्पष्टीकरण पहा'}
+                        </button>
                     </div>
+
+                    {isFormulaVisible && formula && (
+                        <div className="animate-fade-in mb-6">
+                            <h4 className="text-sm font-bold text-secondary-dark mb-2 uppercase tracking-wider">वापरलेले सूत्र:</h4>
+                            <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 p-4 bg-amber-50 border border-amber-200 rounded-lg whitespace-pre-wrap prose-p:my-2 prose-li:my-2 shadow-inner">
+                                <ReactMarkdown>{formula}</ReactMarkdown>
+                            </div>
+                        </div>
+                    )}
+                    
+                    {isExplanationVisible && (
+                        <div className="animate-fade-in">
+                            <h3 className="text-xl font-bold mb-2">सविस्तर स्पष्टीकरण</h3>
+                            <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 whitespace-pre-wrap prose-p:my-2 prose-li:my-2">
+                                <ReactMarkdown>{explanationWithoutFormula || result.explanation}</ReactMarkdown>
+                            </div>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

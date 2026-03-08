@@ -3,6 +3,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import type { McqResponse, Difficulty } from '../types';
 import { generateDailyChallenge, CHALLENGE_QUESTIONS } from '../services/geminiService';
 import { addHistoryItem } from '../services/historyService';
+import { updateProgress } from '../services/progressService';
 import { Spinner } from './Spinner';
 import { BackArrowIcon, CalendarIcon, CheckIcon, CrossIcon } from './Icons';
 import ReactMarkdown from 'react-markdown';
@@ -94,17 +95,29 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
     const handleCompleteAndSave = () => {
         questions.forEach((q, index) => {
             const userAnswerKey = answers[index];
+            const isCorrect = userAnswerKey === q.correctAnswer;
             const userAnswerText = userAnswerKey ? `${userAnswerKey}. ${q.options[userAnswerKey as keyof typeof q.options]}` : 'उत्तर दिले नाही';
+            
+            // Add to history
             addHistoryItem({
                 type: 'text',
                 topicName: `दैनंदिन आव्हान प्रश्न: ${index + 1}`,
                 inputs: { 'प्रश्न': q.question, 'तुमचे उत्तर': userAnswerText },
+                difficulty: difficulty,
                 result: {
                     answer: `बरोबर उत्तर: ${q.correctAnswer}. ${q.options[q.correctAnswer as keyof typeof q.options]}`,
                     explanation: q.explanation,
                 },
             });
+
+            // Update Performance/Progress stats
+            // We use 'daily_challenge' as the key so it appears in the progress dashboard
+            updateProgress('daily_challenge', 'दैनंदिन आव्हान', isCorrect);
         });
+        
+        // Save challenge completion timestamp
+        localStorage.setItem('yashaviLastChallengeDate', new Date().toISOString());
+        
         setStage('intro');
         onComplete();
     };
@@ -197,9 +210,20 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
                 <div className="space-y-6">
                     {questions.map((q, index) => (
                         <div key={index} className="p-5 bg-white rounded-xl border border-slate-200 text-slate-800 shadow-sm">
-                            <p className="font-bold mb-3 text-slate-800">प्रश्न {index + 1}: <ReactMarkdown className="inline">{q.question}</ReactMarkdown></p>
-                            <p className="text-sm">तुमचे उत्तर: <span className={`font-bold ${answers[index] === q.correctAnswer ? 'text-green-600' : 'text-red-600'}`}>{answers[index] ? `${answers[index]}. ${q.options[answers[index] as keyof typeof q.options]}` : 'दिले नाही'}</span></p>
-                            <p className="text-sm">बरोबर उत्तर: <span className="font-bold text-green-600">{q.correctAnswer}. {q.options[q.correctAnswer as keyof typeof q.options]}</span></p>
+                            <div className="font-bold mb-3 text-slate-800 flex flex-wrap gap-1">
+                                <span>प्रश्न {index + 1}:</span>
+                                <ReactMarkdown>{q.question}</ReactMarkdown>
+                            </div>
+                            <div className="space-y-1 mb-3">
+                                <p className="text-sm">तुमचे उत्तर: <span className={`font-bold ${answers[index] === q.correctAnswer ? 'text-green-600' : 'text-red-600'}`}>{answers[index] ? `${answers[index]}. ${q.options[answers[index] as keyof typeof q.options]}` : 'दिले नाही'}</span></p>
+                                <p className="text-sm">बरोबर उत्तर: <span className="font-bold text-green-600">{q.correctAnswer}. {q.options[q.correctAnswer as keyof typeof q.options]}</span></p>
+                            </div>
+                            <div className="mt-3 pt-3 border-t border-slate-100 bg-slate-50/50 p-3 rounded-lg">
+                                <p className="text-xs font-bold text-slate-500 uppercase mb-1">स्पष्टीकरण:</p>
+                                <div className="prose prose-sm max-w-none text-slate-700 leading-relaxed whitespace-pre-wrap">
+                                    <ReactMarkdown>{q.explanation}</ReactMarkdown>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

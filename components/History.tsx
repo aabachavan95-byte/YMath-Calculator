@@ -2,22 +2,41 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { getHistory, clearHistory } from '../services/historyService';
 import type { HistoryItem } from '../types';
-import { BackArrowIcon, TrashIcon, ChevronDownIcon, CalendarIcon } from './Icons';
+import { BackArrowIcon, TrashIcon, ChevronDownIcon, CalendarIcon, ClockIcon, BrainIcon } from './Icons';
 import ReactMarkdown from 'react-markdown';
 
 interface HistoryProps {
     onBack: () => void;
 }
 
-// Helper interface for grouped items
+// Helper interface for grouped items (Sessions)
 interface DailyChallengeGroup {
     type: 'group';
-    id: string; // unique id for key
-    dateKey: string; // For grouping comparison
+    id: string; // unique id based on first item timestamp
     displayDate: string;
-    timestamp: number; // For sorting the main list
+    displayTime: string;
+    difficulty?: string;
+    timestamp: number; 
     items: HistoryItem[];
 }
+
+const getDifficultyLabel = (difficulty?: string) => {
+    switch (difficulty) {
+        case 'easy': return 'सोपे';
+        case 'medium': return 'मध्यम';
+        case 'hard': return 'कठीण';
+        default: return '';
+    }
+};
+
+const getDifficultyColor = (difficulty?: string) => {
+    switch (difficulty) {
+        case 'easy': return 'bg-green-100 text-green-700 border-green-200';
+        case 'medium': return 'bg-amber-100 text-amber-700 border-amber-200';
+        case 'hard': return 'bg-red-100 text-red-700 border-red-200';
+        default: return 'bg-slate-100 text-slate-700 border-slate-200';
+    }
+};
 
 type HistoryEntry = HistoryItem | DailyChallengeGroup;
 
@@ -27,6 +46,12 @@ const HistoryCard: React.FC<{ item: HistoryItem; isGroupItem?: boolean }> = ({ i
     const formatTimestamp = (timestamp: number) => {
         return new Intl.DateTimeFormat('mr-IN', {
             dateStyle: 'medium',
+            timeStyle: 'short',
+        }).format(new Date(timestamp));
+    };
+
+    const formatTimeOnly = (timestamp: number) => {
+        return new Intl.DateTimeFormat('mr-IN', {
             timeStyle: 'short',
         }).format(new Date(timestamp));
     };
@@ -41,7 +66,20 @@ const HistoryCard: React.FC<{ item: HistoryItem; isGroupItem?: boolean }> = ({ i
                 aria-expanded={isExpanded}
             >
                 <div className="flex-1 pr-4">
-                    <p className={`font-bold text-slate-800 truncate ${isGroupItem ? 'text-sm' : ''}`}>{title}</p>
+                    <div className="flex items-center flex-wrap gap-2">
+                        <p className={`font-bold text-slate-800 truncate ${isGroupItem ? 'text-sm' : ''}`}>{title}</p>
+                        {item.difficulty && (
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded border font-bold ${getDifficultyColor(item.difficulty)}`}>
+                                {getDifficultyLabel(item.difficulty)}
+                            </span>
+                        )}
+                        {isGroupItem && (
+                            <span className="flex items-center gap-1 text-[10px] bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded">
+                                <ClockIcon className="w-3 h-3" />
+                                {formatTimeOnly(item.timestamp)}
+                            </span>
+                        )}
+                    </div>
                     {!isGroupItem && <p className="text-sm text-slate-500">{formatTimestamp(item.timestamp)}</p>}
                 </div>
                 <div className={`transform transition-transform duration-200 text-slate-400 ${isExpanded ? 'rotate-180' : ''}`}>
@@ -89,6 +127,19 @@ const HistoryCard: React.FC<{ item: HistoryItem; isGroupItem?: boolean }> = ({ i
                     <div className="prose prose-sm sm:prose-base max-w-none text-slate-800 whitespace-pre-wrap prose-p:my-2 prose-li:my-2">
                         <ReactMarkdown>{item.result.explanation}</ReactMarkdown>
                     </div>
+                    
+                    <div className="mt-4 pt-2 border-t border-slate-100 text-[10px] text-slate-400 flex flex-wrap items-center gap-3">
+                        <div className="flex items-center gap-1">
+                            <ClockIcon className="w-3 h-3" />
+                            सोडवण्याची वेळ: {formatTimestamp(item.timestamp)}
+                        </div>
+                        {item.difficulty && (
+                            <div className="flex items-center gap-1">
+                                <BrainIcon className="w-3 h-3" />
+                                पातळी: {getDifficultyLabel(item.difficulty)}
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
         </div>
@@ -110,9 +161,19 @@ const DailyChallengeGroupCard: React.FC<{ group: DailyChallengeGroup }> = ({ gro
                     </div>
                     <div className="text-left">
                         <h3 className="font-bold text-slate-800 text-lg leading-tight">दैनंदिन आव्हान</h3>
-                        
                         <p className="text-sm text-indigo-700 font-bold mt-1">{group.displayDate}</p>
-                        <p className="text-xs text-slate-600 font-medium mt-1">{group.items.length} प्रश्न सोडवले</p>
+                        <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                            <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
+                                <ClockIcon className="w-3 h-3" />
+                                वेळ: {group.displayTime}
+                            </span>
+                            {group.difficulty && (
+                                <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${getDifficultyColor(group.difficulty)}`}>
+                                    पातळी: {getDifficultyLabel(group.difficulty)}
+                                </span>
+                            )}
+                            <span className="text-xs text-slate-600 font-medium">| {group.items.length} प्रश्न</span>
+                        </div>
                     </div>
                 </div>
                 <div className={`transform transition-transform duration-200 text-indigo-400 mt-2 ${isExpanded ? 'rotate-180' : ''}`}>
@@ -143,40 +204,45 @@ export const History: React.FC<HistoryProps> = ({ onBack }) => {
         }
 
         setHasHistory(true);
-        const groups: Record<string, HistoryItem[]> = {};
-        const otherItems: HistoryItem[] = [];
+        const entries: HistoryEntry[] = [];
+        let currentChallengeGroup: DailyChallengeGroup | null = null;
 
-        rawHistory.forEach(item => {
-            if (item.topicName.includes('दैनंदिन') || item.topicName.includes('Daily Challenge')) {
-                const dateKey = new Date(item.timestamp).toLocaleDateString('en-IN', {
-                    day: 'numeric', month: 'short', year: 'numeric'
-                });
-                
-                if (!groups[dateKey]) {
-                    groups[dateKey] = [];
+        // items are already sorted by timestamp desc in historyService
+        rawHistory.forEach((item) => {
+            const isDailyChallenge = item.topicName.includes('दैनंदिन') || item.topicName.includes('Daily Challenge');
+
+            if (isDailyChallenge) {
+                // Check if this item belongs to the current "Session" group
+                // If items were added within 30 seconds of each other, they are the same session.
+                if (currentChallengeGroup && Math.abs(currentChallengeGroup.timestamp - item.timestamp) < 30000) {
+                    currentChallengeGroup.items.push(item);
+                } else {
+                    const date = new Date(item.timestamp);
+                    const displayDate = date.toLocaleDateString('mr-IN', {
+                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                    });
+                    const displayTime = date.toLocaleTimeString('mr-IN', {
+                        hour: '2-digit', minute: '2-digit'
+                    });
+
+                    currentChallengeGroup = {
+                        type: 'group',
+                        id: `session-${item.timestamp}`,
+                        displayDate,
+                        displayTime,
+                        difficulty: item.difficulty,
+                        timestamp: item.timestamp,
+                        items: [item]
+                    };
+                    entries.push(currentChallengeGroup);
                 }
-                groups[dateKey].push(item);
             } else {
-                otherItems.push(item);
+                currentChallengeGroup = null; // Break group if a normal item appears
+                entries.push(item);
             }
         });
 
-        const groupEntries: DailyChallengeGroup[] = Object.entries(groups).map(([dateKey, items]) => {
-            const sortedItems = items.sort((a, b) => b.timestamp - a.timestamp);
-            return {
-                type: 'group',
-                id: `group-${dateKey}`,
-                dateKey,
-                displayDate: new Date(items[0].timestamp).toLocaleDateString('mr-IN', {
-                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-                }),
-                timestamp: sortedItems[0].timestamp,
-                items: sortedItems
-            };
-        });
-
-        const combined = [...otherItems, ...groupEntries].sort((a, b) => b.timestamp - a.timestamp);
-        setHistoryEntries(combined);
+        setHistoryEntries(entries);
     }, []);
 
     useEffect(() => {

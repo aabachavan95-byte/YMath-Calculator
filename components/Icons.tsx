@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 
 const iconProps = {
@@ -9,7 +8,7 @@ const iconProps = {
 };
 
 const smallIconProps = {
-    className: "w-5 h-5 sm:w-6 sm:h-6",
+    className: "w-5 h-5 sm:w-6 h-6",
     strokeWidth: 2
 };
 
@@ -21,132 +20,154 @@ type IconProps = React.SVGProps<SVGSVGElement>;
 
 export const PercentageIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#6d28d9" strokeLinecap="round" strokeLinejoin="round" d="M8 7a2 2 0 11-4 0 2 2 0 014 0zM16 17a2 2 0 11-4 0 2 2 0 014 0zM5 19L19 5" />
-    <path stroke="#8b5cf6" strokeLinecap="round" strokeLinejoin="round" d="M8 7a2 2 0 11-4 0 2 2 0 014 0zM16 17a2 2 0 11-4 0 2 2 0 014 0zM5 19L19 5" />
+    <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M8 7a2 2 0 11-4 0 2 2 0 014 0zM16 17a2 2 0 11-4 0 2 2 0 014 0zM5 19L19 5" />
+    <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M8 7a2 2 0 11-4 0 2 2 0 014 0zM16 17a2 2 0 11-4 0 2 2 0 014 0zM5 19L19 5" />
   </svg>
 );
+
+export const QuestionIcon = (props: IconProps) => (
+  <svg {...iconProps} {...props} viewBox="0 0 24 24">
+    <path transform={shadowTranslate} stroke="#1e293b" strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <path stroke="#475569" strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
 export const RatioIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#0891b2" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6M9 12a3 3 0 100-6 3 3 0 000 6zm6 0a3 3 0 100-6 3 3 0 000 6z" />
-    <path stroke="#22d3ee" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6M9 12a3 3 0 100-6 3 3 0 000 6zm6 0a3 3 0 100-6 3 3 0 000 6z" />
+    <path transform={shadowTranslate} stroke="#d97706" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6M9 12a3 3 0 100-6 3 3 0 000 6zm6 0a3 3 0 100-6 3 3 0 000 6z" />
+    <path stroke="#f59e0b" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6M9 12a3 3 0 100-6 3 3 0 000 6zm6 0a3 3 0 100-6 3 3 0 000 6z" />
   </svg>
 );
+
 export const InterestIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <g transform={shadowTranslate} stroke="#9333ea">
+    <g transform={shadowTranslate} stroke="#5b21b6">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-4-4c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
     </g>
-    <g stroke="#a855f7">
+    <g stroke="#7c3aed">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-4-4c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
     </g>
   </svg>
 );
+
 export const ProfitLossIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#0f766e" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-    <path stroke="#14b8a6" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+    <path transform={shadowTranslate} stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+    <path stroke="#10b981" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
   </svg>
 );
+
 export const TimeWorkIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#c026d3" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-    <path stroke="#d946ef" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
+
 export const SpeedIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#db2777" strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-    <path stroke="#ec4899" strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
   </svg>
 );
+
 export const AverageIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#475569" strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M3 10h18M3 14h18M3 18h18" />
-    <path stroke="#64748b" strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M3 10h18M3 14h18M3 18h18" />
+    <path transform={shadowTranslate} stroke="#1e293b" strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M3 10h18M3 14h18M3 18h18" />
+    <path stroke="#334155" strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M3 10h18M3 14h18M3 18h18" />
   </svg>
 );
+
 export const AreaVolumeIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#0e7490" strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9.75l9-5.25" />
-    <path stroke="#06b6d4" strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9.75l9-5.25" />
+    <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9.75l9-5.25" />
+    <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9.75l9-5.25" />
   </svg>
 );
+
 export const PerimeterIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
     <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M3 7l0 10c0 1.1.9 2 2 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
     <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M3 7l0 10c0 1.1.9 2 2 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
   </svg>
 );
+
 export const AlgebraIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#be185d" strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-    <path stroke="#ec4899" strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
+
 export const APIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-    <path stroke="#10b981" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    <path transform={shadowTranslate} stroke="#065f46" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
   </svg>
 );
+
 export const ExponentIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#475569" strokeLinecap="round" strokeLinejoin="round" d="M4 12h2l3-8 3 14h10" />
-    <path stroke="#94a3b8" strokeLinecap="round" strokeLinejoin="round" d="M4 12h2l3-8 3 14h10" />
+    <path transform={shadowTranslate} stroke="#1e293b" strokeLinecap="round" strokeLinejoin="round" d="M4 12h2l3-8 3 14h10" />
+    <path stroke="#475569" strokeLinecap="round" strokeLinejoin="round" d="M4 12h2l3-8 3 14h10" />
   </svg>
 );
+
 export const GPIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#0e7490" strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-    <path stroke="#06b6d4" strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
   </svg>
 );
+
 export const NumberSystemIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#a16207" strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m-6 4h6m-6 4h6m-8 4h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    <path stroke="#ca8a04" strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m-6 4h6m-6 4h6m-8 4h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m-6 4h6m-6 4h6m-8 4h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2-2v10a2 2 0 002 2z" />
+    <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m-6 4h6m-6 4h6m-8 4h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2-2v10a2 2 0 002 2z" />
   </svg>
 );
+
 export const LcmHcfIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#a21caf" strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-    <path stroke="#d946ef" strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+    <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+    <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
   </svg>
 );
+
 export const ProbabilityIcon = (props: IconProps) => (
   <svg {...iconProps} {...props} viewBox="0 0 24 24">
-    <path transform={shadowTranslate} stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M14.121 15.879l-2.828-2.828M12 21a9 9 0 110-18 9 9 0 010 18z" />
-    <path stroke="#10b981" strokeLinecap="round" strokeLinejoin="round" d="M14.121 15.879l-2.828-2.828M12 21a9 9 0 110-18 9 9 0 010 18z" />
+    <path transform={shadowTranslate} stroke="#065f46" strokeLinecap="round" strokeLinejoin="round" d="M14.121 15.879l-2.828-2.828M12 21a9 9 0 110-18 9 9 0 010 18z" />
+    <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M14.121 15.879l-2.828-2.828M12 21a9 9 0 110-18 9 9 0 010 18z" />
   </svg>
 );
 
 export const IncreaseDecreaseIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-      <path transform={shadowTranslate} stroke="#0f766e" strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5 5 5M7 13l5 5 5-5" />
-      <path stroke="#14b8a6" strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5 5 5M7 13l5 5 5-5" />
+      <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5 5 5M7 13l5 5 5-5" />
+      <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5 5 5M7 13l5 5 5-5" />
     </svg>
 );
 
 export const DiscountIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-      <path transform={shadowTranslate} stroke="#be123c" strokeLinecap="round" strokeLinejoin="round" d="M12.25 2.25l8.5 8.5a3.5 3.5 0 010 4.95l-8.5 8.5a1.5 1.5 0 01-2.12 0l-8.5-8.5a3.5 3.5 0 010-4.95l8.5-8.5a1.5 1.5 0 012.12 0zM8.25 8.25h.01" />
-      <path stroke="#f43f5e" strokeLinecap="round" strokeLinejoin="round" d="M12.25 2.25l8.5 8.5a3.5 3.5 0 010 4.95l-8.5 8.5a1.5 1.5 0 01-2.12 0l-8.5-8.5a3.5 3.5 0 010-4.95l8.5-8.5a1.5 1.5 0 012.12 0zM8.25 8.25h.01" />
+      <path transform={shadowTranslate} stroke="#991b1b" strokeLinecap="round" strokeLinejoin="round" d="M12.25 2.25l8.5 8.5a3.5 3.5 0 010 4.95l-8.5 8.5a1.5 1.5 0 01-2.12 0l-8.5-8.5a3.5 3.5 0 010-4.95l8.5-8.5a1.5 1.5 0 012.12 0zM8.25 8.25h.01" />
+      <path stroke="#b91c1c" strokeLinecap="round" strokeLinejoin="round" d="M12.25 2.25l8.5 8.5a3.5 3.5 0 010 4.95l-8.5 8.5a1.5 1.5 0 01-2.12 0l-8.5-8.5a3.5 3.5 0 010-4.95l8.5-8.5a1.5 1.5 0 012.12 0zM8.25 8.25h.01" />
     </svg>
 );
 
 export const ExamIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-      <path transform={shadowTranslate} stroke="#0d9488" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      <path stroke="#2dd4bf" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1.01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1.01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
     </svg>
 );
 
 export const MixtureIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <path transform={shadowTranslate} stroke="#0891b2" strokeLinecap="round" strokeLinejoin="round" d="M7 3h10l-4 8v6h-2v-6L7 3z" />
-        <path transform={shadowTranslate} stroke="#0891b2" strokeLinecap="round" strokeLinejoin="round" d="M7 13h10" />
-        <path stroke="#06b6d4" strokeLinecap="round" strokeLinejoin="round" d="M7 3h10l-4 8v6h-2v-6L7 3z" />
-        <path stroke="#06b6d4" strokeLinecap="round" strokeLinejoin="round" d="M7 13h10" />
+        <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M7 3h10l-4 8v6h-2v-6L7 3z" />
+        <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M7 13h10" />
+        <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M7 3h10l-4 8v6h-2v-6L7 3z" />
+        <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M7 13h10" />
     </svg>
 );
 
@@ -159,65 +180,65 @@ export const ComparisonIcon = (props: IconProps) => (
 
 export const WagesIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M9 8h6m-6 4h6m-6-8v12m4-8H7" />
-        <path stroke="#10b981" strokeLinecap="round" strokeLinejoin="round" d="M9 8h6m-6 4h6m-6-8v12m4-8H7" />
+        <path transform={shadowTranslate} stroke="#065f46" strokeLinecap="round" strokeLinejoin="round" d="M9 8h6m-6 4h6m-6-8v12m4-8H7" />
+        <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M9 8h6m-6 4h6m-6-8v12m4-8H7" />
     </svg>
 );
 
 export const PipeIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <path transform={shadowTranslate} stroke="#0e7490" strokeLinecap="round" strokeLinejoin="round" d="M4 4v6a2 2 0 002 2h12a2 2 0 002-2V4m-8 12v4m0-4a2 2 0 100-4 2 2 0 000 4z" />
-        <path stroke="#06b6d4" strokeLinecap="round" strokeLinejoin="round" d="M4 4v6a2 2 0 002 2h12a2 2 0 002-2V4m-8 12v4m0-4a2 2 0 100-4 2 2 0 000 4z" />
+        <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M4 4v6a2 2 0 002 2h12a2 2 0 002-2V4m-8 12v4m0-4a2 2 0 100-4 2 2 0 000 4z" />
+        <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M4 4v6a2 2 0 002 2h12a2 2 0 002-2V4m-8 12v4m0-4a2 2 0 100-4 2 2 0 000 4z" />
     </svg>
 );
 
 export const TrainIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <rect x="5" y="5" width="14" height="12" rx="2" transform={shadowTranslate} stroke="#475569" />
-        <path transform={shadowTranslate} stroke="#475569" strokeLinecap="round" d="M5 17h14m-12 4h10m-8-12h6" />
-        <rect x="5" y="5" width="14" height="12" rx="2" stroke="#64748b" />
-        <path stroke="#64748b" strokeLinecap="round" d="M5 17h14m-12 4h10m-8-12h6" />
+        <rect x="5" y="5" width="14" height="12" rx="2" transform={shadowTranslate} stroke="#1e293b" />
+        <path transform={shadowTranslate} stroke="#1e293b" strokeLinecap="round" d="M5 17h14m-12 4h10m-8-12h6" />
+        <rect x="5" y="5" width="14" height="12" rx="2" stroke="#334155" />
+        <path stroke="#334155" strokeLinecap="round" d="M5 17h14m-12 4h10m-8-12h6" />
     </svg>
 );
 
 export const BoatIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <path transform={shadowTranslate} stroke="#0891b2" strokeLinecap="round" strokeLinejoin="round" d="M3 15l2 4h14l2-4H3zm3-3l6-8 6 8H6z" />
-        <path transform={shadowTranslate} stroke="#0891b2" d="M4 19h16" />
-        <path stroke="#22d3ee" strokeLinecap="round" strokeLinejoin="round" d="M3 15l2 4h14l2-4H3zm3-3l6-8 6 8H6z" />
-        <path stroke="#22d3ee" d="M4 19h16" />
+        <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M3 15l2 4h14l2-4H3zm3-3l6-8 6 8H6z" />
+        <path transform={shadowTranslate} stroke="#047857" d="M4 19h16" />
+        <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M3 15l2 4h14l2-4H3zm3-3l6-8 6 8H6z" />
+        <path stroke="#059669" d="M4 19h16" />
     </svg>
 );
 
 export const ConversionIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <path transform={shadowTranslate} stroke="#4f46e5" strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-        <path stroke="#6366f1" strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
     </svg>
 );
 
 export const TriangleIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <path transform={shadowTranslate} stroke="#c026d3" strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 21h20L12 2z" />
-        <path stroke="#d946ef" strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 21h20L12 2z" />
+        <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 21h20L12 2z" />
+        <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 21h20L12 2z" />
     </svg>
 );
 
 export const SphereIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <circle cx="12.5" cy="12.5" r="9" transform={shadowTranslate} stroke="#0e7490"/>
-        <path d="M16 7 A 10 10 0 0 0 9 18" transform={shadowTranslate} stroke="#0e7490"/>
-        <circle cx="12" cy="12" r="9" stroke="#06b6d4"/>
-        <path d="M15.5 6.5 A 10 10 0 0 0 8.5 17.5" stroke="#06b6d4"/>
+        <circle cx="12.5" cy="12.5" r="9" transform={shadowTranslate} stroke="#047857"/>
+        <path d="M16 7 A 10 10 0 0 0 9 18" transform={shadowTranslate} stroke="#047857"/>
+        <circle cx="12" cy="12" r="9" stroke="#059669"/>
+        <path d="M15.5 6.5 A 10 10 0 0 0 8.5 17.5" stroke="#059669"/>
     </svg>
 );
 
 export const CylinderConeIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <path transform={shadowTranslate} stroke="#0e7490" strokeLinecap="round" strokeLinejoin="round" d="M8 10v10m0-10c0-2.21 1.79-4 4-4s4 1.79-4 4v10c0-2.21-1.79-4-4-4s-4 1.79-4 4z M16 20a4 2 0 10-8 0 4 2 0 008 0z" />
-        <path transform={shadowTranslate} stroke="#0e7490" strokeLinecap="round" strokeLinejoin="round" d="M18 10L12 2l-6 8" />
-        <path stroke="#06b6d4" strokeLinecap="round" strokeLinejoin="round" d="M8 10v10m0-10c0-2.21 1.79-4 4-4s4 1.79-4 4v10c0-2.21-1.79-4-4-4s-4 1.79-4 4z M16 20a4 2 0 10-8 0 4 2 0 008 0z" />
-        <path stroke="#06b6d4" strokeLinecap="round" strokeLinejoin="round" d="M18 10L12 2l-6 8" />
+        <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M8 10v10m0-10c0-2.21 1.79-4 4-4s4 1.79-4 4v10c0-2.21-1.79-4-4-4s-4 1.79-4 4z M16 20a4 4 0 10-8 0 4 2 0 008 0z" />
+        <path transform={shadowTranslate} stroke="#047857" strokeLinecap="round" strokeLinejoin="round" d="M18 10L12 2l-6 8" />
+        <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M8 10v10m0-10c0-2.21 1.79-4 4-4s4 1.79-4 4v10c0-2.21-1.79-4-4-4s-4 1.79-4 4z M16 20a4 4 0 10-8 0 4 2 0 008 0z" />
+        <path stroke="#059669" strokeLinecap="round" strokeLinejoin="round" d="M18 10L12 2l-6 8" />
     </svg>
 );
 
@@ -232,41 +253,41 @@ export const SetTheoryIcon = (props: IconProps) => (
 
 export const CoinIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <circle cx="12.5" cy="12.5" r="8" transform={shadowTranslate} stroke="#a16207"/>
-        <path transform={shadowTranslate} stroke="#a16207" strokeLinecap="round" strokeLinejoin="round" d="M12.5 7.5v10m-3-7l6 4m-6-1l6-4" />
-        <circle cx="12" cy="12" r="8" stroke="#ca8a04"/>
-        <path stroke="#ca8a04" strokeLinecap="round" strokeLinejoin="round" d="M12 7v10m-3-7l6 4m-6-1l6-4" />
+        <circle cx="12.5" cy="12.5" r="8" transform={shadowTranslate} stroke="#854d0e"/>
+        <path transform={shadowTranslate} stroke="#854d0e" strokeLinecap="round" strokeLinejoin="round" d="M12.5 7.5v10m-3-7l6 4m-6-1l6-4" />
+        <circle cx="12" cy="12" r="8" stroke="#a16207"/>
+        <path stroke="#a16207" strokeLinecap="round" strokeLinejoin="round" d="M12 7v10m-3-7l6 4m-6-1l6-4" />
     </svg>
 );
 
 export const DiceIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <rect x="4.5" y="4.5" width="16" height="16" rx="2" transform={shadowTranslate} stroke="#059669"/>
-        <circle cx="9.5" cy="9.5" r="1.5" transform={shadowTranslate} fill="#059669" stroke="none"/>
-        <circle cx="15.5" cy="15.5" r="1.5" transform={shadowTranslate} fill="#059669" stroke="none"/>
-        <rect x="4" y="4" width="16" height="16" rx="2" stroke="#10b981"/>
-        <circle cx="9" cy="9" r="1.5" fill="#10b981" stroke="none"/>
-        <circle cx="15" cy="15" r="1.5" fill="#10b981" stroke="none"/>
+        <rect x="4.5" y="4.5" width="16" height="16" rx="2" transform={shadowTranslate} stroke="#065f46"/>
+        <circle cx="9.5" cy="9.5" r="1.5" transform={shadowTranslate} fill="#065f46" stroke="none"/>
+        <circle cx="15.5" cy="15.5" r="1.5" transform={shadowTranslate} fill="#065f46" stroke="none"/>
+        <rect x="4" y="4" width="16" height="16" rx="2" stroke="#059669"/>
+        <circle cx="9" cy="9" r="1.5" fill="#059669" stroke="none"/>
+        <circle cx="15" cy="15" r="1.5" fill="#059669" stroke="none"/>
     </svg>
 );
 
 export const CardsIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <rect x="4.5" y="6.5" width="12" height="14" rx="2" transform={shadowTranslate} stroke="#059669"/>
-        <path transform={shadowTranslate} stroke="#059669" d="M8.5 4.5h10a2 2 0 012 2v12a2 2 0 01-2 2h-1" />
-        <rect x="4" y="6" width="12" height="14" rx="2" stroke="#10b981"/>
-        <path stroke="#10b981" d="M8 4h10a2 2 0 012 2v12a2 2 0 01-2 2h-1" />
+        <rect x="4.5" y="6.5" width="12" height="14" rx="2" transform={shadowTranslate} stroke="#065f46"/>
+        <path transform={shadowTranslate} stroke="#065f46" d="M8.5 4.5h10a2 2 0 012 2v12a2 2 0 01-2 2h-1" />
+        <rect x="4" y="6" width="12" height="14" rx="2" stroke="#059669"/>
+        <path stroke="#059669" d="M8 4h10a2 2 0 012 2v12a2 2 0 01-2 2h-1" />
     </svg>
 );
 
 export const BallsIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
-        <circle cx="8.5" cy="16.5" r="4" transform={shadowTranslate} stroke="#1d4ed8"/>
-        <circle cx="16.5" cy="16.5" r="4" transform={shadowTranslate} stroke="#0891b2"/>
-        <circle cx="12.5" cy="8.5" r="4" transform={shadowTranslate} stroke="#be185d"/>
-        <circle cx="8" cy="16" r="4" stroke="#3b82f6"/>
-        <circle cx="16" cy="16" r="4" stroke="#22d3ee"/>
-        <circle cx="12" cy="8" r="4" stroke="#ec4899"/>
+        <circle cx="8.5" cy="16.5" r="4" transform={shadowTranslate} stroke="#1e40af"/>
+        <circle cx="16.5" cy="16.5" r="4" transform={shadowTranslate} stroke="#047857"/>
+        <circle cx="12.5" cy="8.5" r="4" transform={shadowTranslate} stroke="#9f1239"/>
+        <circle cx="8" cy="16" r="4" stroke="#1d4ed8"/>
+        <circle cx="16" cy="16" r="4" stroke="#059669"/>
+        <circle cx="12" cy="8" r="4" stroke="#be123c"/>
     </svg>
 );
 

@@ -225,7 +225,7 @@ export const PracticeMode: React.FC<PracticeModeProps> = ({ topic, onBack }) => 
                         ? <span className="text-green-600">अगदी बरोबर! 🎉</span> 
                         : <span className="text-red-600">उत्तर चुकले.</span>}
                   </h3>
-                  <div className="prose prose-sm max-w-none text-slate-700">
+                  <div className="prose prose-sm max-w-none text-slate-700 whitespace-pre-wrap">
                     <ReactMarkdown>{sanitizeText(currentMcq.explanation as string)}</ReactMarkdown>
                   </div>
                 </div>

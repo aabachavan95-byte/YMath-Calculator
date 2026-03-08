@@ -3,6 +3,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Header } from './components/Header';
 import { TopicCard } from './components/TopicCard';
 import { DailyChallengeCard } from './components/DailyChallengeCard';
+import { MainTopicCard } from './components/MainTopicCard';
 import { Calculator } from './components/Calculator';
 import { PhotoSolver } from './components/PhotoSolver';
 import { History } from './components/History';
@@ -10,7 +11,7 @@ import { PracticeMode } from './components/PracticeMode';
 import { DailyChallenge } from './components/DailyChallenge';
 import { BottomNav } from './components/BottomNav';
 import { SplashScreen } from './components/SplashScreen';
-import { CameraIcon, BackArrowIcon, SearchIcon } from './components/Icons';
+import { CameraIcon, BackArrowIcon, SearchIcon, CalendarIcon } from './components/Icons';
 import { TOPICS } from './constants';
 import type { Topic } from './types';
 
@@ -24,12 +25,33 @@ const App: React.FC = () => {
   const [topicTrail, setTopicTrail] = useState<Topic[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Topic[][]>([]);
+  const [showChallengeReminder, setShowChallengeReminder] = useState(false);
 
   useEffect(() => {
     if (view !== 'home') {
       setSearchQuery('');
     }
   }, [view]);
+
+  // Check for Daily Challenge inactivity
+  useEffect(() => {
+    if (!isSplashVisible) {
+      const lastCompletion = localStorage.getItem('yashaviLastChallengeDate');
+      if (!lastCompletion) {
+        // New user or key missing, initialize it
+        localStorage.setItem('yashaviLastChallengeDate', new Date().toISOString());
+      } else {
+        const lastDate = new Date(lastCompletion);
+        const now = new Date();
+        const diffDays = Math.floor((now.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
+        
+        // If more than 2 days have passed, show reminder
+        if (diffDays >= 2) {
+          setShowChallengeReminder(true);
+        }
+      }
+    }
+  }, [isSplashVisible]);
 
   const searchTopicsRecursive = useCallback((topics: Topic[], query: string, path: Topic[] = []): Topic[][] => {
     const lowerCaseQuery = query.toLowerCase().trim();
@@ -92,6 +114,7 @@ const App: React.FC = () => {
   
   const handleStartDailyChallenge = useCallback(() => {
     setView('daily_challenge');
+    setShowChallengeReminder(false);
   }, []);
 
   const handleBack = useCallback(() => {
@@ -146,10 +169,29 @@ const App: React.FC = () => {
                 <p className="text-slate-500">कोणत्या उपविषयासाठी मदत हवी आहे?</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {currentParentTopic.subTopics?.map((subTopic) => (
-                <TopicCard key={subTopic.key} topic={subTopic} onSelect={handleTopicSelect} />
-              ))}
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
+              {currentParentTopic.subTopics?.map((subTopic, idx) => {
+                const colors = [
+                  { border: 'border-orange-500', iconBg: 'bg-orange-50' },
+                  { border: 'border-blue-500', iconBg: 'bg-blue-50' },
+                  { border: 'border-emerald-500', iconBg: 'bg-emerald-50' },
+                  { border: 'border-violet-500', iconBg: 'bg-violet-50' },
+                  { border: 'border-indigo-500', iconBg: 'bg-indigo-50' },
+                  { border: 'border-rose-500', iconBg: 'bg-rose-50' },
+                  { border: 'border-teal-500', iconBg: 'bg-teal-50' },
+                  { border: 'border-amber-500', iconBg: 'bg-amber-50' },
+                ];
+                const color = colors[idx % colors.length];
+                return (
+                  <TopicCard 
+                    key={subTopic.key} 
+                    topic={subTopic} 
+                    onSelect={handleTopicSelect}
+                    borderColor={color.border}
+                    iconBgColor={color.iconBg}
+                  />
+                );
+              })}
             </div>
           </div>
         );
@@ -209,10 +251,40 @@ const App: React.FC = () => {
                 ) : (
                     <>
                         <DailyChallengeCard onSelect={handleStartDailyChallenge} />
-                        <div className="grid grid-cols-2 gap-4 mt-6">
-                            {TOPICS.map((topic) => (
-                                <TopicCard key={topic.key} topic={topic} onSelect={handleTopicSelect} />
-                            ))}
+                        
+                        <div className="mt-8 mb-6 text-center">
+                            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-1">मुख्य गणित विषय</h2>
+                            <p className="text-slate-500 text-sm sm:text-base">प्रत्येक विषयाचे सखोल उपविषय आणि चरण-दर-चरण निराकरण पद्धती</p>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 sm:gap-8 mt-6">
+                            {TOPICS.map((topic) => {
+                                const colors: Record<string, { border: string; iconBg: string }> = {
+                                    'percentage': { border: 'border-orange-500', iconBg: 'bg-orange-50' },
+                                    'ratio_proportion': { border: 'border-blue-500', iconBg: 'bg-blue-50' },
+                                    'profit_loss': { border: 'border-emerald-500', iconBg: 'bg-emerald-50' },
+                                    'interest': { border: 'border-violet-500', iconBg: 'bg-violet-50' },
+                                    'time_work': { border: 'border-indigo-500', iconBg: 'bg-indigo-50' },
+                                    'speed_time_distance': { border: 'border-rose-500', iconBg: 'bg-rose-50' },
+                                    'average': { border: 'border-slate-500', iconBg: 'bg-slate-50' },
+                                    'area_volume': { border: 'border-teal-500', iconBg: 'bg-teal-50' },
+                                    'algebra': { border: 'border-cyan-500', iconBg: 'bg-cyan-50' },
+                                    'number_system': { border: 'border-amber-500', iconBg: 'bg-amber-50' },
+                                    'probability': { border: 'border-pink-500', iconBg: 'bg-pink-50' },
+                                    'series': { border: 'border-sky-500', iconBg: 'bg-sky-50' },
+                                    'exponents': { border: 'border-lime-500', iconBg: 'bg-lime-50' },
+                                };
+                                const color = colors[topic.key] || { border: 'border-primary', iconBg: 'bg-primary/5' };
+                                return (
+                                    <MainTopicCard 
+                                        key={topic.key} 
+                                        topic={topic} 
+                                        onSelect={handleTopicSelect}
+                                        borderColor={color.border}
+                                        iconBgColor={color.iconBg}
+                                    />
+                                );
+                            })}
                         </div>
                     </>
                 )}
@@ -227,12 +299,45 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-slate-50 flex flex-col relative">
       <Header />
       <div className="flex-grow pb-16 md:pb-20">
           {renderContent()}
       </div>
       <BottomNav currentView={view} setView={setView} />
+
+      {/* Challenge Reminder Modal */}
+      {showChallengeReminder && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all">
+            <div className="bg-primary p-8 text-center">
+              <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/30 shadow-inner">
+                <CalendarIcon className="w-10 h-10 text-white" />
+              </div>
+              <h2 className="text-2xl font-black text-white leading-tight">वेळ आहे एका नवीन आव्हानाची!</h2>
+            </div>
+            <div className="p-8 text-center">
+              <p className="text-slate-600 font-medium text-lg leading-relaxed">
+                तुम्ही काही दिवसांपासून दैनंदिन आव्हान सोडवलेले नाही. तुमची गणिताची पकड मजबूत ठेवण्यासाठी आजचे आव्हान आत्ताच सोडवा!
+              </p>
+              <div className="mt-8 space-y-3">
+                <button 
+                  onClick={handleStartDailyChallenge}
+                  className="w-full py-4 bg-primary text-white font-black text-xl rounded-2xl shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all active:scale-95"
+                >
+                  आता सोडवा
+                </button>
+                <button 
+                  onClick={() => setShowChallengeReminder(false)}
+                  className="w-full py-3 bg-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-all"
+                >
+                  नंतर
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
