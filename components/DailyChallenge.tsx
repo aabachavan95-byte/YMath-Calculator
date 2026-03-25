@@ -83,6 +83,15 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
         }
     };
 
+    const handleSkip = () => {
+        if (currentIndex < questions.length - 1) {
+            setCurrentIndex(prev => prev + 1);
+        } else {
+            setStage('results');
+            clearTimer();
+        }
+    };
+
     const calculateScore = () => {
         return answers.reduce((score, answer, index) => {
             if (questions[index] && answer === questions[index].correctAnswer) {
@@ -192,6 +201,14 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
                             <span className="font-semibold">{value}</span>
                         </button>
                     ))}
+                </div>
+                <div className="mt-6 flex justify-end">
+                    <button
+                        onClick={handleSkip}
+                        className="px-6 py-3 rounded-xl font-bold text-slate-600 bg-slate-200 hover:bg-slate-300 transition-colors focus:outline-none"
+                    >
+                        {currentIndex < questions.length - 1 ? 'पुढील प्रश्न (Next)' : 'पूर्ण करा (Finish)'}
+                    </button>
                 </div>
             </div>
         );

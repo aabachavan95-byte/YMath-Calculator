@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Header: React.FC = () => {
     return (
-        <header className="sticky top-0 z-10 bg-primary-dark shadow-lg">
+        <header className="bg-primary-dark shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center">
                 <div className="flex flex-col">
                     <h1 className="text-lg sm:text-xl font-bold text-white">यशस्वी गणित कॅल्क्युलेटर</h1>

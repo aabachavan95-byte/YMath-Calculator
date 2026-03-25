@@ -6,19 +6,21 @@ interface TopicCardProps {
   onSelect: (topic: Topic) => void;
   borderColor?: string;
   iconBgColor?: string;
+  gradientColor?: string;
 }
 
 export const TopicCard: React.FC<TopicCardProps> = ({ 
   topic, 
   onSelect,
   borderColor = 'border-primary',
-  iconBgColor = 'bg-primary/5'
+  iconBgColor = 'bg-primary/5',
+  gradientColor = 'from-white to-slate-50/50'
 }) => {
   const subTopics = topic.subTopics || [];
-  const displaySubTopics = subTopics.slice(0, 4); // Show exactly 4 sub-subtopics
+  const displaySubTopics = subTopics.slice(0, 10); // Show up to 10 sub-subtopics
 
   return (
-    <div className={`bg-white rounded-xl shadow-md overflow-hidden border-l-4 ${borderColor} flex flex-col h-full transition-transform hover:-translate-y-1 duration-300`}>
+    <div className={`bg-gradient-to-br ${gradientColor} rounded-xl shadow-md overflow-hidden border-l-4 ${borderColor} flex flex-col h-full transition-transform hover:-translate-y-1 duration-300`}>
       <div className="p-3 sm:p-4 flex-grow">
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
@@ -34,27 +36,24 @@ export const TopicCard: React.FC<TopicCardProps> = ({
         </div>
 
         {/* Subtopics List */}
-        <div className="space-y-2 mb-3">
+        <div className="space-y-1 mb-3">
           {displaySubTopics.map((sub, idx) => (
             <div 
               key={idx} 
-              className="flex items-center gap-1.5 text-slate-700 group cursor-pointer" 
+              className="flex items-center gap-1.5 text-slate-700 group cursor-pointer p-1.5 -ml-1.5 rounded-md hover:bg-black/5 transition-colors" 
               onClick={(e) => {
                 e.stopPropagation();
                 onSelect(sub);
               }}
             >
-              <span className="text-orange-500 font-bold text-sm">›</span>
-              <span className="text-[11px] sm:text-xs font-medium group-hover:text-primary transition-colors line-clamp-1">
+              <span className="text-orange-500 font-bold text-sm sm:text-base transition-transform group-hover:translate-x-0.5">›</span>
+              <span className="text-xs sm:text-sm font-medium group-hover:text-primary transition-colors line-clamp-1">
                 {sub.name.replace(/^\d+\)\s*/, '')}
               </span>
             </div>
           ))}
-          {subTopics.length === 0 && (
-             <p className="text-slate-400 italic text-[10px] sm:text-xs">विषय उपलब्ध नाहीत</p>
-          )}
-          {subTopics.length > 4 && (
-            <p className="text-[10px] text-slate-400 italic pl-4">आणखी विषय...</p>
+          {subTopics.length > 10 && (
+            <p className="text-xs text-black font-extrabold italic pl-4 p-1.5">आणखी विषय...</p>
           )}
         </div>
       </div>

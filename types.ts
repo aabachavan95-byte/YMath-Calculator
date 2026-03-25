@@ -14,7 +14,7 @@ export interface TopicInput {
   key: string;
   label: string;
   type: 'number' | 'text' | 'textarea';
-  placeholder: string;
+  placeholder?: string;
   unit?: string;
   validation?: ValidationRule;
 }

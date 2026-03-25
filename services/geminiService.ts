@@ -12,7 +12,7 @@ const systemInstruction = `You are YashaviMath, an expert math tutor for competi
 
 IMPORTANT RULES:
 1. All your responses MUST be in professional, grammatically correct Marathi. Use terminology common in MPSC/UPSC exams.
-2. DO NOT use LaTeX, '\\frac', or '$' symbols. Use simple plain text for math (e.g., 150/25, 2 * 5).
+2. DO NOT use LaTeX, '\\frac', or '$' symbols. Use simple plain text for math (e.g., 150/25, 2 × 5). IMPORTANT: Always use "×" for multiplication, NEVER use "*".
 3. Structure your 'explanation' string using these exact Marathi headers for clarity:
    - **सूत्र:** (Clearly state the formula used. If no specific formula, state the logical principle.)
    - **पायऱ्या:** (Detailed step-by-step solution as a numbered list. Explain the logic behind EACH step clearly so a student can understand WHY that step is taken.)
@@ -59,7 +59,7 @@ const mcqResponseSchema = {
         },
         explanation: {
             type: Type.STRING,
-            description: 'A detailed step-by-step explanation in Marathi for the correct answer. Use simple math symbols like /, *, +, -. NO LaTeX or $.'
+            description: 'A detailed step-by-step explanation in Marathi for the correct answer. Use simple math symbols like /, ×, +, -. IMPORTANT: Always use "×" for multiplication, NEVER use "*". NO LaTeX or $.'
         }
     },
     required: ["question", "options", "correctAnswer", "explanation"]
@@ -139,22 +139,49 @@ const handleApiError = (error: unknown, contextMessage: string): Error => {
 const parseGeminiResponse = (response: GenerateContentResponse): GeminiResponse => {
     try {
         if (!response.candidates || response.candidates.length === 0) throw new Error("No candidates returned.");
-        const text = response.text?.trim();
+        
+        let text = "";
+        try {
+            text = response.text?.trim() || "";
+        } catch (e) {
+            console.error("Error getting response.text:", e);
+            throw new Error("AI ने सुरक्षिततेच्या कारणास्तव किंवा इतर त्रुटीमुळे उत्तर दिले नाही.");
+        }
+
         if (!text) throw new Error("Response text is empty");
-        const cleanedText = extractJson(text, false);
-        const parsed = JSON.parse(cleanedText);
-        if (parsed.answer && parsed.explanation) {
-            return { answer: String(parsed.answer), explanation: String(parsed.explanation) };
+        
+        try {
+            const cleanedText = extractJson(text, false);
+            const parsed = JSON.parse(cleanedText);
+            if (parsed.answer && parsed.explanation) {
+                return { answer: String(parsed.answer), explanation: String(parsed.explanation) };
+            }
+        } catch (parseError) {
+            console.error("JSON Parse Error:", parseError, "Raw Text:", text);
+            // Fallback: If JSON parsing fails, return the raw text as explanation
+            return { 
+                answer: "उत्तर स्पष्टीकरणात दिले आहे", 
+                explanation: text 
+            };
         }
         throw new Error("Invalid JSON structure");
     } catch (error) {
+        console.error("Parse Gemini Response Error:", error);
+        if (error instanceof Error && error.message !== "Invalid JSON structure") {
+            throw error;
+        }
         throw new Error("AI कडून मिळालेला प्रतिसाद वाचता आला नाही.");
     }
 };
 
 const parseMcqResponse = (response: GenerateContentResponse): McqResponse => {
     try {
-        const text = response.text?.trim();
+        let text = "";
+        try {
+            text = response.text?.trim() || "";
+        } catch (e) {
+            throw new Error("AI ने सुरक्षिततेच्या कारणास्तव किंवा इतर त्रुटीमुळे उत्तर दिले नाही.");
+        }
         if (!text) throw new Error("Received empty response.");
         const cleanedText = extractJson(text, false);
         const parsed = JSON.parse(cleanedText);
@@ -163,30 +190,49 @@ const parseMcqResponse = (response: GenerateContentResponse): McqResponse => {
         }
         throw new Error("Invalid MCQ JSON");
     } catch (error) {
+        if (error instanceof Error && error.message !== "Invalid MCQ JSON" && error.message !== "Received empty response.") {
+            throw error;
+        }
         throw new Error("सराव प्रश्न लोड करताना त्रुटी आली.");
     }
 };
 
 const parseMcqBatchResponse = (response: GenerateContentResponse): McqResponse[] => {
     try {
-        const text = response.text?.trim();
+        let text = "";
+        try {
+            text = response.text?.trim() || "";
+        } catch (e) {
+            throw new Error("AI ने सुरक्षिततेच्या कारणास्तव किंवा इतर त्रुटीमुळे उत्तर दिले नाही.");
+        }
         if (!text) throw new Error("Received empty response.");
         const cleanedText = extractJson(text, true);
         const parsedArray = JSON.parse(cleanedText);
         return parsedArray as McqResponse[];
     } catch (error) {
+        if (error instanceof Error && error.message !== "Received empty response.") {
+            throw error;
+        }
         throw new Error("सराव प्रश्न संच लोड करताना त्रुटी आली.");
     }
 };
 
 const parseDailyChallengeResponse = (response: GenerateContentResponse): McqResponse[] => {
     try {
-        const text = response.text?.trim();
+        let text = "";
+        try {
+            text = response.text?.trim() || "";
+        } catch (e) {
+            throw new Error("AI ने सुरक्षिततेच्या कारणास्तव किंवा इतर त्रुटीमुळे उत्तर दिले नाही.");
+        }
         if (!text) throw new Error("Received empty response.");
         const cleanedText = extractJson(text, true);
         const parsedArray = JSON.parse(cleanedText);
         return parsedArray;
     } catch (error) {
+        if (error instanceof Error && error.message !== "Received empty response.") {
+            throw error;
+        }
         throw new Error("Daily Challenge लोड करताना त्रुटी आली.");
     }
 };
@@ -245,7 +291,7 @@ export const generateMcqBatch = async (topicName: string, level: Difficulty, cou
     २. काठीण्य पातळी: ${level === 'easy' ? 'सोपे' : level === 'medium' ? 'मध्यम' : 'कठीण'}.
     ३. प्रश्न पुन्हा येता कामा नये: प्रत्येक प्रश्नातील संख्या, नावे आणि रचना पूर्णपणे नवीन असावी.
     ४. स्पष्टीकरणे: स्पष्टीकरणे अचूक पण अत्यंत संक्षिप्त (Brief) ठेवा. 
-    ५. गणीती चिन्हे: स्पष्टीकरणात '$' चिन्ह किंवा LaTeX (उदा. \\frac) वापरू नका. त्याऐवजी साधी चिन्हे (उदा. 150/25) वापरा.
+    ५. गणीती चिन्हे: स्पष्टीकरणात '$' चिन्ह किंवा LaTeX (उदा. \\frac) वापरू नका. त्याऐवजी साधी चिन्हे (उदा. 150/25) वापरा. गुणाकारासाठी नेहमी "×" वापरा, "*" वापरू नका.
     ६. अचूकता: सर्व गणिती उत्तरे आणि पर्याय तपासून घ्या.`;
 
     try {
@@ -291,7 +337,7 @@ export const CHALLENGE_QUESTIONS = 15;
 
 export const generateDailyChallenge = async (difficulty: Difficulty): Promise<McqResponse[]> => {
     const sessionId = Date.now() + Math.random().toString(36).substring(7);
-    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन MCQs तयार करा. आयडी: ${sessionId}. विविधता आणि अचूकता महत्त्वाची. स्पष्टीकरणात '$' किंवा LaTeX वापरू नका.`;
+    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन MCQs तयार करा. आयडी: ${sessionId}. विविधता आणि अचूकता महत्त्वाची. स्पष्टीकरणात '$' किंवा LaTeX वापरू नका. गुणाकारासाठी नेहमी "×" वापरा, "*" वापरू नका.`;
     
     try {
         const ai = getAiClient();

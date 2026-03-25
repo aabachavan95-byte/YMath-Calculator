@@ -1,0 +1,101 @@
+import React, { useState, useEffect } from 'react';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell
+} from 'recharts';
+import { BackArrowIcon } from './Icons';
+
+interface DailyPracticeReportProps {
+  onBack: () => void;
+}
+
+const COLORS = ['#10b981', '#ef4444', '#94a3b8'];
+
+export const DailyPracticeReport: React.FC<DailyPracticeReportProps> = ({ onBack }) => {
+  // Mock data based on user's request
+  const data = [
+    { name: 'Number System', Solved: 15, Wrong: 5, Unsolved: 10 },
+    { name: 'Percentage', Solved: 20, Wrong: 8, Unsolved: 5 },
+    { name: 'Ratio & Proportion', Solved: 12, Wrong: 4, Unsolved: 8 },
+    { name: 'Time & Work', Solved: 18, Wrong: 6, Unsolved: 4 },
+    { name: 'Speed Time Distance', Solved: 10, Wrong: 7, Unsolved: 12 },
+    { name: 'Profit & Loss', Solved: 22, Wrong: 3, Unsolved: 2 },
+  ];
+
+  const pieData = [
+    { name: 'Solved Questions', value: data.reduce((acc, curr) => acc + curr.Solved, 0) },
+    { name: 'Wrong Questions', value: data.reduce((acc, curr) => acc + curr.Wrong, 0) },
+    { name: 'Unsolved Questions', value: data.reduce((acc, curr) => acc + curr.Unsolved, 0) },
+  ];
+
+  return (
+    <div className="p-4 sm:p-6 bg-slate-50 min-h-screen animate-fade-in pb-24">
+      <div className="flex items-center mb-6">
+        <button
+          onClick={onBack}
+          className="mr-4 p-2 bg-white rounded-full shadow-sm hover:bg-slate-100 transition-colors"
+        >
+          <BackArrowIcon />
+        </button>
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">दैनंदिन सराव अहवाल</h1>
+      </div>
+
+      <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200 mb-6">
+        <h2 className="text-lg font-bold text-slate-700 mb-4">विषयनिहाय कामगिरी विश्लेषण (Bar Chart)</h2>
+        <div className="h-80 w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={data}
+              margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+              <XAxis dataKey="name" tick={{ fontSize: 12 }} interval={0} angle={-45} textAnchor="end" height={80} />
+              <YAxis />
+              <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+              <Legend wrapperStyle={{ paddingTop: '20px' }} />
+              <Bar dataKey="Solved" name="Solved Questions" fill="#10b981" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="Wrong" name="Wrong Questions" fill="#ef4444" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="Unsolved" name="Unsolved Questions" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200">
+        <h2 className="text-lg font-bold text-slate-700 mb-4">एकूण कामगिरी (Pie Chart)</h2>
+        <div className="h-64 w-full flex justify-center">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={80}
+                paddingAngle={5}
+                dataKey="value"
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                labelLine={false}
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -9,13 +9,14 @@ import { PhotoSolver } from './components/PhotoSolver';
 import { History } from './components/History';
 import { PracticeMode } from './components/PracticeMode';
 import { DailyChallenge } from './components/DailyChallenge';
+import { DailyPracticeReport } from './components/DailyPracticeReport';
 import { BottomNav } from './components/BottomNav';
 import { SplashScreen } from './components/SplashScreen';
 import { CameraIcon, BackArrowIcon, SearchIcon, CalendarIcon } from './components/Icons';
 import { TOPICS } from './constants';
 import type { Topic } from './types';
 
-export type View = 'home' | 'calculator' | 'photo' | 'subtopics' | 'history' | 'practice' | 'daily_challenge';
+export type View = 'home' | 'calculator' | 'photo' | 'subtopics' | 'history' | 'practice' | 'daily_challenge' | 'daily_practice_report';
 
 const App: React.FC = () => {
   const [isSplashVisible, setIsSplashVisible] = useState(true);
@@ -33,20 +34,30 @@ const App: React.FC = () => {
     }
   }, [view]);
 
+  useEffect(() => {
+    if (isSplashVisible) {
+      const timer = setTimeout(() => {
+        setIsSplashVisible(false);
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+  }, [isSplashVisible]);
+
   // Check for Daily Challenge inactivity
   useEffect(() => {
     if (!isSplashVisible) {
       const lastCompletion = localStorage.getItem('yashaviLastChallengeDate');
       if (!lastCompletion) {
-        // New user or key missing, initialize it
+        // If never completed, set the initial date to today so they don't get a reminder immediately on first use
         localStorage.setItem('yashaviLastChallengeDate', new Date().toISOString());
       } else {
         const lastDate = new Date(lastCompletion);
         const now = new Date();
-        const diffDays = Math.floor((now.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
+        // Calculate difference in hours for more precision
+        const diffHours = (now.getTime() - lastDate.getTime()) / (1000 * 60 * 60);
         
-        // If more than 2 days have passed, show reminder
-        if (diffDays >= 2) {
+        // If more than 24 hours have passed, show reminder
+        if (diffHours >= 24) {
           setShowChallengeReminder(true);
         }
       }
@@ -141,6 +152,8 @@ const App: React.FC = () => {
 
   const renderContent = () => {
     switch (view) {
+      case 'daily_practice_report':
+        return <DailyPracticeReport onBack={handleBack} />;
       case 'history':
         return <History onBack={handleBack} />;
       case 'practice':
@@ -172,14 +185,14 @@ const App: React.FC = () => {
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
               {currentParentTopic.subTopics?.map((subTopic, idx) => {
                 const colors = [
-                  { border: 'border-orange-500', iconBg: 'bg-orange-50' },
-                  { border: 'border-blue-500', iconBg: 'bg-blue-50' },
-                  { border: 'border-emerald-500', iconBg: 'bg-emerald-50' },
-                  { border: 'border-violet-500', iconBg: 'bg-violet-50' },
-                  { border: 'border-indigo-500', iconBg: 'bg-indigo-50' },
-                  { border: 'border-rose-500', iconBg: 'bg-rose-50' },
-                  { border: 'border-teal-500', iconBg: 'bg-teal-50' },
-                  { border: 'border-amber-500', iconBg: 'bg-amber-50' },
+                  { border: 'border-orange-500', iconBg: 'bg-orange-50', gradient: 'from-white to-orange-50/50' },
+                  { border: 'border-blue-500', iconBg: 'bg-blue-50', gradient: 'from-white to-blue-50/50' },
+                  { border: 'border-emerald-500', iconBg: 'bg-emerald-50', gradient: 'from-white to-emerald-50/50' },
+                  { border: 'border-violet-500', iconBg: 'bg-violet-50', gradient: 'from-white to-violet-50/50' },
+                  { border: 'border-indigo-500', iconBg: 'bg-indigo-50', gradient: 'from-white to-indigo-50/50' },
+                  { border: 'border-rose-500', iconBg: 'bg-rose-50', gradient: 'from-white to-rose-50/50' },
+                  { border: 'border-teal-500', iconBg: 'bg-teal-50', gradient: 'from-white to-teal-50/50' },
+                  { border: 'border-amber-500', iconBg: 'bg-amber-50', gradient: 'from-white to-amber-50/50' },
                 ];
                 const color = colors[idx % colors.length];
                 return (
@@ -189,6 +202,7 @@ const App: React.FC = () => {
                     onSelect={handleTopicSelect}
                     borderColor={color.border}
                     iconBgColor={color.iconBg}
+                    gradientColor={color.gradient}
                   />
                 );
               })}
@@ -273,6 +287,8 @@ const App: React.FC = () => {
                                     'probability': { border: 'border-pink-500', iconBg: 'bg-pink-50' },
                                     'series': { border: 'border-sky-500', iconBg: 'bg-sky-50' },
                                     'exponents': { border: 'border-lime-500', iconBg: 'bg-lime-50' },
+                                    'statistics_logic': { border: 'border-fuchsia-500', iconBg: 'bg-fuchsia-50' },
+                                    'perimeter': { border: 'border-yellow-500', iconBg: 'bg-yellow-50' },
                                 };
                                 const color = colors[topic.key] || { border: 'border-primary', iconBg: 'bg-primary/5' };
                                 return (
@@ -301,10 +317,12 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col relative">
       <Header />
-      <div className="flex-grow pb-16 md:pb-20">
+      <div className="flex-grow">
           {renderContent()}
       </div>
-      <BottomNav currentView={view} setView={setView} />
+      <div className="sticky bottom-0 z-50">
+        <BottomNav currentView={view} setView={setView} />
+      </div>
 
       {/* Challenge Reminder Modal */}
       {showChallengeReminder && (

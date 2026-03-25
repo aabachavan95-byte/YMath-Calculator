@@ -224,6 +224,15 @@ export const TriangleIcon = (props: IconProps) => (
     </svg>
 );
 
+export const GeometryIcon = (props: IconProps) => (
+    <svg {...iconProps} {...props} viewBox="0 0 24 24">
+        <path transform={shadowTranslate} stroke="#5b21b6" strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 21h20L12 2z" />
+        <circle cx="12.5" cy="14.5" r="4" stroke="#5b21b6" fill="none" strokeWidth="2" />
+        <path stroke="#7c3aed" strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 21h20L12 2z" />
+        <circle cx="12" cy="14" r="4" stroke="#7c3aed" fill="none" strokeWidth="2" />
+    </svg>
+);
+
 export const SphereIcon = (props: IconProps) => (
     <svg {...iconProps} {...props} viewBox="0 0 24 24">
         <circle cx="12.5" cy="12.5" r="9" transform={shadowTranslate} stroke="#047857"/>

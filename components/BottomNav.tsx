@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { View } from '../App';
-import { HomeIcon, CameraIcon, HistoryIcon } from './Icons';
+import { HomeIcon, CameraIcon, HistoryIcon, ChartBarIcon } from './Icons';
 
 interface BottomNavProps {
   currentView: View;
@@ -12,11 +12,12 @@ const navItems: { view: View; label: string; icon: React.FC<React.SVGProps<SVGSV
   { view: 'home', label: 'मुख्यपृष्ठ', icon: HomeIcon },
   { view: 'photo', label: 'फोटो', icon: CameraIcon },
   { view: 'history', label: 'इतिहास', icon: HistoryIcon },
+  { view: 'daily_practice_report', label: 'अहवाल', icon: ChartBarIcon },
 ];
 
 export const BottomNav: React.FC<BottomNavProps> = ({ currentView, setView }) => {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-primary border-t border-primary-dark shadow-[0_-2px_6px_rgba(0,0,0,0.15)] z-20">
+    <nav className="bg-primary border-t border-primary-dark shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
       <div className="flex justify-around items-center h-16 md:h-20 max-w-4xl mx-auto w-full">
         {navItems.map(item => {
           const isActive = currentView === item.view;

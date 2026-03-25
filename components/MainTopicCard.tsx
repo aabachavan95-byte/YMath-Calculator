@@ -46,11 +46,8 @@ export const MainTopicCard: React.FC<MainTopicCardProps> = ({
               </span>
             </div>
           ))}
-          {subTopics.length === 0 && (
-             <p className="text-slate-400 italic text-[10px] sm:text-xs">उपविषय उपलब्ध नाहीत</p>
-          )}
           {subTopics.length > 4 && (
-            <p className="text-[10px] text-slate-400 italic pl-4">आणखी विषय...</p>
+            <p className="text-[10px] text-black font-extrabold italic pl-4">आणखी विषय...</p>
           )}
         </div>
       </div>
