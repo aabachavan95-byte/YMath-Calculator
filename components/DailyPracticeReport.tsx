@@ -49,49 +49,69 @@ export const DailyPracticeReport: React.FC<DailyPracticeReportProps> = ({ onBack
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">दैनंदिन सराव अहवाल</h1>
       </div>
 
-      <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200 mb-6">
-        <h2 className="text-lg font-bold text-slate-700 mb-4">विषयनिहाय कामगिरी विश्लेषण (Bar Chart)</h2>
-        <div className="h-80 w-full">
+      <div className="bg-white p-3 sm:p-6 rounded-2xl shadow-sm border border-slate-200 mb-6 overflow-hidden">
+        <h2 className="text-base sm:text-lg font-bold text-slate-700 mb-4">विषयनिहाय कामगिरी विश्लेषण (Bar Chart)</h2>
+        <div className="h-72 sm:h-80 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={data}
-              margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+              margin={{ top: 10, right: 10, left: -20, bottom: 20 }}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-              <XAxis dataKey="name" tick={{ fontSize: 12 }} interval={0} angle={-45} textAnchor="end" height={80} />
-              <YAxis />
-              <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-              <Legend wrapperStyle={{ paddingTop: '20px' }} />
-              <Bar dataKey="Solved" name="Solved Questions" fill="#10b981" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="Wrong" name="Wrong Questions" fill="#ef4444" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="Unsolved" name="Unsolved Questions" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+              <XAxis 
+                dataKey="name" 
+                tick={{ fontSize: 10 }} 
+                interval={0} 
+                angle={-45} 
+                textAnchor="end" 
+                height={70}
+                stroke="#64748b"
+              />
+              <YAxis tick={{ fontSize: 10 }} stroke="#64748b" />
+              <Tooltip 
+                cursor={{ fill: '#f1f5f9' }} 
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: '12px' }} 
+              />
+              <Legend 
+                wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} 
+                iconSize={10}
+              />
+              <Bar dataKey="Solved" name="Solved" fill="#10b981" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="Wrong" name="Wrong" fill="#ef4444" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="Unsolved" name="Unsolved" fill="#94a3b8" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200">
-        <h2 className="text-lg font-bold text-slate-700 mb-4">एकूण कामगिरी (Pie Chart)</h2>
-        <div className="h-64 w-full flex justify-center">
+      <div className="bg-white p-3 sm:p-6 rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <h2 className="text-base sm:text-lg font-bold text-slate-700 mb-4">एकूण कामगिरी (Pie Chart)</h2>
+        <div className="h-64 sm:h-72 w-full flex justify-center">
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
+            <PieChart margin={{ top: 25, bottom: 10 }}>
               <Pie
                 data={pieData}
                 cx="50%"
                 cy="50%"
-                innerRadius={60}
-                outerRadius={80}
+                innerRadius="40%"
+                outerRadius="55%"
                 paddingAngle={5}
                 dataKey="value"
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                labelLine={false}
+                label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                labelLine={true}
+                stroke="none"
               >
                 {pieData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-              <Legend />
+              <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: '12px' }} />
+              <Legend 
+                verticalAlign="bottom" 
+                align="center"
+                wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }}
+                iconSize={10}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>

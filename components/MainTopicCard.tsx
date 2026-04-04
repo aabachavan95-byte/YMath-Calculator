@@ -16,7 +16,7 @@ export const MainTopicCard: React.FC<MainTopicCardProps> = ({
 }) => {
   // Extract subtopics for the list (limit to 8 as in image)
   const subTopics = topic.subTopics || [];
-  const displaySubTopics = subTopics.slice(0, 4);
+  const displaySubTopics = subTopics.slice(0, 2);
 
   return (
     <div className={`bg-white rounded-xl shadow-md overflow-hidden border-l-4 ${borderColor} flex flex-col h-full transition-transform hover:-translate-y-1 duration-300`}>
@@ -46,7 +46,7 @@ export const MainTopicCard: React.FC<MainTopicCardProps> = ({
               </span>
             </div>
           ))}
-          {subTopics.length > 4 && (
+          {subTopics.length > 2 && (
             <p className="text-[10px] text-black font-extrabold italic pl-4">आणखी विषय...</p>
           )}
         </div>
