@@ -92,6 +92,12 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
         }
     };
 
+    const handleBackQuestion = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(prev => prev - 1);
+        }
+    };
+
     const calculateScore = () => {
         return answers.reduce((score, answer, index) => {
             if (questions[index] && answer === questions[index].correctAnswer) {
@@ -195,17 +201,31 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
                         <button
                             key={key}
                             onClick={() => handleAnswer(key)}
-                            className="w-full text-left p-4 sm:p-5 border-2 border-slate-200 rounded-xl transition-all duration-200 flex items-center gap-4 text-slate-800 bg-white hover:border-primary hover:bg-primary/5 focus:outline-none focus:ring-0 shadow-sm"
+                            className={`w-full text-left p-4 sm:p-5 border-2 rounded-xl transition-all duration-200 flex items-center gap-4 shadow-sm ${
+                                answers[currentIndex] === key 
+                                ? 'border-primary bg-primary/10' 
+                                : 'border-slate-200 bg-white hover:border-primary hover:bg-primary/5'
+                            } text-slate-800 focus:outline-none focus:ring-0`}
                         >
                             <span className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-primary border border-slate-200">{key}</span>
                             <span className="font-semibold">{value}</span>
                         </button>
                     ))}
                 </div>
-                <div className="mt-6 flex justify-end">
+                <div className="mt-6 flex justify-between gap-4">
+                    {currentIndex > 0 ? (
+                        <button
+                            onClick={handleBackQuestion}
+                            className="px-6 py-3 rounded-xl font-bold text-slate-600 bg-slate-200 hover:bg-slate-300 transition-colors focus:outline-none flex-1 sm:flex-none"
+                        >
+                            मागील प्रश्न (Back)
+                        </button>
+                    ) : (
+                        <div className="flex-1 sm:flex-none"></div>
+                    )}
                     <button
                         onClick={handleSkip}
-                        className="px-6 py-3 rounded-xl font-bold text-slate-600 bg-slate-200 hover:bg-slate-300 transition-colors focus:outline-none"
+                        className="px-6 py-3 rounded-xl font-bold text-slate-600 bg-slate-200 hover:bg-slate-300 transition-colors focus:outline-none flex-1 sm:flex-none"
                     >
                         {currentIndex < questions.length - 1 ? 'पुढील प्रश्न (Next)' : 'पूर्ण करा (Finish)'}
                     </button>
