@@ -29,6 +29,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. नैसर्गिक संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `नैसर्गिक संख्यांच्या व्याख्येवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'nat_prop',
         name: 'नैसर्गिक संख्यांचे गुणधर्म',
@@ -36,6 +37,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. नैसर्गिक संख्यांचे गुणधर्म सांगा' }],
         promptTemplate: (i) => `नैसर्गिक संख्यांच्या गुणधर्मांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'nat_sum_avg',
         name: 'नैसर्गिक संख्यांची बेरीज व सरासरी',
@@ -43,6 +45,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पहिल्या १० नैसर्गिक संख्यांची बेरीज आणि सरासरी किती होईल?' }],
         promptTemplate: (i) => `नैसर्गिक संख्यांची बेरीज व सरासरी काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'nat_consec',
         name: 'सलग नैसर्गिक संख्या (Consecutive Numbers)',
@@ -50,6 +53,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. तीन सलग नैसर्गिक संख्यांची बेरीज ३३ आहे, तर त्या संख्या कोणत्या?' }],
         promptTemplate: (i) => `सलग नैसर्गिक संख्यांवर (Consecutive Numbers) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'nat_consec_even_odd',
         name: 'सलग सम व विषम संख्या',
@@ -57,6 +61,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पाच सलग सम संख्यांची बेरीज १०० आहे, तर सर्वात मोठी संख्या कोणती?' }],
         promptTemplate: (i) => `सलग सम व विषम संख्यांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'whole_def',
         name: 'पूर्ण संख्यांची व्याख्या',
@@ -64,6 +69,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पूर्ण संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `पूर्ण संख्यांच्या व्याख्येवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'whole_diff',
         name: 'नैसर्गिक व पूर्ण संख्यांमधील फरक',
@@ -71,6 +77,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. नैसर्गिक आणि पूर्ण संख्यांमधील फरक सांगा' }],
         promptTemplate: (i) => `नैसर्गिक व पूर्ण संख्यांमधील फरकावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'whole_prop',
         name: 'पूर्ण संख्यांचे गुणधर्म',
@@ -78,6 +85,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पूर्ण संख्यांच्या बेरीज आणि गुणाकाराचे गुणधर्म स्पष्ट करा.' }],
         promptTemplate: (i) => `पूर्ण संख्यांच्या गुणधर्मांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'int_pos_neg',
         name: 'सकारात्मक व नकारात्मक संख्या',
@@ -85,6 +93,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. -५ आणि +३ यांची बेरीज किती होईल?' }],
         promptTemplate: (i) => `सकारात्मक व नकारात्मक संख्यांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'even_num',
         name: 'सम संख्या',
@@ -92,6 +101,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. सम संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `सम संख्यांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'odd_num',
         name: 'विषम संख्या',
@@ -99,6 +109,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. विषम संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `विषम संख्यांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ex_even_odd_prob',
         name: 'सम-विषम संख्यांवरील प्रश्न',
@@ -106,6 +117,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन सलग विषम संख्यांची बेरीज ४० आहे, तर त्या संख्या कोणत्या?' }],
         promptTemplate: (i) => `सम-विषम संख्यांवरील स्पर्धा परीक्षेचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'even_odd_numbers',
         name: 'सम व विषम संख्यांची सरासरी',
@@ -113,6 +125,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १ ते २० मधील सर्व सम संख्यांची सरासरी किती?' }],
         promptTemplate: (i) => `सम व विषम संख्यांच्या सरासरीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'int_ops',
         name: 'पूर्णांकांची बेरीज, वजाबाकी, गुणाकार, भागाकार',
@@ -134,6 +147,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. संयुक्त संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `संयुक्त संख्यांवर (Composite Numbers) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'prime_1_100',
         name: '1 ते 100 पर्यंतच्या मूळ संख्या',
@@ -141,6 +155,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. 1 ते 100 मध्ये किती मूळ संख्या आहेत?' }],
         promptTemplate: (i) => `1 ते 100 पर्यंतच्या मूळ संख्यांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'twin_prime',
         name: 'Twin Prime Numbers',
@@ -148,6 +163,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. जोडमूळ संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `Twin Prime Numbers (जोडमूळ संख्या) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'co_prime',
         name: 'Co-prime Numbers',
@@ -155,6 +171,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. सहमूळ संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `Co-prime Numbers (सहमूळ संख्या) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'prime_fact',
         name: 'Prime Factorization Method',
@@ -162,6 +179,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ६० चे मूळ अवयव (Prime Factors) पाडा.' }],
         promptTemplate: (i) => `${i.p} चे मूळ अवयव (Prime Factors) पाडा.`
       },
+,
       {
         key: 'fact_twin_prime',
         name: 'जोडमूळ संख्या (Twin Prime Numbers)',
@@ -169,6 +187,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. ५ आणि ७ या जोडमूळ संख्या (Twin Prime Numbers) आहेत का?' }],
         promptTemplate: (i) => `${i.p} या जोडमूळ संख्या (Twin Prime Numbers) आहेत का ते तपासा.`
       },
+,
       {
         key: 'ex_prime_id',
         name: 'मूळ संख्या ओळखा',
@@ -176,6 +195,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. खालीलपैकी मूळ संख्या कोणती?' }],
         promptTemplate: (i) => `मूळ संख्या ओळखण्यावर आधारित स्पर्धा परीक्षेचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'fact_prime_comp',
         name: 'अभाज्य व संयुक्त संख्या',
@@ -183,6 +203,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १ ते २० मधील सर्व मूळ (Prime) संख्यांची यादी करा.' }],
         promptTemplate: (i) => `अभाज्य (Prime) व संयुक्त (Composite) संख्यांमधील फरक आणि घटकांशी संबंध स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'fact_prime_fact',
         name: 'अभाज्य गुणाकार पद्धत (Prime Factorization)',
@@ -190,6 +211,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ६० चे अभाज्य गुणाकार पद्धतीने (Prime Factorization) घटक पाडा.' }],
         promptTemplate: (i) => `अभाज्य गुणाकार पद्धतीने (Prime Factorization) ${i.p} चे घटक पाडा.`
       },
+,
       {
         key: 'fact_prime',
         name: 'अभाज्य घटक (Prime Factors)',
@@ -197,6 +219,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. १२ चे अभाज्य घटक (Prime Factors) शोधा.' }],
         promptTemplate: (i) => `${i.p} चे अभाज्य घटक (Prime Factors) शोधा.`
       },
+,
       {
         key: 'fact_coprime',
         name: 'सह-अभाज्य संख्या (Co-prime Numbers)',
@@ -204,6 +227,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. ८ आणि १५ या सह-अभाज्य संख्या (Co-prime Numbers) आहेत का?' }],
         promptTemplate: (i) => `${i.p} या सह-अभाज्य संख्या (Co-prime Numbers) आहेत का ते तपासा.`
       },
+,
       {
         key: 'lcm_prime_method',
         name: 'अभाज्य घटक पद्धत',
@@ -211,6 +235,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. १२ आणि १५ चा अभाज्य घटक पद्धतीने LCM काढा.' }],
         promptTemplate: (i) => `अभाज्य घटक पद्धतीने ${i.p} चा LCM काढा.`
       },
+,
       {
         key: 'hcf_prime_method',
         name: 'अभाज्य घटक पद्धत',
@@ -218,6 +243,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. २४ आणि ३६ चा अभाज्य घटक पद्धतीने HCF काढा.' }],
         promptTemplate: (i) => `अभाज्य घटक पद्धतीने ${i.p} चा HCF काढा.`
       },
+,
       {
         key: 'mixed_coprime',
         name: 'सह-अभाज्य संख्यांवरील प्रश्न',
@@ -225,6 +251,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन सह-अभाज्य संख्यांचा गुणाकार ११७ आहे, तर त्यांचा लसावि (LCM) किती असेल?' }],
         promptTemplate: (i) => `सह-अभाज्य संख्यांवरील स्पर्धा परीक्षेचे प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'prime_num',
         name: 'मूळ संख्या (Prime Numbers)',
@@ -246,6 +273,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ७२९ या संख्येला ९ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 9 ने भाग जातो का? 9 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_10',
         name: '10 ने विभाज्यता',
@@ -253,6 +281,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ५०० या संख्येला १० ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 10 ने भाग जातो का? 10 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_11',
         name: '11 ने विभाज्यता',
@@ -260,6 +289,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. १३३१ या संख्येला ११ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 11 ने भाग जातो का? 11 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_2',
         name: '2 ने विभाज्यता',
@@ -267,6 +297,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. १२४ या संख्येला २ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 2 ने भाग जातो का? 2 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_3',
         name: '3 ने विभाज्यता',
@@ -274,6 +305,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. १२३ या संख्येला ३ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 3 ने भाग जातो का? 3 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_4',
         name: '4 ने विभाज्यता',
@@ -281,6 +313,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ५१२ या संख्येला ४ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 4 ने भाग जातो का? 4 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_5',
         name: '5 ने विभाज्यता',
@@ -288,6 +321,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. २५५ या संख्येला ५ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 5 ने भाग जातो का? 5 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_6',
         name: '6 ने विभाज्यता',
@@ -295,6 +329,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. २१६ या संख्येला ६ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 6 ने भाग जातो का? 6 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_7',
         name: '7 ने विभाज्यता',
@@ -302,6 +337,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ३४३ या संख्येला ७ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 7 ने भाग जातो का? 7 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'div_8',
         name: '8 ने विभाज्यता',
@@ -309,6 +345,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. १०२४ या संख्येला ८ ने पूर्ण भाग जातो का?' }],
         promptTemplate: (i) => `${i.p} ला 8 ने भाग जातो का? 8 ची कसोटी स्पष्ट करा.`
       },
+,
       {
         key: 'fact_div_method',
         name: 'साधी भागाकार पद्धत',
@@ -316,6 +353,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ३६ चे सर्व घटक साध्या भागाकार पद्धतीने शोधा.' }],
         promptTemplate: (i) => `साध्या भागाकार पद्धतीने ${i.p} चे घटक शोधा.`
       },
+,
       {
         key: 'lcm_div_method',
         name: 'विभागणी पद्धत',
@@ -323,6 +361,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. २०, ३० आणि ४० चा विभागणी पद्धतीने LCM काढा.' }],
         promptTemplate: (i) => `विभागणी पद्धतीने ${i.p} चा LCM काढा.`
       },
+,
       {
         key: 'exp_div_pow',
         name: '(a/b)ⁿ = aⁿ/bⁿ',
@@ -344,6 +383,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ३/४ + १/२ ची बेरीज किती होईल?' }],
         promptTemplate: (i) => `साध्या अपूर्णांकांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'mixed_frac',
         name: 'मिश्र अपूर्णांक',
@@ -351,6 +391,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. २ पूर्णांक १/२ चे अंशाधिक अपूर्णांकात रूपांतर करा.' }],
         promptTemplate: (i) => `मिश्र अपूर्णांकांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'equiv_frac',
         name: 'समतुल्य अपूर्णांक',
@@ -358,6 +399,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. २/३ चे दोन समतुल्य अपूर्णांक लिहा.' }],
         promptTemplate: (i) => `समतुल्य अपूर्णांकांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'decimal_frac',
         name: 'दशांश अपूर्णांक',
@@ -365,6 +407,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ०.७५ + ०.२५ ची बेरीज किती?' }],
         promptTemplate: (i) => `दशांश अपूर्णांकांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'frac_to_dec',
         name: 'अपूर्णांक ते दशांश रूपांतरण',
@@ -372,6 +415,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'अपूर्णांक', type: 'text', placeholder: 'उदा. ३/४ चे दशांश अपूर्णांकात रूपांतर करा.' }],
         promptTemplate: (i) => `${i.p} चे दशांश अपूर्णांकात रूपांतर करा.`
       },
+,
       {
         key: 'lcm_frac',
         name: 'अपूर्णांकांचा LCM',
@@ -379,6 +423,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'अपूर्णांक', type: 'text', placeholder: 'उदा. १/२ आणि ३/४ या अपूर्णांकांचा LCM किती होईल?' }],
         promptTemplate: (i) => `अपूर्णांकांचा (${i.p}) LCM काढा.`
       },
+,
       {
         key: 'lcm_dec',
         name: 'दशांश संख्यांचा LCM',
@@ -386,6 +431,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'दशांश संख्या', type: 'text', placeholder: 'उदा. ०.६ आणि १.२ या दशांश संख्यांचा LCM काढा.' }],
         promptTemplate: (i) => `दशांश संख्यांचा (${i.p}) LCM काढा.`
       },
+,
       {
         key: 'hcf_frac',
         name: 'अपूर्णांकांचा HCF',
@@ -393,6 +439,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'अपूर्णांक', type: 'text', placeholder: 'उदा. २/३ आणि ४/९ या अपूर्णांकांचा HCF किती होईल?' }],
         promptTemplate: (i) => `अपूर्णांकांचा (${i.p}) HCF काढा.`
       },
+,
       {
         key: 'exp_frac_conv',
         name: 'भिन्न घातांकांचे रूपांतर',
@@ -400,6 +447,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ४^१.५ चे मूल्य किती होईल?' }],
         promptTemplate: (i) => `भिन्न घातांकांच्या रूपांतरावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'exp_frac_simp',
         name: 'घातांक असलेले अपूर्णांक',
@@ -407,6 +455,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. (२/३)^२ × (३/२)^-१ चे साधीकरण करा.' }],
         promptTemplate: (i) => `घातांक असलेल्या अपूर्णांकांच्या साधीकरणावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'exp_growth_decay',
         name: 'वाढ-घट समस्यांमध्ये घातांक',
@@ -414,6 +463,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका शहराची लोकसंख्या दरवर्षी १०% ने वाढते, तर ३ वर्षांनंतर ती किती होईल?' }],
         promptTemplate: (i) => `वाढ-घट समस्यांमधील घातांकाच्या उपयोगावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'mixed_frac_exp',
         name: 'भिन्न + घातांक',
@@ -421,6 +471,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. (1/2)^2 + (1/4)^1/2' }],
         promptTemplate: (i) => `भिन्न आणि घातांक एकत्रित असलेल्या उदाहरणांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'mixed_surd_frac',
         name: 'करणी + अपूर्णांक',
@@ -428,6 +479,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. √2 + 1/2' }],
         promptTemplate: (i) => `करणी आणि अपूर्णांक एकत्रित असलेल्या उदाहरणांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'fraction_ratio',
         name: 'भिन्नांचे प्रमाण',
@@ -435,6 +487,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'text', placeholder: 'उदा. १/२ : १/३ या अपूर्णांकांच्या प्रमाणाला साध्या रूपात रूपांतरित करा.' }],
         promptTemplate: (i) => `${i.p} या भिन्नांच्या प्रमाणाला साध्या प्रमाणात रूपांतरित करा.`
       },
+,
       {
         key: 'decimal_ratio',
         name: 'दशांश संख्यांचे प्रमाण',
@@ -442,6 +495,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'text', placeholder: 'उदा. १.५ : २.५ या दशांश संख्यांच्या प्रमाणाला साध्या रूपात रूपांतरित करा.' }],
         promptTemplate: (i) => `${i.p} या दशांश संख्यांच्या प्रमाणाला साध्या प्रमाणात रूपांतरित करा.`
       },
+,
       {
         key: 'inc_dec_ratio',
         name: 'संख्येत वाढ/घट झाल्यास बदल',
@@ -449,6 +503,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. २:३ या प्रमाणात ५ मिळवल्यास नवीन प्रमाण काय होईल?' }],
         promptTemplate: (i) => `एका संख्येत वाढ/घट झाल्यास प्रमाणातील बदल स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'perc_to_frac_dec',
         name: '% चे भिन्न आणि दशांशात रूपांतर',
@@ -456,6 +511,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'टक्केवारी', type: 'number', placeholder: '25' }],
         promptTemplate: (i) => `${i.p}% चे भिन्न (Fraction) आणि दशांश (Decimal) मध्ये रूपांतर करा.`
       },
+,
       {
         key: 'frac_dec_to_perc',
         name: 'भिन्न / दशांश ते टक्केवारी रूपांतर',
@@ -463,6 +519,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'अपूर्णांक/दशांश', type: 'text', placeholder: '3/4 किंवा 0.75' }],
         promptTemplate: (i) => `${i.p} चे टक्केवारीमध्ये रूपांतर करा.`
       },
+,
       {
         key: 'dec_on_orig',
         name: 'मूळ किमतीवर घट काढणे',
@@ -470,6 +527,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'orig', label: 'मूळ किंमत', type: 'number', placeholder: '200' }, { key: 'perc', label: 'घट (%)', type: 'number', placeholder: '15' }],
         promptTemplate: (i) => `${i.orig} वर ${i.perc}% घट काढण्याची पद्धत स्पष्ट करा.`
       },
+,
       {
         key: 'exp_inc_dec',
         name: 'खर्चात वाढ-घट',
@@ -477,6 +535,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका व्यक्तीच्या उत्पन्नाच्या ७०% खर्च होतो, जर त्याचे उत्पन्न २०% ने वाढले आणि खर्च १०% ने वाढला, तर बचतीत किती टक्के बदल होईल?' }],
         promptTemplate: (i) => `उत्पन्न आणि खर्च आधारित वाढ-घट प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'compound_inc_dec',
         name: 'Compound Increase / Decrease',
@@ -484,6 +543,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका यंत्राची किंमत दरवर्षी १०% ने कमी होते, जर त्याची आजची किंमत १,००,००० असेल, तर २ वर्षांनंतरची किंमत किती?' }],
         promptTemplate: (i) => `Compound Increase/Decrease आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'speed_increase_decrease',
         name: 'वेग वाढवल्यास/कमी केल्यास परिणाम',
@@ -505,6 +565,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वास्तविक संख्यांच्या क्रमाने येणाऱ्या गुणधर्मांचे उदाहरण द्या.' }],
         promptTemplate: (i) => `वास्तविक संख्यांच्या गुणधर्मांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'irrational_num',
         name: 'अपरिमेय संख्या (Irrational Numbers)',
@@ -512,6 +573,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अपरिमेय संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `अपरिमेय संख्यांवर (Irrational Numbers) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'rat_irrat_diff',
         name: 'उदाहरणे व फरक',
@@ -519,6 +581,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. परिमेय आणि अपरिमेय संख्यांमधील फरक' }],
         promptTemplate: (i) => `परिमेय आणि अपरिमेय संख्यांमधील फरक आणि उदाहरणांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'real_def',
         name: 'परिमेय + अपरिमेय संख्या',
@@ -526,6 +589,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वास्तविक संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `वास्तविक संख्यांच्या (परिमेय + अपरिमेय) व्याख्येवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'rat_simple',
         name: '1/√a',
@@ -533,6 +597,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १/√२ या संख्येच्या छेदाचे परिमेयकरण (Rationalization) करा.' }],
         promptTemplate: (i) => `1/√a स्वरूपातील करणीच्या Rationalization वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'rat_conj',
         name: '1/(a + √b)',
@@ -540,6 +605,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १/(२ + √३) या संख्येच्या छेदाचे परिमेयकरण करा.' }],
         promptTemplate: (i) => `1/(a + √b) स्वरूपातील करणीच्या Rationalization वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'rat_complex',
         name: 'संमिश्र करणीचे Rationalization',
@@ -547,6 +613,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. (√३ + √२) / (√३ - √२) चे साधीकरण करा.' }],
         promptTemplate: (i) => `संमिश्र करणीच्या Rationalization वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'perim_real_life',
         name: 'प्रत्यक्ष जीवनातील उदाहरणे (शेताची कुंपण, प्लॉटची सीमा)',
@@ -568,6 +635,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. सम आणि विषम संख्येची बेरीज काय येते?' }],
         promptTemplate: (i) => `सम व विषम संख्यांच्या बेरजेच्या नियमांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'even_odd_rules_mul',
         name: 'सम × विषम नियम',
@@ -575,6 +643,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका सम आणि एका विषम संख्येचा गुणाकार नेहमी सम असतो की विषम?' }],
         promptTemplate: (i) => `सम व विषम संख्यांच्या गुणाकाराच्या नियमांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'bodmas',
         name: 'BODMAS Rule',
@@ -582,6 +651,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. 10 + 5 * 2' }],
         promptTemplate: (i) => `BODMAS नियमाचा वापर करून खालील पदावली सोडवा: ${i.p}`
       },
+,
       {
         key: 'add_mul_rules',
         name: 'संख्यांची बेरीज व गुणाकाराचे नियम',
@@ -589,6 +659,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ५ + (३ + २) = (५ + ३) + २ हा कोणता नियम आहे?' }],
         promptTemplate: (i) => `संख्यांच्या बेरीज व गुणाकाराच्या नियमांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'zero_rules',
         name: 'शून्याचे नियम',
@@ -596,6 +667,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. कोणत्याही संख्येला शून्याने गुणल्यास उत्तर काय येते?' }],
         promptTemplate: (i) => `शून्याच्या नियमांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'neg_num_rules',
         name: 'नकारात्मक संख्यांचे नियम',
@@ -603,6 +675,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. (-४) × (-३) चे उत्तर काय येईल?' }],
         promptTemplate: (i) => `नकारात्मक (ऋण) संख्यांच्या नियमांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ex_div_rules_prob',
         name: 'विभाज्यता नियमावर आधारित प्रश्न',
@@ -610,6 +683,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. जर 45X ला 9 ने भाग जात असेल तर X = ?' }],
         promptTemplate: (i) => `विभाज्यता नियमावर आधारित स्पर्धा परीक्षेचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'fact_mul_div',
         name: 'गुणाकार व भागाकार संबंध',
@@ -617,6 +691,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १२ चे सर्व विभाजक (Factors) लिहा.' }],
         promptTemplate: (i) => `घटक काढताना गुणाकार व भागाकार यांच्यातील संबंध स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'lcm_mul_method',
         name: 'साधी गुणाकार पद्धत',
@@ -624,6 +699,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. ३ आणि ४ चा साध्या गुणाकार पद्धतीने LCM काढा.' }],
         promptTemplate: (i) => `साध्या गुणाकार पद्धतीने ${i.p} चा LCM काढा.`
       },
+,
       {
         key: 'surd_add_sub',
         name: 'करणींची बेरीज-वजाबाकी',
@@ -631,6 +707,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. 3√2 + 5√2' }],
         promptTemplate: (i) => `करणींच्या बेरीज-वजाबाकीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'surd_mul_div',
         name: 'करणींचे गुणाकार-भागाकार',
@@ -638,6 +715,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. √2 * √8' }],
         promptTemplate: (i) => `करणींच्या गुणाकार-भागाकारावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'simul_subtraction',
         name: 'वजाबाकी पद्धत',
@@ -645,6 +723,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वजाबाकी पद्धत...' }],
         promptTemplate: (i) => `दोन समीकरणांचा संच (Simultaneous Equations) वजाबाकी पद्धतीने सोडवा: ${i.p}`
       },
+,
       {
         key: 'simul_substitution',
         name: 'प्रतिस्थापन (Substitution) पद्धत',
@@ -652,6 +731,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. प्रतिस्थापन पद्धत...' }],
         promptTemplate: (i) => `दोन समीकरणांचा संच (Simultaneous Equations) प्रतिस्थापन (Substitution) पद्धतीने सोडवा: ${i.p}`
       },
+,
       {
         key: 'add_rule',
         name: 'Addition Rule of Probability',
@@ -659,6 +739,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. बेरजेचा नियम...' }],
         promptTemplate: (i) => `Addition Rule of Probability वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'mul_rule',
         name: 'Multiplication Rule of Probability',
@@ -680,6 +761,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. ७ चे पहिले पाच गुणक (Multiples) शोधा.' }],
         promptTemplate: (i) => `${i.p} चे पहिले पाच गुणक (Multiples) शोधा.`
       },
+,
       {
         key: 'rational_num',
         name: 'परिमेय संख्या (Rational Numbers)',
@@ -687,6 +769,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. परिमेय संख्या म्हणजे काय?' }],
         promptTemplate: (i) => `परिमेय संख्यांवर (Rational Numbers) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'fact_common',
         name: 'समान घटक (Common Factors)',
@@ -694,6 +777,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. १२ आणि १८ मधील समान घटक (Common Factors) कोणते आहेत?' }],
         promptTemplate: (i) => `${i.p} मधील समान घटक (Common Factors) शोधा.`
       },
+,
       {
         key: 'fact_count',
         name: 'सर्व घटकांची संख्या काढणे',
@@ -701,6 +785,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'number', placeholder: 'उदा. १०० च्या एकूण घटकांची संख्या किती आहे?' }],
         promptTemplate: (i) => `${i.p} च्या एकूण घटकांची संख्या (Total Number of Factors) काढा.`
       },
+,
       {
         key: 'hcf_gcd_concept',
         name: 'GCD संकल्पना',
@@ -708,6 +793,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १८ आणि २४ चा मोठ्यात मोठा सामाईक विभाजक (GCD) कोणता?' }],
         promptTemplate: (i) => `Greatest Common Divisor (GCD) संकल्पना स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'hcf_common_method',
         name: 'सामान्य घटक पद्धत',
@@ -715,6 +801,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'संख्या', type: 'text', placeholder: 'उदा. १२, १८ आणि २४ चा सामान्य घटक पद्धतीने HCF काढा.' }],
         promptTemplate: (i) => `सामान्य घटक पद्धतीने ${i.p} चा HCF काढा.`
       },
+,
       {
         key: 'lcm_hcf_formula',
         name: 'सूत्र: LCM × HCF = दोन संख्यांचा गुणाकार',
@@ -722,6 +809,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन संख्यांचा गुणाकार २०० आहे आणि त्यांचा मसावि (HCF) ५ आहे, तर त्यांचा लसावि (LCM) किती असेल?' }],
         promptTemplate: (i) => `LCM × HCF = दोन संख्यांचा गुणाकार या सूत्रावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'divide_amount',
         name: 'एकूण रक्कम दिली असल्यास भाग काढणे',
@@ -729,6 +817,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १००० रुपये अ आणि ब मध्ये २:३ या प्रमाणात वाटल्यास प्रत्येकाला किती रुपये मिळतील?' }],
         promptTemplate: (i) => `एकूण रक्कम दिली असल्यास प्रत्येक भाग काढा: ${i.p}`
       },
+,
       {
         key: 'exp_zero',
         name: 'a⁰ = 1',
@@ -736,6 +825,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १००^० चे मूल्य किती होईल?' }],
         promptTemplate: (i) => `शून्य घातांक नियमावर (a⁰ = 1) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'exp_complex',
         name: 'संमिश्र उदाहरणे',
@@ -743,6 +833,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. (२^३ × ४^२) ÷ ८^२ चे साधीकरण करा.' }],
         promptTemplate: (i) => `घातांकाच्या संमिश्र उदाहरणांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'exp_large_num',
         name: 'मोठ्या संख्यांचे स्वरूप (10ⁿ)',
@@ -750,6 +841,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. 1000000 ला घातांक रूपात लिहा' }],
         promptTemplate: (i) => `मोठ्या संख्यांच्या घातांक स्वरूपावर (10ⁿ) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'sq_long_div',
         name: 'लांब पद्धतीने वर्गमूळ काढणे',
@@ -757,6 +849,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. 625 चे वर्गमूळ लांब पद्धतीने काढा' }],
         promptTemplate: (i) => `लांब पद्धतीने वर्गमूळ काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'surd_conv',
         name: '√50 = 5√2 सारखे रूपांतर',
@@ -764,6 +857,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. √72' }],
         promptTemplate: (i) => `करणीच्या रूपांतरावर (उदा. √50 = 5√2) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'surd_real',
         name: 'वास्तविक जीवनातील उदाहरणे',
@@ -771,6 +865,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १० मीटर लांब शिडी भिंतीला टेकवली आहे, जर तिचे खालचे टोक भिंतीपासून ६ मीटर लांब असेल, तर ती भिंतीवर किती उंचीवर पोहचेल?' }],
         promptTemplate: (i) => `करणीच्या वास्तविक जीवनातील उदाहरणांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'mixed_high_level',
         name: 'उच्च पातळीवरील स्पर्धा परीक्षेचे प्रश्न',
@@ -778,6 +873,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. (२^३ × ४^२) ÷ ८^२ चे साधीकरण करा.' }],
         promptTemplate: (i) => `घातांक आणि करणीवरील उच्च पातळीवरील स्पर्धा परीक्षेचे प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'what_is_ratio',
         name: 'प्रमाण म्हणजे काय?',
@@ -785,6 +881,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ३ : ५ या प्रमाणाचा अर्थ काय?' }],
         promptTemplate: (i) => `प्रमाण (Ratio) म्हणजे काय हे a : b या स्वरूपाची समज देऊन स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'simple_ratio',
         name: 'साधे प्रमाण (Simple Ratio)',
@@ -792,6 +889,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. २० आणि ३० चे साधे प्रमाण (Simple Ratio) किती होईल?' }],
         promptTemplate: (i) => `साधे प्रमाण (Simple Ratio) स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'compound_ratio',
         name: 'संयुक्त प्रमाण (Compound Ratio)',
@@ -799,6 +897,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. २:३ आणि ४:५ चे संयुक्त प्रमाण (Compound Ratio) काढा.' }],
         promptTemplate: (i) => `संयुक्त प्रमाण (Compound Ratio) स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'inverse_ratio',
         name: 'व्यस्त प्रमाण (Inverse Ratio)',
@@ -806,6 +905,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ३:४ चे व्यस्त प्रमाण (Inverse Ratio) काय असेल?' }],
         promptTemplate: (i) => `व्यस्त प्रमाण (Inverse Ratio) स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'divide_same_factor',
         name: 'समान गुणकाने भाग देणे',
@@ -813,6 +913,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'text', placeholder: 'उदा. १५:२५ या प्रमाणाला साध्या रूपात रूपांतरित करा.' }],
         promptTemplate: (i) => `${i.p} या प्रमाणाला समान गुणकाने भाग देऊन साधे करा.`
       },
+,
       {
         key: 'find_number_ratio',
         name: 'दिलेल्या प्रमाणात संख्या शोधणे',
@@ -820,6 +921,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन संख्यांचे प्रमाण ३:४ आहे आणि त्यांची बेरीज ७० आहे, तर त्या संख्या कोणत्या?' }],
         promptTemplate: (i) => `दिलेल्या प्रमाणात संख्या शोधा: ${i.p}`
       },
+,
       {
         key: 'discount_calc',
         name: 'सूट काढणे (Discount Calculation)',
@@ -827,6 +929,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १००० रुपयांच्या वस्तूवर १०% सूट दिल्यास ती कितीला पडेल?' }],
         promptTemplate: (i) => `सूट (Discount) काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'succ_discount',
         name: 'सलग सूट (Successive Discount)',
@@ -834,6 +937,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १०% आणि २०% अशी सलग दोनदा सूट दिल्यास एकूण सूट किती?' }],
         promptTemplate: (i) => `सलग सूट (Successive Discount) काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ratio_perc',
         name: 'प्रमाण व टक्केवारी',
@@ -841,6 +945,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका वर्गात मुले आणि मुलींचे प्रमाण ३:२ आहे, तर मुलींची टक्केवारी किती?' }],
         promptTemplate: (i) => `प्रमाण व टक्केवारी (Ratio & Percentage) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ratio_pl',
         name: 'प्रमाण व नफा-तोटा',
@@ -848,6 +953,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. खरेदी किंमत आणि विक्री किंमत यांचे प्रमाण ४:५ आहे, तर नफा टक्केवारी किती?' }],
         promptTemplate: (i) => `प्रमाण व नफा-तोटा (Ratio & Profit-Loss) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ratio_avg',
         name: 'प्रमाण व सरासरी',
@@ -855,6 +961,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. तीन संख्यांचे प्रमाण २:३:५ आहे आणि त्यांची सरासरी ३० आहे, तर सर्वात मोठी संख्या कोणती?' }],
         promptTemplate: (i) => `प्रमाण व सरासरी (Ratio & Average) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ratio_speed',
         name: 'प्रमाण व वेग-वेळ-अंतर',
@@ -862,6 +969,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन गाड्यांच्या वेगाचे प्रमाण ४:५ आहे, तर एकाच अंतरासाठी त्यांना लागणाऱ्या वेळेचे प्रमाण काय असेल?' }],
         promptTemplate: (i) => `प्रमाण व वेग-वेळ-अंतर (Ratio & Speed-Time-Distance) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ratio_interest',
         name: 'प्रमाण व साधे/मिश्र व्याज',
@@ -869,6 +977,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन रकमांचे प्रमाण ३:४ आहे आणि त्यांच्या व्याजाचे प्रमाण ५:६ आहे, तर त्यांच्या मुदतीचे प्रमाण काय असेल?' }],
         promptTemplate: (i) => `प्रमाण व साधे/मिश्र व्याज (Ratio & Interest) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ratio_partnership',
         name: 'प्रमाण व भागीदारी (Partnership)',
@@ -876,6 +985,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अ आणि ब यांनी २:३ या प्रमाणात गुंतवणूक केली, तर वर्षाअखेर झालेल्या ५००० नफ्यात अ चा वाटा किती?' }],
         promptTemplate: (i) => `प्रमाण व भागीदारी (Ratio & Partnership) वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ci_rate',
         name: '4. Rate शोधणे',
@@ -883,6 +993,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. कोणत्या दराने ३००० रुपयांचे २ वर्षांचे चक्रवाढ व्याज ६३० रुपये होईल?' }],
         promptTemplate: (i) => `चक्रवाढ व्याजामध्ये व्याजदर (Rate) शोधण्यावर आधारित प्रश्न सोडवा आणि चरण-दर-चरण स्पष्टीकरण द्या: ${i.p}`
       },
+,
       {
         key: 'ci_variable_rate',
         name: '9. वाढणारा किंवा बदलणारा व्याजदर',
@@ -890,6 +1001,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पहिल्या वर्षी ५% व दुसऱ्या वर्षी १०% दराने ५००० रुपयांचे २ वर्षांचे चक्रवाढ व्याज किती?' }],
         promptTemplate: (i) => `वाढणारा किंवा बदलणारा व्याजदर असलेल्या चक्रवाढ व्याजावर आधारित प्रश्न सोडवा आणि चरण-दर-चरण स्पष्टीकरण द्या: ${i.p}`
       },
+,
       {
         key: 'compare_marks',
         name: 'दोन विद्यार्थ्यांच्या टक्केवारीची तुलना',
@@ -897,6 +1009,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'तुलना प्रश्न', type: 'textarea', placeholder: 'उदा. अ ला ब पेक्षा १०% जास्त गुण मिळाले, तर ब ला अ पेक्षा किती टक्के कमी गुण मिळाले?' }],
         promptTemplate: (i) => `दोन विद्यार्थ्यांच्या गुणांची तुलना करा: ${i.p}`
       },
+,
       {
         key: 'depreciation_rate',
         name: 'घट दर (Depreciation type)',
@@ -904,6 +1017,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'val', label: 'किंमत/लोकसंख्या', type: 'number', placeholder: 'उदा. १०००००' }, { key: 'rate', label: 'घट दर (%)', type: 'number', placeholder: '10' }],
         promptTemplate: (i) => `${i.val} वर वार्षिक ${i.rate}% दराने घट (Depreciation) होत असल्यास मूल्य काढा.`
       },
+,
       {
         key: 'inflation_rate',
         name: 'महागाई दर',
@@ -911,6 +1025,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. साखरेची किंमत २०% ने वाढली, तर खर्च वाढू नये म्हणून वापरात किती टक्के घट करावी लागेल?' }],
         promptTemplate: (i) => `महागाई दर आणि टक्केवारी आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ratio_to_perc',
         name: 'Ratio ते Percentage',
@@ -918,6 +1033,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'r', label: 'प्रमाण (Ratio)', type: 'text', placeholder: 'उदा. ३:५' }],
         promptTemplate: (i) => `${i.r} या प्रमाणाचे टक्केवारीमध्ये रूपांतर करा.`
       },
+,
       {
         key: 'perc_to_ratio',
         name: 'Percentage ते Ratio',
@@ -925,6 +1041,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'टक्केवारी', type: 'number', placeholder: 'उदा. ६०' }],
         promptTemplate: (i) => `${i.p}% चे प्रमाण (Ratio) मध्ये रूपांतर करा.`
       },
+,
       {
         key: 'data_interp',
         name: 'Data Interpretation (Pie Chart / Bar Graph आधारित टक्केवारी)',
@@ -932,6 +1049,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका पाय चार्टमध्ये शिक्षणावर ९० अंश कोन दर्शवला आहे, तर शिक्षणावरील खर्च एकूण खर्चाच्या किती टक्के आहे?' }],
         promptTemplate: (i) => `Data Interpretation आधारित टक्केवारीचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'pop_growth_formula',
         name: 'Population Growth Formula आधारित प्रश्न',
@@ -939,6 +1057,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका शहराची लोकसंख्या २०,००० आहे आणि ती दरवर्षी ५% दराने वाढते, तर २ वर्षांनंतरची लोकसंख्या किती असेल?' }],
         promptTemplate: (i) => `Population Growth Formula वापरून प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'profit_dis_comb',
         name: 'Profit + Discount Combined Problems',
@@ -946,6 +1065,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका वस्तूवर १०% सूट देऊनही २०% नफा होतो, तर छापील किंमत खरेदी किमतीच्या किती टक्के जास्त आहे?' }],
         promptTemplate: (i) => `नफा आणि सूट एकत्रित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'perc_mult_trick',
         name: 'Percentage Multiplication Trick',
@@ -953,6 +1073,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ५०० चे ८% काढण्याऐवजी ८ चे ५००% काढणे सोपे आहे का?' }],
         promptTemplate: (i) => `Percentage Multiplication Trick स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'std_formula',
         name: 'वेग = अंतर / वेळ (Speed = Distance / Time)',
@@ -960,6 +1081,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वेग = अंतर / वेळ...' }],
         promptTemplate: (i) => `वेग = अंतर / वेळ (Speed = Distance / Time) या सूत्रावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'unit_conv',
         name: 'एकक रूपांतर (km/hr to m/s and vice versa)',
@@ -967,6 +1089,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ७२ किमी/तास म्हणजे किती मी/से?' }],
         promptTemplate: (i) => `वेग, वेळ आणि अंतरातील एकक रूपांतर (Unit Conversion) यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'avg_speed_formula',
         name: 'सरासरी वेग सूत्र (2xy / x+y)',
@@ -974,6 +1097,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. सरासरी वेग...' }],
         promptTemplate: (i) => `सरासरी वेग (Average Speed) काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'profit_after_discount',
         name: 'MP वर सवलत देऊनही ठराविक नफा',
@@ -981,6 +1105,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका वस्तूवर २०% सूट देऊनही १२% नफा होतो, तर छापील किंमत खरेदी किमतीच्या किती पट आहे?' }],
         promptTemplate: (i) => `MP वर सवलत देऊनही ठराविक नफा मिळवण्याचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'diff_discount_diff_customer',
         name: 'एकाच वस्तूवर वेगवेगळ्या ग्राहकांना वेगवेगळ्या सवलती',
@@ -988,6 +1113,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका ग्राहकाला १०% व दुसऱ्याला १५% सूट दिली, त्यांच्या विक्री किमतीतील फरक ५० रुपये असल्यास छापील किंमत किती?' }],
         promptTemplate: (i) => `एकाच वस्तूवर वेगवेगळ्या ग्राहकांना वेगवेगळ्या सवलती देण्याचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'si_rate',
         name: '2. व्याजदर शोधणे (Rate – R)',
@@ -995,6 +1121,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ५००० रुपयांचे २ वर्षांचे सरळव्याज ५०० रुपये असल्यास व्याजाचा दर किती?' }],
         promptTemplate: (i) => `साध्या व्याजामध्ये व्याजदर (Rate) शोधण्यावर आधारित प्रश्न सोडवा आणि चरण-दर-चरण स्पष्टीकरण द्या: ${i.p}`
       },
+,
       {
         key: 'si_compare_time',
         name: '7. वेगवेगळ्या कालावधीसाठी SI तुलना',
@@ -1002,6 +1129,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका रकमेचे ५ वर्षांचे सरळव्याज मुदलाच्या १/४ पट असल्यास व्याजाचा दर किती?' }],
         promptTemplate: (i) => `वेगवेगळ्या कालावधीसाठी साध्या व्याजाची (SI) तुलना करण्यावर आधारित प्रश्न सोडवा आणि चरण-दर-चरण स्पष्टीकरण द्या: ${i.p}`
       },
+,
       {
         key: 'increasing_rate',
         name: '2. वाढत्या व्याजदरावर प्रश्न',
@@ -1009,6 +1137,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पहिल्या ३ वर्षांसाठी दर ५%, पुढील ४ वर्षांसाठी ८% आणि ७ वर्षांनंतर १०% असल्यास १२ वर्षांचे व्याज किती?' }],
         promptTemplate: (i) => `वाढत्या व्याजदरावर आधारित प्रश्न सोडवा आणि चरण-दर-चरण स्पष्टीकरण द्या: ${i.p}`
       },
+,
       {
         key: 'amount_change_rate_change',
         name: '4. व्याजदर बदलल्यावर Amount बदल',
@@ -1016,6 +1145,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका रकमेचे ठराविक दराने ३ वर्षांचे सरळव्याज ८०० रुपये आहे. जर दर ४% ने वाढवला तर व्याज किती वाढेल?' }],
         promptTemplate: (i) => `व्याजदर बदलल्यावर एकूण रकमेत (Amount) होणाऱ्या बदलावर आधारित प्रश्न सोडवा आणि चरण-दर-चरण स्पष्टीकरण द्या: ${i.p}`
       },
+,
       {
         key: 'reverse_interest',
         name: '6. Reverse Interest Problems',
@@ -1023,6 +1153,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका रकमेचे ३ वर्षांचे सरळव्याज मुदलाच्या ९/२५ पट आहे, तर व्याजाचा दर किती?' }],
         promptTemplate: (i) => `Reverse Interest Problems वर आधारित प्रश्न सोडवा आणि चरण-दर-चरण स्पष्टीकरण द्या: ${i.p}`
       },
+,
       {
         key: 'avg_formula',
         name: 'सूत्र: एकूण बेरीज ÷ एकूण संख्या',
@@ -1030,6 +1161,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १०, १५, २०, २५ आणि ३० या संख्यांची सरासरी काढा.' }],
         promptTemplate: (i) => `एकूण बेरीज ÷ एकूण संख्या या सूत्रावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'some_numbers',
         name: 'काही संख्यांची सरासरी',
@@ -1037,6 +1169,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पहिल्या पाच मूळ संख्यांची सरासरी काढा.' }],
         promptTemplate: (i) => `काही संख्यांच्या सरासरीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'consecutive_numbers',
         name: 'सलग (Consecutive) संख्यांची सरासरी',
@@ -1044,6 +1177,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १ ते ५० पर्यंतच्या सर्व नैसर्गिक संख्यांची सरासरी किती?' }],
         promptTemplate: (i) => `सलग (Consecutive) संख्यांच्या सरासरीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'first_n_natural',
         name: 'पहिल्या n नैसर्गिक संख्यांची सरासरी',
@@ -1051,6 +1185,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पहिल्या १०० नैसर्गिक संख्यांची सरासरी किती?' }],
         promptTemplate: (i) => `पहिल्या n नैसर्गिक संख्यांच्या सरासरीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'consecutive_5_7_9',
         name: 'सलग 5, 7, 9 संख्या',
@@ -1058,6 +1193,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ५ सलग विषम संख्यांची सरासरी ३५ आहे, तर सर्वात मोठी संख्या कोणती?' }],
         promptTemplate: (i) => `सलग 5, 7, 9 संख्यांच्या सरासरीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'monthly_income',
         name: 'महिन्याचे सरासरी उत्पन्न',
@@ -1065,6 +1201,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका व्यक्तीचे पहिल्या ३ महिन्यांचे सरासरी उत्पन्न ५००० रुपये आहे.' }],
         promptTemplate: (i) => `महिन्याच्या सरासरी उत्पन्नावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'income_variation',
         name: 'काही दिवस जास्त/कमी उत्पन्न असल्यास',
@@ -1072,6 +1209,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. एका मजुराचे २० दिवसांचे सरासरी उत्पन्न ४०० रुपये आहे, शेवटच्या ५ दिवसात ते ५०० झाले.' }],
         promptTemplate: (i) => `काही दिवस जास्त/कमी उत्पन्न असल्यास सरासरीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'missing_number',
         name: 'Missing Number Type',
@@ -1079,6 +1217,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. ९ संख्यांची सरासरी ५० आहे, पहिल्या ५ ची ४५ आणि शेवटच्या ५ ची ५५ आहे, तर ५ वी संख्या कोणती?' }],
         promptTemplate: (i) => `Missing Number Type सरासरीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'combined_avg',
         name: 'Combined Average',
@@ -1086,6 +1225,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन वर्गांची सरासरी अनुक्रमे ६० आणि ७० असून विद्यार्थी संख्या ३० आणि २० आहे.' }],
         promptTemplate: (i) => `Combined Average यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'work_rate_time',
         name: 'काम = दर × वेळ (Work = Rate × Time)',
@@ -1093,6 +1233,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. काम = दर × वेळ...' }],
         promptTemplate: (i) => `काम = दर × वेळ (Work = Rate × Time) या सूत्रावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'efficiency_concept',
         name: 'कार्यक्षमता (Efficiency) संकल्पना',
@@ -1100,6 +1241,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. कार्यक्षमता...' }],
         promptTemplate: (i) => `कार्यक्षमता (Efficiency) संकल्पनेवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'event_types',
         name: 'घटनेचे प्रकार (Types of Events)',
@@ -1107,6 +1249,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अशक्य घटना, निश्चित घटना...' }],
         promptTemplate: (i) => `घटनेच्या विविध प्रकारांवर (Types of Events) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'coin_probs',
         name: 'नाणी फेकणे (Coin Toss)',
@@ -1114,6 +1257,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'n', label: 'नाण्यांची संख्या', type: 'number' }],
         promptTemplate: (i) => `${i.n} नाणी फेकली असता मिळणाऱ्या विविध संभाव्यता काढा.`
       },
+,
       {
         key: 'factorial_concept',
         name: 'फॅक्टोरियल संकल्पना (Factorial - n!)',
@@ -1121,6 +1265,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'n', label: 'संख्या (n)', type: 'number', placeholder: 'उदा. 5' }],
         promptTemplate: (i) => `फॅक्टोरियल (n!) संकल्पना स्पष्ट करा आणि ${i.n}! ची किंमत काढा.`
       },
+,
       {
         key: 'comb_sel_no_ord',
         name: 'विनाक्रम निवड (Selection without order)',
@@ -1128,6 +1273,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea' }],
         promptTemplate: (i) => `संयोग (Combination) मधील विनाक्रम निवड संकल्पना स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'perm_vs_comb',
         name: 'क्रमच आणि संयोग यातील फरक',
@@ -1135,6 +1281,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. क्रमच आणि संयोग यातील फरक...' }],
         promptTemplate: (i) => `क्रमच (Permutation) आणि संयोग (Combination) मधील फरक स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'comm_sel',
         name: 'समिती निवड (Committee Selection)',
@@ -1142,6 +1289,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea' }],
         promptTemplate: (i) => `समिती निवडीवर (Committee Selection) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'tri_compare',
         name: 'दोन त्रिकोणांची तुलना',
@@ -1149,6 +1297,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन त्रिकोणांची तुलना...' }],
         promptTemplate: (i) => `दोन त्रिकोणांच्या क्षेत्रफळाच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'trap_compare',
         name: 'क्षेत्रफळ तुलना',
@@ -1156,6 +1305,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. क्षेत्रफळ तुलना...' }],
         promptTemplate: (i) => `समलंब चतुर्भुजाच्या क्षेत्रफळाच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_semi_rect',
         name: 'अर्धवर्तुळ + आयत',
@@ -1163,6 +1313,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अर्धवर्तुळ + आयत...' }],
         promptTemplate: (i) => `अर्धवर्तुळ आणि आयत यांच्या मिश्र आकृतीच्या क्षेत्रफळावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_circ_sq',
         name: 'वर्तुळ + चौकोन',
@@ -1170,6 +1321,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वर्तुळ + चौकोन...' }],
         promptTemplate: (i) => `वर्तुळ आणि चौकोन यांच्या मिश्र आकृतीच्या क्षेत्रफळावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_shaded',
         name: 'भाग वजा करणे (शेडेड भाग)',
@@ -1177,6 +1329,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. भाग वजा करणे...' }],
         promptTemplate: (i) => `मिश्र आकृतीतील शेडेड (Shaded) भागाचे क्षेत्रफळ काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_garden',
         name: 'बाग/मैदान प्रकारचे प्रश्न',
@@ -1184,6 +1337,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. बाग/मैदान...' }],
         promptTemplate: (i) => `बाग किंवा मैदान प्रकारच्या मिश्र आकृतीच्या क्षेत्रफळावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'cone_rh',
         name: 'त्रिज्या व उंची',
@@ -1191,6 +1345,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. त्रिज्या व उंची...' }],
         promptTemplate: (i) => `शंकूची त्रिज्या व उंची दिलेली असताना घनफळावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'cone_slant',
         name: 'तिरपी उंची (Slant height)',
@@ -1198,6 +1353,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. तिरपी उंची...' }],
         promptTemplate: (i) => `शंकूच्या तिरपी उंचीवर (Slant height) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'cone_csa',
         name: 'वक्र पृष्ठफळ',
@@ -1205,6 +1361,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वक्र पृष्ठफळ...' }],
         promptTemplate: (i) => `शंकूच्या वक्र पृष्ठफळावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'cone_in_cyl',
         name: 'सिलिंडरमध्ये शंकू बसवणे',
@@ -1212,6 +1369,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. सिलिंडरमध्ये शंकू...' }],
         promptTemplate: (i) => `सिलिंडरमध्ये शंकू बसवण्यावर आधारित घनफळाचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'hemi_compare',
         name: 'गोळ्याशी तुलना',
@@ -1219,6 +1377,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. गोळ्याशी तुलना...' }],
         promptTemplate: (i) => `अर्धगोळा आणि गोळा यांच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'sp_vol_compare',
         name: 'घनफळ तुलना प्रश्न',
@@ -1226,6 +1385,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. घनफळ तुलना...' }],
         promptTemplate: (i) => `घनफळाच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_area_perc',
         name: 'क्षेत्रफळावर आधारित टक्केवारी प्रश्न',
@@ -1233,6 +1393,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. क्षेत्रफळावर आधारित टक्केवारी...' }],
         promptTemplate: (i) => `क्षेत्रफळावर आधारित टक्केवारीच्या प्रश्नाचे निराकरण करा: ${i.p}`
       },
+,
       {
         key: 'comp_perim_area',
         name: 'परिमिती व क्षेत्रफळ तुलना',
@@ -1240,6 +1401,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. परिमिती व क्षेत्रफळ तुलना...' }],
         promptTemplate: (i) => `परिमिती व क्षेत्रफळ यांच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_tank_time',
         name: 'पाण्याची टाकी भरायला लागणारा वेळ',
@@ -1247,6 +1409,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. टाकी भरायला लागणारा वेळ...' }],
         promptTemplate: (i) => `पाण्याची टाकी भरायला लागणाऱ्या वेळेवर आधारित घनफळाचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_melt_remake',
         name: 'वितळवून नवीन आकृती तयार करणे',
@@ -1254,6 +1417,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वितळवून नवीन आकृती...' }],
         promptTemplate: (i) => `वितळवून नवीन आकृती तयार करण्यावर आधारित स्पर्धा परीक्षेचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_shaded_area',
         name: 'शेडेड भाग शोधणे',
@@ -1261,6 +1425,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. शेडेड भाग शोधणे...' }],
         promptTemplate: (i) => `आकृतीतील शेडेड (Shaded) भाग शोधण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_joined',
         name: 'दोन किंवा अधिक आकृत्या जोडून तयार झालेली आकृती',
@@ -1268,6 +1433,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन किंवा अधिक आकृत्या...' }],
         promptTemplate: (i) => `दोन किंवा अधिक आकृत्या जोडून तयार झालेल्या आकृतीच्या परिमितीवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_boundary',
         name: 'बाहेरील सीमारेषा ओळखून परिमिती काढणे',
@@ -1275,6 +1441,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. बाहेरील सीमारेषा...' }],
         promptTemplate: (i) => `बाहेरील सीमारेषा ओळखून परिमिती काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'wp_compound',
         name: 'घराच्या compound wall ची लांबी',
@@ -1282,6 +1449,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. घराच्या compound wall...' }],
         promptTemplate: (i) => `घराच्या compound wall च्या लांबीवर आधारित परिमितीचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'wp_ratio',
         name: 'प्रमाण व अनुपात',
@@ -1289,6 +1457,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. प्रमाण व अनुपात...' }],
         promptTemplate: (i) => `प्रमाण व अनुपात यावर आधारित बीजगणिताच्या शब्दमंजुषा प्रश्नाचे निराकरण करा: ${i.p}`
       },
+,
       {
         key: 'ap_consecutive',
         name: 'सलग पदे (Consecutive Terms)',
@@ -1296,6 +1465,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. तीन सलग पदांची बेरीज २१ आहे...' }],
         promptTemplate: (i) => `अंकगणित श्रेढीतील सलग पदांवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'ap_multiples',
         name: 'विशिष्ट संख्येच्या पटीतील संख्या',
@@ -1303,6 +1473,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १० ते २५० मधील ४ च्या पटीतील संख्या किती?' }],
         promptTemplate: (i) => `विशिष्ट संख्येच्या पटीतील संख्यांवर आधारित अंकगणित श्रेढीचे प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'event_concept',
         name: 'Event (घटना)',
@@ -1310,6 +1481,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. घटना म्हणजे काय?' }],
         promptTemplate: (i) => `घटना (Event) संकल्पना स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'outcome_concept',
         name: 'Outcome (परिणाम)',
@@ -1317,6 +1489,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. परिणाम म्हणजे काय?' }],
         promptTemplate: (i) => `परिणाम (Outcome) संकल्पना स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'fav_outcome',
         name: 'Favorable Outcome (अनुकूल परिणाम)',
@@ -1324,6 +1497,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अनुकूल परिणाम म्हणजे काय?' }],
         promptTemplate: (i) => `अनुकूल परिणाम (Favorable Outcome) संकल्पना स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'compound_prob',
         name: 'Compound Probability',
@@ -1331,6 +1505,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. संयुक्त संभाव्यता...' }],
         promptTemplate: (i) => `Compound Probability वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'cond_prob_type',
         name: 'Conditional Probability',
@@ -1338,6 +1513,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अट असलेली संभाव्यता...' }],
         promptTemplate: (i) => `Conditional Probability स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'indep_events',
         name: 'Independent Events',
@@ -1345,6 +1521,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. स्वतंत्र घटना...' }],
         promptTemplate: (i) => `Independent Events वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'dep_events',
         name: 'Dependent Events',
@@ -1352,6 +1529,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. परावलंबी घटना...' }],
         promptTemplate: (i) => `Dependent Events वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comp_prob',
         name: 'Complementary Probability',
@@ -1359,6 +1537,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पूरक संभाव्यता...' }],
         promptTemplate: (i) => `Complementary Probability स्पष्ट करा: ${i.p}`
       },
+,
       {
         key: 'cond_prob_formula',
         name: 'Conditional Probability Formula',
@@ -1366,6 +1545,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. P(A|B) काढा...' }],
         promptTemplate: (i) => `Conditional Probability Formula वापरून प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'dep_events_prob',
         name: 'Dependent Events Probability',
@@ -1373,6 +1553,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. परावलंबी घटनांची संभाव्यता...' }],
         promptTemplate: (i) => `Dependent Events Probability वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'coin_toss',
         name: 'Coin Toss Probability',
@@ -1380,6 +1561,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. तीन नाणी फेकली असता...' }],
         promptTemplate: (i) => `नाणी फेकण्याच्या (Coin Toss) प्रयोगावर आधारित संभाव्यतेचा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'digit_arr',
         name: 'Digit Arrangement Problems',
@@ -1387,6 +1569,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अंकांची मांडणी...' }],
         promptTemplate: (i) => `अंकांच्या मांडणीवर (Digit Arrangement) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'num_form',
         name: 'Number Formation Problems',
@@ -1394,6 +1577,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. संख्या तयार करणे...' }],
         promptTemplate: (i) => `संख्या तयार करण्यावर (Number Formation) आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comb_without_rep',
         name: 'Combination without repetition',
@@ -1401,6 +1585,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पुनरावृत्तीशिवाय संयोग...' }],
         promptTemplate: (i) => `Combination without repetition वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comb_with_rep',
         name: 'Combination with repetition',
@@ -1408,6 +1593,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. पुनरावृत्तीसह संयोग...' }],
         promptTemplate: (i) => `Combination with repetition वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'comb_sel_prob',
         name: 'Selection problems',
@@ -1415,6 +1601,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. निवडीचे प्रश्न...' }],
         promptTemplate: (i) => `निवडीच्या (Selection) समस्यांवर आधारित Combination चा प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'prob_with_comb',
         name: 'Probability with Combination',
@@ -1422,6 +1609,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. संयोग वापरून संभाव्यता...' }],
         promptTemplate: (i) => `Probability with Combination वर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'spec_coin',
         name: 'Coin Toss Problems',
@@ -1429,6 +1617,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. नाण्यांचे विशेष प्रश्न...' }],
         promptTemplate: (i) => `नाणी फेकण्याच्या प्रयोगावर आधारित स्पर्धा परीक्षेचे विशेष प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'spec_comm',
         name: 'Committee Selection Probability',
@@ -1436,6 +1625,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. समिती निवडीची संभाव्यता...' }],
         promptTemplate: (i) => `समिती निवडीच्या संभाव्यतेवर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'spec_digit',
         name: 'Digit Formation Problems',
@@ -1443,6 +1633,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. अंक रचनेचे प्रश्न...' }],
         promptTemplate: (i) => `अंक रचनेवर आधारित स्पर्धा परीक्षेचे प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'mixed_digit_rearrange',
         name: 'अंकांची रचना बदलल्यावर HCF/LCM शोधणे',
@@ -1450,6 +1641,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. तीन अंकी लहानात लहान संख्या कोणती जिला ४, ६, ८ आणि १२ ने भागल्यावर प्रत्येक वेळी २ बाकी उरते?' }],
         promptTemplate: (i) => `अंकांची रचना बदलल्यावर HCF/LCM शोधण्यावर आधारित प्रश्न सोडवा: ${i.p}`
       },
+,
       {
         key: 'abc_ratio',
         name: 'a : b : c प्रकार',
@@ -1457,6 +1649,7 @@ export const TOPICS: Topic[] = [
         inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. जर A:B = २:३ आणि B:C = ४:५ असेल, तर A:B:C चे प्रमाण किती?' }],
         promptTemplate: (i) => `a : b : c प्रकारचे प्रमाण काढा: ${i.p}`
       },
+,
       {
         key: 'combine',
         name: 'प्रमाण एकत्र करणे',
