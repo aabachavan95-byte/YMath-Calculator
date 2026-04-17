@@ -143,21 +143,28 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
     };
 
     const renderIntro = () => (
-        <div className="text-center animate-fade-in">
-            <CalendarIcon className="w-16 h-16 mx-auto text-amber-400" />
-            <h2 className="text-2xl font-bold mt-4 text-slate-800">दैनंदिन आव्हान</h2>
-            <p className="text-slate-600 mt-2 max-w-md mx-auto">
-                तुम्हाला {CHALLENGE_QUESTIONS} संमिश्र विषयांवरील प्रश्न मिळतील. तुमच्याकडे {CHALLENGE_TIME_LIMIT / 60} मिनिटे आहेत.
+        <div className="text-center animate-fade-in max-w-lg mx-auto py-8">
+            <div className="w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-amber-100 shadow-inner">
+                <CalendarIcon className="w-12 h-12 text-amber-500" />
+            </div>
+            <h2 className="text-3xl font-black text-slate-800 leading-tight">दैनंदिन आव्हान</h2>
+            <p className="text-slate-500 mt-3 text-lg font-medium italic">
+                तुमच्या गणिताच्या कौशल्याला दररोज एक नवीन दिशा द्या!
             </p>
-            <div className="my-8">
-                <label className="block text-center text-sm font-bold text-slate-500 mb-4 uppercase tracking-wide">काठिण्य पातळी निवडा</label>
-                <div className="flex justify-center gap-2 sm:gap-4 p-1.5 bg-slate-100 rounded-xl max-w-xs mx-auto shadow-inner">
+            <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 mt-8 mb-8 text-left">
+                <p className="text-slate-600 text-base leading-relaxed">
+                    या आव्हानामध्ये तुम्हाला <span className="font-bold text-primary">{CHALLENGE_QUESTIONS} संमिश्र</span> विषयांवरील प्रश्न मिळतील. तुमच्याकडे <span className="font-bold text-primary">{CHALLENGE_TIME_LIMIT / 60} मिनिटांचा</span> वेळ असेल. सज्ज आहात का?
+                </p>
+            </div>
+            <div className="mb-10">
+                <label className="block text-center text-xs font-black text-slate-400 mb-4 uppercase tracking-widest">काठिण्य पातळी निवडा</label>
+                <div className="flex justify-center gap-3 p-2 bg-slate-100 rounded-2xl shadow-inner">
                     {(['easy', 'medium', 'hard'] as Difficulty[]).map((level) => (
                         <button
                             key={level}
                             onClick={() => handleDifficultyChange(level)}
-                            className={`w-full px-3 py-2 text-sm font-bold rounded-lg transition-all duration-200 focus:outline-none ${
-                                difficulty === level ? 'bg-primary text-white shadow-md scale-105' : 'text-slate-600 hover:bg-white/60'
+                            className={`flex-1 py-3 px-2 text-sm font-black rounded-xl transition-all duration-200 focus:outline-none ${
+                                difficulty === level ? 'bg-white text-primary shadow-sm scale-105 border border-primary/10' : 'text-slate-500 hover:bg-white/40'
                             }`}
                         >
                             {level === 'easy' ? 'सोपे' : level === 'medium' ? 'मध्यम' : 'कठीण'}
@@ -165,8 +172,13 @@ export const DailyChallenge: React.FC<DailyChallengeProps> = ({ onBack, onComple
                     ))}
                 </div>
             </div>
-            {error && <div className="mt-4 p-3 bg-red-500/10 border border-red-400 text-red-600 rounded-lg">{error}</div>}
-            <button onClick={startChallenge} className="mt-6 w-full sm:w-auto py-4 px-10 rounded-xl shadow-lg text-lg font-bold text-white bg-primary hover:bg-primary-dark transition-all active:scale-95">आव्हानाला सुरुवात करा</button>
+            {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl font-bold animate-pulse">{error}</div>}
+            <button 
+                onClick={startChallenge} 
+                className="w-full py-5 px-10 rounded-2xl shadow-xl shadow-primary/20 text-xl font-black text-white bg-primary hover:bg-primary-dark transition-all active:scale-95 transform hover:-translate-y-1"
+            >
+                आव्हानाला सुरुवात करा
+            </button>
         </div>
     );
 

@@ -175,7 +175,23 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
               cleanTranscript = cleanTranscript.replace(/[०-९]/g, (w) => marathiDigits.indexOf(w).toString());
 
               const currentVal = inputsRef.current[key] || '';
-              const newValue = (currentVal + ' ' + cleanTranscript).trim();
+              const inputType = topic.inputs?.find(i => i.key === key)?.type;
+              
+              let newValue = '';
+              if (inputType === 'number') {
+                // For number inputs, if the transcript is a valid number, replace the value
+                // Otherwise, try to extract the first number found
+                const numberMatch = cleanTranscript.match(/\d+(\.\d+)?/);
+                if (numberMatch) {
+                  newValue = numberMatch[0];
+                } else {
+                  newValue = cleanTranscript;
+                }
+              } else {
+                // For text/textarea, append the new transcript
+                newValue = (currentVal + ' ' + cleanTranscript).trim();
+              }
+              
               handleInputChange(key, newValue);
           }
       };
@@ -262,7 +278,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       }
     });
 
-    const fullPrompt = topic.promptTemplate!(processedInputs);
+    const fullPrompt = topic.promptTemplate ? topic.promptTemplate(processedInputs) : '';
     
     try {
       let response = await solveTextProblem(fullPrompt);
@@ -441,7 +457,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
 
         <form onSubmit={handleSubmit} noValidate>
           <div className="space-y-4">
-            {topic.inputs!.map(input => (
+            {topic.inputs?.map(input => (
               <div key={input.key} className={`transition-all duration-300`}>
                 <label 
                     htmlFor={input.key} 
@@ -564,9 +580,12 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       {error && <div className="mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">{error}</div>}
       
       {result && (
-        <div className="mt-6 bg-white text-slate-900 border border-slate-200 rounded-xl shadow-lg p-6 animate-fade-in">
-          <h3 className="text-xl font-bold mb-2">उत्तर</h3>
-          <div className="p-4 bg-slate-100 border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4 flex justify-between items-center flex-wrap gap-2">
+        <div className="mt-8 bg-white text-slate-900 border-2 border-primary/20 rounded-3xl shadow-xl p-8 animate-fade-in relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-4 opacity-10">
+            <BrainIcon className="w-24 h-24" />
+          </div>
+          <h3 className="text-2xl font-black mb-4 text-primary">मुख्य उत्तर</h3>
+          <div className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-2 border-primary/30 rounded-2xl text-3xl font-black text-slate-800 mb-6 flex justify-between items-center flex-wrap gap-2 shadow-inner">
             <div className="whitespace-pre-wrap">{sanitizeText(result.answer)}</div>
           </div>
 

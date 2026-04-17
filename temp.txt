@@ -1,0 +1,101 @@
+1251-      },
+1252-      {
+1253-        key: 'cone_in_cyl',
+1254-        name: 'सिलिंडरमध्ये शंकू बसवणे',
+1255-        icon: React.createElement(CylinderConeIcon),
+1256-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. सिलिंडरमध्ये शंकू...' }],
+1257-        promptTemplate: (i) => `सिलिंडरमध्ये शंकू बसवण्यावर आधारित घनफळाचा प्रश्न सोडवा: ${i.p}`
+1258-      },
+1259-      {
+1260-        key: 'hemi_compare',
+1261-        name: 'गोळ्याशी तुलना',
+1262-        icon: React.createElement(SphereIcon),
+1263-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. गोळ्याशी तुलना...' }],
+1264-        promptTemplate: (i) => `अर्धगोळा आणि गोळा यांच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
+1265-      },
+1266-      {
+1267-        key: 'sp_vol_compare',
+1268-        name: 'घनफळ तुलना प्रश्न',
+1269-        icon: React.createElement(AreaVolumeIcon),
+1270-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. घनफळ तुलना...' }],
+1271-        promptTemplate: (i) => `घनफळाच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
+1272-      },
+1273-      {
+1274-        key: 'comp_area_perc',
+1275-        name: 'क्षेत्रफळावर आधारित टक्केवारी प्रश्न',
+1276-        icon: React.createElement(AreaVolumeIcon),
+1277-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. क्षेत्रफळावर आधारित टक्केवारी...' }],
+1278-        promptTemplate: (i) => `क्षेत्रफळावर आधारित टक्केवारीच्या प्रश्नाचे निराकरण करा: ${i.p}`
+1279-      },
+1280-      {
+1281-        key: 'comp_perim_area',
+1282-        name: 'परिमिती व क्षेत्रफळ तुलना',
+1283-        icon: React.createElement(AreaVolumeIcon),
+1284-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. परिमिती व क्षेत्रफळ तुलना...' }],
+1285-        promptTemplate: (i) => `परिमिती व क्षेत्रफळ यांच्या तुलनेवर आधारित प्रश्न सोडवा: ${i.p}`
+1286-      },
+1287-      {
+1288-        key: 'comp_tank_time',
+1289-        name: 'पाण्याची टाकी भरायला लागणारा वेळ',
+1290-        icon: React.createElement(AreaVolumeIcon),
+1291-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. टाकी भरायला लागणारा वेळ...' }],
+1292-        promptTemplate: (i) => `पाण्याची टाकी भरायला लागणाऱ्या वेळेवर आधारित घनफळाचा प्रश्न सोडवा: ${i.p}`
+1293-      },
+1294-      {
+1295-        key: 'comp_melt_remake',
+1296-        name: 'वितळवून नवीन आकृती तयार करणे',
+1297-        icon: React.createElement(AreaVolumeIcon),
+1298-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. वितळवून नवीन आकृती...' }],
+1299-        promptTemplate: (i) => `वितळवून नवीन आकृती तयार करण्यावर आधारित स्पर्धा परीक्षेचा प्रश्न सोडवा: ${i.p}`
+1300-      },
+1301-      {
+1302-        key: 'comp_shaded_area',
+1303-        name: 'शेडेड भाग शोधणे',
+1304-        icon: React.createElement(AreaVolumeIcon),
+1305-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. शेडेड भाग शोधणे...' }],
+1306-        promptTemplate: (i) => `आकृतीतील शेडेड (Shaded) भाग शोधण्यावर आधारित प्रश्न सोडवा: ${i.p}`
+1307-      },
+1308-      {
+1309-        key: 'comp_joined',
+1310-        name: 'दोन किंवा अधिक आकृत्या जोडून तयार झालेली आकृती',
+1311-        icon: React.createElement(AreaVolumeIcon),
+1312-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. दोन किंवा अधिक आकृत्या...' }],
+1313-        promptTemplate: (i) => `दोन किंवा अधिक आकृत्या जोडून तयार झालेल्या आकृतीच्या परिमितीवर आधारित प्रश्न सोडवा: ${i.p}`
+1314-      },
+1315-      {
+1316-        key: 'comp_boundary',
+1317-        name: 'बाहेरील सीमारेषा ओळखून परिमिती काढणे',
+1318-        icon: React.createElement(AreaVolumeIcon),
+1319-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. बाहेरील सीमारेषा...' }],
+1320-        promptTemplate: (i) => `बाहेरील सीमारेषा ओळखून परिमिती काढण्यावर आधारित प्रश्न सोडवा: ${i.p}`
+1321-      },
+1322-      {
+1323-        key: 'wp_compound',
+1324-        name: 'घराच्या compound wall ची लांबी',
+1325-        icon: React.createElement(PerimeterIcon),
+1326-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. घराच्या compound wall...' }],
+1327-        promptTemplate: (i) => `घराच्या compound wall च्या लांबीवर आधारित परिमितीचा प्रश्न सोडवा: ${i.p}`
+1328-      },
+1329-      {
+1330-        key: 'wp_ratio',
+1331-        name: 'प्रमाण व अनुपात',
+1332-        icon: React.createElement(AlgebraIcon),
+1333-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. प्रमाण व अनुपात...' }],
+1334-        promptTemplate: (i) => `प्रमाण व अनुपात यावर आधारित बीजगणिताच्या शब्दमंजुषा प्रश्नाचे निराकरण करा: ${i.p}`
+1335-      },
+1336-      {
+1337-        key: 'ap_consecutive',
+1338-        name: 'सलग पदे (Consecutive Terms)',
+1339-        icon: React.createElement(APIcon),
+1340-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. तीन सलग पदांची बेरीज २१ आहे...' }],
+1341-        promptTemplate: (i) => `अंकगणित श्रेढीतील सलग पदांवर आधारित प्रश्न सोडवा: ${i.p}`
+1342-      },
+1343-      {
+1344-        key: 'ap_multiples',
+1345-        name: 'विशिष्ट संख्येच्या पटीतील संख्या',
+1346-        icon: React.createElement(APIcon),
+1347-        inputs: [{ key: 'p', label: 'प्रश्न', type: 'textarea', placeholder: 'उदा. १० ते २५० मधील ४ च्या पटीतील संख्या किती?' }],
+1348-        promptTemplate: (i) => `विशिष्ट संख्येच्या पटीतील संख्यांवर आधारित अंकगणित श्रेढीचे प्रश्न सोडवा: ${i.p}`
+1349-      },
+1350-      {
+1351:        key: 'event_concept',

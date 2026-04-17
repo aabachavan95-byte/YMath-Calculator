@@ -161,7 +161,7 @@ const App: React.FC = () => {
       case 'daily_challenge':
         return <DailyChallenge onBack={handleBack} onComplete={() => { setView('home'); }} />;
       case 'calculator':
-        return selectedTopic && <Calculator topic={selectedTopic} onBack={handleBack} onStartPractice={handleStartPractice} />;
+        return selectedTopic && <Calculator key={selectedTopic.key} topic={selectedTopic} onBack={handleBack} onStartPractice={handleStartPractice} />;
       case 'photo':
         return <PhotoSolver onBack={handleBack} />;
       case 'subtopics':
@@ -275,6 +275,7 @@ const App: React.FC = () => {
                             {TOPICS.map((topic) => {
                                 const colors: Record<string, { border: string; iconBg: string }> = {
                                     'percentage': { border: 'border-orange-500', iconBg: 'bg-orange-50' },
+                                    'percentage_mixed': { border: 'border-orange-500', iconBg: 'bg-orange-50' },
                                     'ratio_proportion': { border: 'border-blue-500', iconBg: 'bg-blue-50' },
                                     'profit_loss': { border: 'border-emerald-500', iconBg: 'bg-emerald-50' },
                                     'interest': { border: 'border-violet-500', iconBg: 'bg-violet-50' },

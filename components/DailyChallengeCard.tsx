@@ -8,12 +8,18 @@ interface DailyChallengeCardProps {
 
 export const DailyChallengeCard: React.FC<DailyChallengeCardProps> = ({ onSelect }) => {
   return (
-    <button
-      onClick={onSelect}
-      className="group w-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-amber-400 to-orange-500 text-white border border-amber-500 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400"
-    >
-      <CalendarIcon className="w-6 h-6 mb-1 text-white/90" />
-      <span className="text-lg font-bold">दैनंदिन आव्हान</span>
-    </button>
+    <div className="mb-8 w-full px-1">
+      <button
+        onClick={onSelect}
+        style={{
+          background: 'linear-gradient(to right, #f59e0b, #ea580c)',
+          boxShadow: '0 4px 14px 0 rgba(234, 88, 12, 0.39)',
+        }}
+        className="w-full flex flex-col items-center justify-center py-8 text-white rounded-xl transition-all duration-300 active:scale-[0.98] border-none"
+      >
+        <CalendarIcon className="w-8 h-8 mb-2 text-white" />
+        <h3 className="text-xl font-bold text-white tracking-wide">दैनंदिन आव्हान</h3>
+      </button>
+    </div>
   );
 };

@@ -17,7 +17,7 @@ export const TopicCard: React.FC<TopicCardProps> = ({
   gradientColor = 'from-white to-slate-50/50'
 }) => {
   const subTopics = topic.subTopics || [];
-  const displaySubTopics = subTopics.slice(0, 10); // Show up to 10 sub-subtopics
+  const displaySubTopics = subTopics.slice(0, 2); // Show up to 2 sub-subtopics
 
   return (
     <div className={`bg-gradient-to-br ${gradientColor} rounded-xl shadow-md overflow-hidden border-l-4 ${borderColor} flex flex-col h-full transition-transform hover:-translate-y-1 duration-300`}>
@@ -52,7 +52,7 @@ export const TopicCard: React.FC<TopicCardProps> = ({
               </span>
             </div>
           ))}
-          {subTopics.length > 10 && (
+          {subTopics.length > 2 && (
             <p className="text-xs text-black font-extrabold italic pl-4 p-1.5">आणखी विषय...</p>
           )}
         </div>

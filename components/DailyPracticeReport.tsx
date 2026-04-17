@@ -23,18 +23,18 @@ const COLORS = ['#10b981', '#ef4444', '#94a3b8'];
 export const DailyPracticeReport: React.FC<DailyPracticeReportProps> = ({ onBack }) => {
   // Mock data based on user's request
   const data = [
-    { name: 'Number System', Solved: 15, Wrong: 5, Unsolved: 10 },
-    { name: 'Percentage', Solved: 20, Wrong: 8, Unsolved: 5 },
-    { name: 'Ratio & Proportion', Solved: 12, Wrong: 4, Unsolved: 8 },
-    { name: 'Time & Work', Solved: 18, Wrong: 6, Unsolved: 4 },
-    { name: 'Speed Time Distance', Solved: 10, Wrong: 7, Unsolved: 12 },
-    { name: 'Profit & Loss', Solved: 22, Wrong: 3, Unsolved: 2 },
+    { name: 'संख्या पद्धती', Solved: 15, Wrong: 5, Unsolved: 10 },
+    { name: 'टक्केवारी', Solved: 20, Wrong: 8, Unsolved: 5 },
+    { name: 'गुणोत्तर व प्रमाण', Solved: 12, Wrong: 4, Unsolved: 8 },
+    { name: 'वेळ आणि काम', Solved: 18, Wrong: 6, Unsolved: 4 },
+    { name: 'वेग वेळ अंतर', Solved: 10, Wrong: 7, Unsolved: 12 },
+    { name: 'नफा आणि तोटा', Solved: 22, Wrong: 3, Unsolved: 2 },
   ];
 
   const pieData = [
-    { name: 'Solved Questions', value: data.reduce((acc, curr) => acc + curr.Solved, 0) },
-    { name: 'Wrong Questions', value: data.reduce((acc, curr) => acc + curr.Wrong, 0) },
-    { name: 'Unsolved Questions', value: data.reduce((acc, curr) => acc + curr.Unsolved, 0) },
+    { name: 'सोडवलेले प्रश्न', value: data.reduce((acc, curr) => acc + curr.Solved, 0) },
+    { name: 'चुकीचे प्रश्न', value: data.reduce((acc, curr) => acc + curr.Wrong, 0) },
+    { name: 'न सोडवलेले प्रश्न', value: data.reduce((acc, curr) => acc + curr.Unsolved, 0) },
   ];
 
   return (
@@ -76,9 +76,9 @@ export const DailyPracticeReport: React.FC<DailyPracticeReportProps> = ({ onBack
                 wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} 
                 iconSize={10}
               />
-              <Bar dataKey="Solved" name="Solved" fill="#10b981" radius={[3, 3, 0, 0]} />
-              <Bar dataKey="Wrong" name="Wrong" fill="#ef4444" radius={[3, 3, 0, 0]} />
-              <Bar dataKey="Unsolved" name="Unsolved" fill="#94a3b8" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="Solved" name="सोडवलेले" fill="#10b981" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="Wrong" name="चुकीचे" fill="#ef4444" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="Unsolved" name="न सोडवलेले" fill="#94a3b8" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
