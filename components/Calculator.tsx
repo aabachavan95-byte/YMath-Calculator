@@ -585,7 +585,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
             <BrainIcon className="w-24 h-24" />
           </div>
           <h3 className="text-2xl font-black mb-4 text-primary">मुख्य उत्तर</h3>
-          <div className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-2 border-primary/30 rounded-2xl text-3xl font-black text-slate-800 mb-6 flex justify-between items-center flex-wrap gap-2 shadow-inner">
+          <div className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-2 border-primary/30 rounded-2xl text-lg font-bold text-slate-800 mb-6 flex justify-between items-center flex-wrap gap-2 shadow-inner">
             <div className="whitespace-pre-wrap">{sanitizeText(result.answer)}</div>
           </div>
 
