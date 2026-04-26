@@ -634,7 +634,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       {conceptResult && (
         <div className="mt-6 bg-sky-50 text-slate-900 shadow-lg rounded-xl p-6 animate-fade-in border border-sky-200">
            <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-            <LightbulbIcon className="text-sky-500"/>
+            <LightbulbIcon className="w-8 h-8 text-sky-500 flex-shrink-0" />
             {topic.name}: संकल्पना
           </h3>
           <div className="p-4 bg-white border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4 flex justify-between items-center flex-wrap gap-2">
@@ -661,7 +661,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ topic, onBack, onStartPr
       {expertResult && (
         <div className="mt-6 bg-white text-slate-900 shadow-xl rounded-xl p-6 animate-fade-in border border-secondary-light/50">
            <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-            <BrainIcon className="text-secondary-light"/>
+            <BrainIcon className="w-8 h-8 text-secondary-light flex-shrink-0" />
             तज्ञ मोड आव्हान
           </h3>
           <div className="p-4 bg-slate-100 border border-slate-200 rounded-md text-lg font-bold text-slate-900 mb-4 flex justify-between items-center flex-wrap gap-2">
