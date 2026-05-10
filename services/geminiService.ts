@@ -19,7 +19,8 @@ IMPORTANT RULES:
 4. Accuracy is paramount. Double-check all calculations and logic before responding.
 5. You must ONLY return a valid JSON object. No markdown code blocks.
 6. Tone: Encouraging, educational, and professional.
-7. If the problem is complex, break it down into smaller, manageable parts in the 'पायऱ्या' section.`;
+7. If the problem is complex, break it down into smaller, manageable parts in the 'पायऱ्या' section.
+8. When generating practice questions or daily challenges, create questions that strictly follow the rigorous style, patterns, deep concepts, and difficulty levels found in "Kiran Math Books (Hindi)", which are popular for competitive exams like SSC, Banking, Railways, etc. Although taking inspiration from these Hindi resources, the final output MUST be entirely in Marathi. Combine this standard exam format with AI-generated variety to give students high-quality practice.`;
 
 const responseSchema = {
     type: Type.OBJECT,
@@ -292,7 +293,8 @@ export const generateMcqBatch = async (topicName: string, level: Difficulty, cou
     ३. प्रश्न पुन्हा येता कामा नये: प्रत्येक प्रश्नातील संख्या, नावे आणि रचना पूर्णपणे नवीन असावी.
     ४. स्पष्टीकरणे: स्पष्टीकरणे अचूक पण अत्यंत संक्षिप्त (Brief) ठेवा. 
     ५. गणीती चिन्हे: स्पष्टीकरणात '$' चिन्ह किंवा LaTeX (उदा. \\frac) वापरू नका. त्याऐवजी साधी चिन्हे (उदा. 150/25) वापरा. गुणाकारासाठी नेहमी "×" वापरा, "*" वापरू नका.
-    ६. अचूकता: सर्व गणिती उत्तरे आणि पर्याय तपासून घ्या.`;
+    ६. अचूकता: सर्व गणिती उत्तरे आणि पर्याय तपासून घ्या.
+    ७. किरण मॅथ्स (Kiran Math Publication) संदर्भ: हे प्रश्न SSC, Banking, MPSC, UPSC सारख्या स्पर्धा परीक्षांच्या किरण पब्लिकेशन (Kiran Publication Chapterwise Mathematics) पुस्तकांच्या आणि जुन्या प्रश्नपत्रिकांच्या धर्तीवर असावेत. किरण पुस्तकांमध्ये जसे कठीण आणि ट्रिकी (Tricky) प्रश्न असतात (विशेषतः हिंदी आवृत्तीत), त्याच प्रकारच्या प्रश्नांचे स्वरूप आणि संकल्पना वापरून, परंतु सर्व प्रश्न केवळ मराठीत द्या.`;
 
     try {
         const ai = getAiClient();
@@ -337,7 +339,11 @@ export const CHALLENGE_QUESTIONS = 15;
 
 export const generateDailyChallenge = async (difficulty: Difficulty): Promise<McqResponse[]> => {
     const sessionId = Date.now() + Math.random().toString(36).substring(7);
-    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन MCQs तयार करा. आयडी: ${sessionId}. विविधता आणि अचूकता महत्त्वाची. स्पष्टीकरणात '$' किंवा LaTeX वापरू नका. गुणाकारासाठी नेहमी "×" वापरा, "*" वापरू नका.`;
+    const prompt = `तुम्ही एक अत्यंत तज्ञ गणित प्राध्यापक आहात. ${CHALLENGE_QUESTIONS} पूर्णपणे नवीन MCQs तयार करा. आयडी: ${sessionId}. 
+    नियम:
+    १. विविधता आणि अचूकता महत्त्वाची. 
+    २. स्पष्टीकरणात '$' किंवा LaTeX वापरू नका. गुणाकारासाठी नेहमी "×" वापरा, "*" वापरू नका.
+    ३. किरण मॅथ्स (Kiran Math Publication Hindi PDF) संदर्भ: हे सर्व प्रश्न SSC, Banking, MPSC, UPSC सारख्या स्पर्धा परीक्षांच्या किरण पब्लिकेशन पुस्तकांच्या धर्तीवर असावेत. त्या पुस्तकांमधील टिपिकल कठीण आणि ट्रिकी (Tricky) प्रश्नांचे स्वरूप आणि संकल्पना एकत्रित करून उत्तम दर्जाचे प्रश्न काढा. परंतु सर्व प्रश्न आणि स्पष्टीकरणे फक्त आणि फक्त मराठीत असावीत.`;
     
     try {
         const ai = getAiClient();
